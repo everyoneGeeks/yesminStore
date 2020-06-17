@@ -7,7 +7,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 /*
 |--------------------------------------------------------------------------
-| User Section 
+| User Section
 |--------------------------------------------------------------------------
 | this will handle all user part
 */
@@ -20,7 +20,7 @@ Route::get('/user/status/{id}','usersControllers@status')->name('user.status')->
 
 /*
 |--------------------------------------------------------------------------
-| provider Section 
+| provider Section
 |--------------------------------------------------------------------------
 | this will handle all provider part
 */
@@ -33,7 +33,7 @@ Route::get('/provider/status/beautyCenter/{id}','providersControllers@statusbeau
 
 /*
 |--------------------------------------------------------------------------
-| category Section 
+| category Section
 |--------------------------------------------------------------------------
 | this will handle all category part
 */
@@ -49,7 +49,22 @@ Route::post('/category/add','categoriesController@submitAdd')->name('category.ad
 
 /*
 |--------------------------------------------------------------------------
-| shop levels Section 
+| subcategor Section
+|--------------------------------------------------------------------------
+| this will handle all subcategor part
+*/
+Route::get('/subcategoies','subcategoiesController@list')->name('subcategoies');
+Route::get('/subcategor/info/{id}','subcategoiesController@info')->name('subcategor.info')->where('id', '[0-9]+');
+Route::get('/subcategor/status/{id}','subcategoiesController@status')->name('subcategor.status')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::get('/subcategor/edit/{id}','subcategoiesController@formEdit')->name('subcategor.edit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::post('/subcategor/edit/{id}','subcategoiesController@submitEdit')->name('subcategor.edit.submit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::get('/subcategor/add','subcategoiesController@formAdd')->name('subcategor.add')->middleware('role:subcategor,add');
+Route::post('/subcategor/add','subcategoiesController@submitAdd')->name('subcategor.add.submit')->middleware('role:subcategor,add');
+#---
+
+/*
+|--------------------------------------------------------------------------
+| shop levels Section
 |--------------------------------------------------------------------------
 | this will handle all shop levels part
 */
@@ -67,7 +82,7 @@ Route::post('/shop/level/add','shopLevelsController@submitAdd')->name('shop.leve
 
 /*
 |--------------------------------------------------------------------------
-| admin Section 
+| admin Section
 |--------------------------------------------------------------------------
 | this will handle all admin  part
 */
@@ -87,7 +102,7 @@ Route::group(['middleware' => 'superAdmin'], function()
 
 /*
 |--------------------------------------------------------------------------
-| User Orders 
+| User Orders
 |--------------------------------------------------------------------------
 | this will handle all orders part
 */
@@ -98,7 +113,7 @@ Route::get('/order/info/{id}','ordersController@info')->name('order.info')->wher
 
 /*
 |--------------------------------------------------------------------------
-| Balance recharging  Section 
+| Balance recharging  Section
 |--------------------------------------------------------------------------
 | this will handle all Balance recharging part
 */
@@ -110,7 +125,7 @@ Route::get('/balance/recharging/disapprove/{id}','balanceRechargingControllers@d
 
 /*
 |--------------------------------------------------------------------------
-| Bank account Section 
+| Bank account Section
 |--------------------------------------------------------------------------
 | this will handle all Bank account part
 */
@@ -125,7 +140,7 @@ Route::post('/Bank/account/add','bankAccountsController@submitAdd')->name('Bank.
 
 /*
 |--------------------------------------------------------------------------
-| Notifications Section 
+| Notifications Section
 |--------------------------------------------------------------------------
 | this will handle all Notifications part
 */
@@ -135,12 +150,12 @@ Route::get('/Notification/edit/{id}','NotificationsController@formEdit')->name('
 Route::post('/Notification/edit/{id}','NotificationsController@submitEdit')->name('Notification.edit.submit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
 Route::get('/Notification/add','NotificationsController@formAdd')->name('Notification.add')->middleware('role:Notification,add');
 Route::post('/Notification/add','NotificationsController@submitAdd')->name('Notification.add.submit')->middleware('role:Notification,add');
-#---------------------------------------------------------------------------------- 
+#----------------------------------------------------------------------------------
 
 
 /*
 |--------------------------------------------------------------------------
-| appSetting Section 
+| appSetting Section
 |--------------------------------------------------------------------------
 | this will handle all appSetting part
 */
@@ -163,23 +178,23 @@ Route::get('/email/add','appSettingController@formAddEmail')->name('email.add')-
 Route::post('/email/add','appSettingController@submitAddEmail')->name('email.add.submit')->middleware('role:appSetting,edit');
 
 
-#---------------------------------------------------------------------------------- 
+#----------------------------------------------------------------------------------
 
 
 /*
 |--------------------------------------------------------------------------
-| complains Section 
+| complains Section
 |--------------------------------------------------------------------------
 | this will handle all complains part
 */
 Route::get('/complains','complainsController@list')->name('complains');
 Route::post('/complains/info/{id}','complainsController@info')->name('complains.info');
-#---------------------------------------------------------------------------------- 
+#----------------------------------------------------------------------------------
 
 
 /*
 |--------------------------------------------------------------------------
-| ads Section 
+| ads Section
 |--------------------------------------------------------------------------
 | this will handle all ads part
 */
@@ -193,7 +208,7 @@ Route::post('/ad/add','Advertisements@submitAdd')->name('ad.add.submit')->middle
 
 /*
 |--------------------------------------------------------------------------
-| codes Section 
+| codes Section
 |--------------------------------------------------------------------------
 | this will handle all codes part
 */
@@ -208,7 +223,7 @@ Route::post('/code/add','codeController@submitAdd')->name('code.add.submit')->mi
 
 /*
 |--------------------------------------------------------------------------
-| Reports Orders 
+| Reports Orders
 |--------------------------------------------------------------------------
 | this will handle all Reports part
 */

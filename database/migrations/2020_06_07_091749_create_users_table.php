@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name',255);
             $table->string('email',255);
+            $table->string('phone',50);
             $table->string('password',255);
             $table->string('image',255);
-            $table->integer('is_accept');
+            $table->integer('is_active');
             $table->timestamps();
             $table->softDeletes();
         });

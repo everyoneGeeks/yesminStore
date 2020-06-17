@@ -22,7 +22,6 @@
             <th> الصور</th>
             <th>الهاتف</th>
             <th>الحالة</th>
-            <th>رصيد حساب</th>
         </tr>
         </thead>
         <tbody>  
@@ -30,16 +29,13 @@
         <tr>
 <th> <a href="/user/info/{{$user->id}}">{{$user->name}}</th>
 <th> {{$user->email}}</th>
-<th><img src="{{asset('https://00a306-qamarwahed-orange.magdsoft.com/'.$user->image)}}" width=50px > </th>
+<th><img src="{{asset($user->image)}}" width=50px > </th>
 <th> {{$user->phone}}</th>
 @if($user->is_active == 1)
 <th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
 @else
 <th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
 @endif
-
-<th> $ {{$user->balance}}</th>
-
           
         </tr>
 
@@ -52,7 +48,6 @@
         <!--    <th> الصور</th>-->
         <!--    <th>الهاتف</th>-->
         <!--    <th>الحالة</th>-->
-        <!--    <th>رصيد حساب</th>-->
         <!--</tr>-->
         <!--</tfoot>-->
         </table>
@@ -74,7 +69,9 @@
             "paginate": {
                 "next": "بعد",
                 "previous" : "قبل"
-            }
+            },
+            "search":"بحث:",
+            "lengthMenu":     "النتائج_MENU_",
         },
       "info" : true,
       "paging": true,

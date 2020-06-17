@@ -58,7 +58,7 @@ public function status($id){
         \Notify::success('تم الغاء تفعيل المستخدم بنجاح', 'تغير حالة المستخدم ');
     }
 
-    return view('pages.users.info',compact('user'));
+    return \Redirect::back();
 }
 
 }

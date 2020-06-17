@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الاقسام'])
+@extends('layout.app',['title'=>'الاقسام الفرعية '])
 @section('style')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -7,10 +7,10 @@
 
 @section('content')
 
-@component('components.panel',['subTitle'=>' ادارة الاقسام'])
+@component('components.panel',['subTitle'=>' ادارة الاقسام الفرعية'])
 @if($categories->isEmpty())
 
-@component('components.empty',['section'=>'اقسام ']) @endcomponent
+@component('components.empty',['section'=>'اقسام الفرعية ']) @endcomponent
 
 @else 
 
@@ -19,15 +19,19 @@
         <tr>
             <th>الاسم بالعربي </th>
             <th>الاسم بالانجنبي</th>
+            <th>القسم  </th>
+            <th> الصور</th>
             <th>الافعال</th>
         </tr>
         </thead>
         <tbody>  
-@foreach($categories as $category)
+@foreach($subCategories as $subCategor)
         <tr>
-<th> <a href="/category/info/{{$category->id}}">{{$category->name_ar}}</a></th>
-<th><a href="/category/info/{{$category->id}}"> {{$category->name_en}}</a></th>
-<th><a href="/category/edit/{{$category->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th> <a href="/subCategor/info/{{$subCategor->id}}">{{$subCategor->name_ar}}</a></th>
+<th><a href="/subCategor/info/{{$subCategor->id}}"> {{$subCategor->name_en}}</a></th>
+<th><a href="/categor/info/{{$subCategor->categor->id}}"> {{$subCategor->categor->name_ar}}</a></th>
+<th><img src="{{asset($subCategor->logo)}}" width=50px > </th>
+<th><a href="/subCategor/edit/{{$subCategor->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
         </tr>
 
         @endforeach  
@@ -36,6 +40,7 @@
         <!--<tr>-->
         <!--<th>الاسم بالعربي </th>-->
         <!--    <th>الاسم بالانجنبي</th>-->
+        <!--    <th> الصور</th>-->
         <!--    <th>الافعال</th>-->
         <!--</tr>-->
         <!--</tfoot>-->
@@ -46,7 +51,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/category/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة متجر  </a>
+<a  href="/subCategor/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة متجر  </a>
 </div>
 @endslot
 

@@ -1,5 +1,3 @@
-
-
 @extends('layout.app',['title'=>'المسئولين'])
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
@@ -22,13 +20,13 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="Inputpassword"> الرقم السري </label>
+                    <label for="Inputpassword">  كلمة السر </label>
                     <input type="text" class="form-control" id="Inputpassword"  name="password">
                   </div>
 
                   <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="admin" value=1 checked   name="admin">
+                    <input type="checkbox" class="form-check-input" id="admin" value=1    name="admin">
                     <label class="form-check-label" for="exampleCheck1"> ادمن</label>
                   </div>
                   </div>
@@ -40,7 +38,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">ارسال</button>
+                  <button type="submit" class="btn btn-primary">اضافة </button>
                 </div>
               </form>
             
@@ -63,19 +61,15 @@
         </tr>
         </thead>
         <tbody>  
-
-@component('components.checkbox',['title'=>' المستخدميين ','name'=>'users','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>' المندوبين    ','name'=>'provider','permissions'=>0])@endcomponent
+        
 @component('components.checkbox',['title'=>' الاقسام     ','name'=>'category','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>'مستوي المتجر ','name'=>'shop','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>' شحن الرصيد  ','name'=>'balance','permissions'=>0])@endcomponent         
-@component('components.checkbox',['title'=>'الحسابات البنكية ','name'=>'Bank','permissions'=>0])@endcomponent
+@component('components.checkbox',['title'=>' المنتجات    ','name'=>'product','permissions'=>0])@endcomponent
+@component('components.checkbox',['title'=>' اكواد الخصم ','name'=>'coupon','permissions'=>0])@endcomponent 
+@component('components.checkbox',['title'=>'الطالبات','name'=>'order','permissions'=>0])@endcomponent
+@component('components.checkbox',['title'=>' المستخدميين ','name'=>'user','permissions'=>0])@endcomponent
 @component('components.checkbox',['title'=>'الاعلانات','name'=>'ad','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>' اكواد الخصم ','name'=>'category','permissions'=>0])@endcomponent 
-@component('components.checkbox',['title'=>'الاشعارات','name'=>'Notification','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>'  اعدادات التطبيق ','name'=>'appSetting','permissions'=>0])@endcomponent    
-@component('components.checkbox',['title'=>'المستخدميين','name'=>'users','permissions'=>0])@endcomponent
-@component('components.checkbox',['title'=>'المندوبين','name'=>'provider','permissions'=>0])@endcomponent
+@component('components.checkbox',['title'=>'  اعدادات الموقع  ','name'=>'webSetting','permissions'=>0])@endcomponent    
+@component('components.checkbox',['title'=>'خدمات الدفع الالكتروني ','name'=>'payment','permissions'=>0])@endcomponent
 
 
        

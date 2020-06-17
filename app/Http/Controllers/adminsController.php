@@ -9,30 +9,30 @@ use Carbon\Carbon;
 |--------------------------------------------------------------------------
 | adminsController
 |--------------------------------------------------------------------------
-| this will handle all admins part (CRUD) 
+| this will handle all admins part (CRUD)
 |
 */
 /**
-           | |         (_)          
-   __ _  __| |_ __ ___  _ _ __  ___ 
+           | |         (_)
+   __ _  __| |_ __ ___  _ _ __  ___
   / _` |/ _` | '_ ` _ \| | '_ \/ __|
  | (_| | (_| | | | | | | | | | \__ \
   \__,_|\__,_|_| |_| |_|_|_| |_|___/
  */
 class adminsController extends Controller
 {
-/**  
+/**
 * show list of admins
 * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function list(){
-    $admins=User::get();
+    $admins=User::orderBy('is_super_admins','DESC')->get();
     return view('pages.admin.list',compact('admins'));
     }
-    /**  
+    /**
     * show info of  admin By id
-    * @pararm int $id admin id 
+    * @pararm int $id admin id
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
@@ -47,9 +47,9 @@ public function list(){
         return view('pages.admin.info',compact('admin'));
     }
 
-    /**  
-    *  edit  admin By id 
-    * @pararm int $id admin id 
+    /**
+    *  edit  admin By id
+    * @pararm int $id admin id
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
@@ -61,11 +61,11 @@ public function list(){
             return view('pages.admin.edit',compact('admin','permissions'));
         }
         return view('pages.admin.edit',compact('admin'));
-    }    
+    }
 
-    /**  
-    * edit  of  admin By id 
-    * @pararm int $id admin id 
+    /**
+    * edit  of  admin By id
+    * @pararm int $id admin id
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
@@ -77,14 +77,14 @@ public function list(){
         'email.required'=>'يجب ادخال الايميل ',
         'password.min'=>'يجب ادخال ان يكون الرقم السري اكبر من 8',
         "name.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",
-        "email.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",        
-        
-        
+        "email.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",
+
+
         ];
 
 
         $request->validate($rules,$message);
-    
+
         if($request->admin == 1){
             $admin=User::where('id',$id)->first();
             $admin->name=$request->name;
@@ -93,21 +93,20 @@ public function list(){
             $admin->is_super_admins=1;
             $admin->created_at=Carbon::now();
             $admin->save();
-        
+
         }else{
             $permissions=[
-                'users'=>['add'=>$request->addusers,'edit'=>$request->editusers,'delete'=>$request->deleteusers],
-                'provider'=>['add'=>$request->addprovider,'edit'=>$request->editprovider,'delete'=>$request->deleteprovider],
-                'category'=>['add'=>$request->addcategory,'edit'=>$request->editcategory,'delete'=>$request->deletecategory],
-                'shop'=>['add'=>$request->addshop,'edit'=>$request->editshop,'delete'=>$request->deleteshop],
-                'balance'=>['add'=>$request->addbalance,'edit'=>$request->editbalance,'delete'=>$request->deletebalance],
-                'Bank'=>['add'=>$request->addBank,'edit'=>$request->editBank,'delete'=>$request->deleteBank],
-                'ad'=>['add'=>$request->addad,'edit'=>$request->editad,'delete'=>$request->deletead],
-                'codes'=>['add'=>$request->addcodes,'edit'=>$request->editcodes,'delete'=>$request->deletecodes],
-                'Notification'=>['add'=>$request->addNotification,'edit'=>$request->editNotification,'delete'=>$request->deleteNotification],
-                'appSetting'=>['add'=>$request->addappSetting,'edit'=>$request->editappSetting,'delete'=>$request->deleteappSetting],
-            
-            
+
+                    'user'=>['add'=>$request->addusers,'edit'=>$request->editusers,'delete'=>$request->deleteusers],
+                    'category'=>['add'=>$request->addcategory,'edit'=>$request->editcategory,'delete'=>$request->deletecategory],
+                    'order'=>['add'=>$request->addorder,'edit'=>$request->editorder,'delete'=>$request->deleteorder],
+                    'ad'=>['add'=>$request->addad,'edit'=>$request->editad,'delete'=>$request->deletead],
+                    'coupon'=>['add'=>$request->addcoupon,'edit'=>$request->editcoupon,'delete'=>$request->deletecoupon],
+                    'product'=>['add'=>$request->addproduct,'edit'=>$request->editproduct,'delete'=>$request->deleteproduct],
+                    'webSetting'=>['add'=>$request->addwebSetting,'edit'=>$request->editwebSetting,'delete'=>$request->deletewebSetting],
+                    'payment'=>['add'=>$request->addpayment,'edit'=>$request->editpayment,'delete'=>$request->deletepayment],
+
+
             ];
             $admin=User::where('id',$id)->first();
             $admin->name=$request->name;
@@ -118,27 +117,27 @@ public function list(){
             $admin->created_at=Carbon::now();
             $admin->save();
         }
-        
+
         if($request->admin == 1){
             \Notify::success('تم اضافة  ادمن جديد بنجاح', '  اضافة ادمن ');
         }else{
             \Notify::success('تم اضافة  مسئول جديد بنجاح', '  اضافة مسئول ');
         }
                 return redirect()->back();
-    }  
+    }
 
 
-    /**  
-    * show  form add  of  admins 
+    /**
+    * show  form add  of  admins
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
     public function formAdd(){
         return view('pages.admin.add');
-    }    
+    }
 
-    /**  
-    * save add  of  admin 
+    /**
+    * save add  of  admin
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
@@ -151,7 +150,7 @@ public function list(){
     'password.required'=>'يجب ادخال الرقم السري ',
     'password.min'=>'يجب ادخال ان يكون الرقم السري اكبر من 8',
     "name.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",
-     "email.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",  
+     "email.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف",
     ];
     $request->validate($rules,$message);
 if($request->admin == 1){
@@ -165,19 +164,16 @@ if($request->admin == 1){
 
 }else{
     $permissions=[
-        'users'=>['add'=>$request->addusers,'edit'=>$request->editusers,'delete'=>$request->deleteusers],
-        'provider'=>['add'=>$request->addprovider,'edit'=>$request->editprovider,'delete'=>$request->deleteprovider],
+        'user'=>['add'=>$request->adduser,'edit'=>$request->edituser,'delete'=>$request->deleteuser],
         'category'=>['add'=>$request->addcategory,'edit'=>$request->editcategory,'delete'=>$request->deletecategory],
-        'shop'=>['add'=>$request->addshop,'edit'=>$request->editshop,'delete'=>$request->deleteshop],
-        'balance'=>['add'=>$request->addbalance,'edit'=>$request->editbalance,'delete'=>$request->deletebalance],
-        'Bank'=>['add'=>$request->addBank,'edit'=>$request->editBank,'delete'=>$request->deleteBank],
+        'order'=>['add'=>$request->addorder,'edit'=>$request->editorder,'delete'=>$request->deleteorder],
         'ad'=>['add'=>$request->addad,'edit'=>$request->editad,'delete'=>$request->deletead],
-        'codes'=>['add'=>$request->addcodes,'edit'=>$request->editcodes,'delete'=>$request->deletecodes],
-        'Notification'=>['add'=>$request->addNotification,'edit'=>$request->editNotification,'delete'=>$request->deleteNotification],
-        'appSetting'=>['add'=>$request->addappSetting,'edit'=>$request->editappSetting,'delete'=>$request->deleteappSetting],
-    
-    
+        'coupon'=>['add'=>$request->addcoupon,'edit'=>$request->editcoupon,'delete'=>$request->deletecoupon],
+        'product'=>['add'=>$request->addproduct,'edit'=>$request->editproduct,'delete'=>$request->deleteproduct],
+        'webSetting'=>['add'=>$request->addwebSetting,'edit'=>$request->editwebSetting,'delete'=>$request->deletewebSetting],
+        'payment'=>['add'=>$request->addpayment,'edit'=>$request->editpayment,'delete'=>$request->deletepayment],
     ];
+
     $admin=new User;
     $admin->name=$request->name;
     $admin->email=$request->email;
@@ -194,14 +190,14 @@ if($request->admin == 1){
     \Notify::success('تم اضافة  مسئول جديد بنجاح', '  اضافة مسئول ');
 }
         return redirect()->back();
-    }  
+    }
 
 
-    
 
-    /**  
+
+    /**
     * delete admin By id
-    * @pararm int $id admin id 
+    * @pararm int $id admin id
     * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
@@ -209,5 +205,5 @@ if($request->admin == 1){
         $admin=User::where('id',$id)->delete();
         \Notify::success('تم حذف المستخدم بنجاح', '   تم حذف المستخدم ');
         return redirect()->back();
-    }    
+    }
 }

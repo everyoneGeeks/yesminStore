@@ -43,27 +43,7 @@ public function list(){
         $category=category::where('id',$id)->first();
         return view('pages.categories.info',compact('category'));
     }
-    /**  
-    * change status of category (active / deactive)
-    * @pararm int $id category id 
-    * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-    * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
-    */
-    public function status($id){
-        $category=category::where('id',$id)->first();
     
-        if($category->is_active == 0){
-            $category->is_active = 1;
-            $category->save();
-            \Notify::success('تم تفعيل القسم بنجاح', 'تغير حالة القسم  ');
-        }else{
-            $category->is_active = 0;
-            $category->save();
-            \Notify::success('تم الغاء تفعيل القسم بنجاح', 'تغير حالة القسم ');
-        }
-    
-        return redirect()->back();
-    }
 
     /**  
     * show  form edit  of  category By id 
@@ -98,11 +78,6 @@ $message=
         $category=category::where('id',$id)->first();
         $category->name_ar=$request->name_ar;
         $category->name_en=$request->name_en;
-        $category->is_active=$request->active ? $request->active : 0;
-        if($request->hasFile('logo')){
-            $this->SaveFile($category,'logo','logo','upload/category');
-        }
-
         $category->created_at=Carbon::now();
         $category->save();
 
@@ -127,14 +102,12 @@ $message=
     */
     public function submitAdd(Request $request){
 
-    $rules=['name_ar'=>'required|max:255','name_en'=>'required|max:255','logo'=>'required|image'];
+    $rules=['name_ar'=>'required|max:255','name_en'=>'required|max:255'];
   
   
       $message=[
     'name_ar.required'=>'يجب ادخال اسم القسم ',
     'name_en.required'=>'يجب ادخال اسم القسم',
-    'logo.required'=>'يجب اختيار  صورة للقسم',
-    'logo.image'=>'يجب اختيار',
     "name_ar.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
 "name_en.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
     ];
@@ -144,10 +117,6 @@ $request->validate($rules,$message);
         $category=new category;
         $category->name_ar=$request->name_ar;
         $category->name_en=$request->name_en;
-        $category->is_active=$request->active ? $request->active : 0;
-        if($request->hasFile('logo')){
-            $this->SaveFile($category,'logo','logo','upload/category');
-        }
         $category->created_at=Carbon::now();
         $category->save();
 

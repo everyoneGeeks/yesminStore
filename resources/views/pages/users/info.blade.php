@@ -10,7 +10,7 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="{{asset('https://00a306-qamarwahed-orange.magdsoft.com/'.$user->image)}}" alt="User profile picture">
+                  <img class="profile-user-img img-fluid img-circle" src="{{asset($user->image)}}" alt="User profile picture">
                 </div>
 
                 <h3 class="profile-username text-center">{{$user->name}}</h3>
@@ -25,9 +25,6 @@
                   </li>
                   <li class="list-group-item">
                   <span>{{Carbon\Carbon::parse($user->created_at)->format('Y-m-d H:m a')}}</span> <b class="float-right"> تاريخ الانضمام </b>
-                  </li>
-                  <li class="list-group-item">
-                  <span>{{$user->balance}}</span> <b class="float-right">رصيد حساب </b>
                   </li>
                 </ul>
                     @if($user->is_active == 1)
@@ -47,4 +44,13 @@
         <!-- /.row -->
       </div>
       @endcomponent
+
+
+
+      @component('components.panel',['subTitle'=>'الطالبات السابقة '])
+   
+
+
+
+@endcomponent
  @endsection

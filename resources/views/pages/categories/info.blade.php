@@ -10,12 +10,6 @@
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="{{asset('https://00a306-qamarwahed-orange.magdsoft.com/'.$category->logo)}}" alt="User profile picture">
-                </div>
-
-
-
 
                 <ul class="list-group list-group-unbordered mb-3">
                      <li class="list-group-item">
@@ -29,11 +23,6 @@
                   <span>{{Carbon\Carbon::parse($category->created_at)->format('Y-m-d H:m a')}}</span> <b class="float-right"> تاريخ الانضمام </b>
                   </li>
                 </ul>
-                @if($category->is_active == 1)
-                <th><a  href="/category/status/{{$category->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
-                @else
-                <th><a  href="/category/status/{{$category->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
-                @endif
               </div>
               <!-- /.card-body -->
             </div>

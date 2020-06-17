@@ -56,18 +56,15 @@
         </thead>
         <tbody>  
 
-@component('components.tableCheckbox',['title'=>' المستخدميين ','name'=>'users','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>' المندوبين    ','name'=>'provider','permissions'=>$permissions])@endcomponent
+
 @component('components.tableCheckbox',['title'=>' الاقسام     ','name'=>'category','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>'مستوي المتجر ','name'=>'shop','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>' شحن الرصيد  ','name'=>'balance','permissions'=>$permissions])@endcomponent         
-@component('components.tableCheckbox',['title'=>'الحسابات البنكية ','name'=>'Bank','permissions'=>$permissions])@endcomponent
+@component('components.tableCheckbox',['title'=>' المنتجات    ','name'=>'product','permissions'=>$permissions])@endcomponent
+@component('components.tableCheckbox',['title'=>' اكواد الخصم ','name'=>'coupon','permissions'=>$permissions])@endcomponent 
+@component('components.tableCheckbox',['title'=>'الطالبات','name'=>'order','permissions'=>$permissions])@endcomponent
+@component('components.tableCheckbox',['title'=>' المستخدميين ','name'=>'user','permissions'=>$permissions])@endcomponent
 @component('components.tableCheckbox',['title'=>'الاعلانات','name'=>'ad','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>' اكواد الخصم ','name'=>'category','permissions'=>$permissions])@endcomponent 
-@component('components.tableCheckbox',['title'=>'الاشعارات','name'=>'Notification','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>'  اعدادات التطبيق ','name'=>'appSetting','permissions'=>$permissions])@endcomponent    
-@component('components.tableCheckbox',['title'=>'المستخدميين','name'=>'users','permissions'=>$permissions])@endcomponent
-@component('components.tableCheckbox',['title'=>'المندوبين','name'=>'provider','permissions'=>$permissions])@endcomponent
+@component('components.tableCheckbox',['title'=>'  اعدادات الموقع  ','name'=>'webSetting','permissions'=>$permissions])@endcomponent    
+@component('components.tableCheckbox',['title'=>'خدمات الدفع الالكتروني ','name'=>'payment','permissions'=>$permissions])@endcomponent
 
 
        
@@ -100,13 +97,15 @@
             "paginate": {
                 "next": "بعد",
                 "previous" : "قبل"
-            }
+            },
+            "search":"بحث:",
+            "lengthMenu":     "_MENU_",
         },
       "info" : true,
       "paging": true,
       "lengthChange": false,
       "searching": false,
-      "ordering": true,
+      "ordering": false,
       "autoWidth": false
     });
   });

@@ -79,13 +79,15 @@
             "paginate": {
                 "next": "بعد",
                 "previous" : "قبل"
-            }
+            },
+            "search":"بحث:",
+            "lengthMenu":     "النتائج_MENU_",
         },
       "info" : true,
       "paging": true,
       "lengthChange": true,
       "searching": true,
-      "ordering": true,
+      "ordering": false,
       "autoWidth": false
     });
   });
