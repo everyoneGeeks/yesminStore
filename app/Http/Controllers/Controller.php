@@ -22,7 +22,7 @@ public function SaveFile($object_table,$cloName,$fileName,$path){
 		{
 			$file = request()->file($fileName);
 			$filename = \Str::random(6).'_'.time().'.'.$file->getClientOriginalExtension();
-			$file->move('../../00a306-qamarwahed-orange/public/'.$path,$filename);
+			$file->move($path,$filename);
 			$object_table->$cloName ="/".$path.'/'.$filename;
 		}
   }
@@ -30,36 +30,5 @@ public function SaveFile($object_table,$cloName,$fileName,$path){
 
 
 
-
-  public  function SendFCM($FBToken, $Message) 
-  {
-	  // push notification url
-	  $URL = 'https://fcm.googleapis.com/fcm/send';
-	  // 
-	  $Fields = array (
-			  'to' => $FBToken,
-			  'notification' => array (
-					  "body" => $Message,
-					  "title" => "306 App",
-					  "icon" => "myicon"
-			  ),
-			  //'data' => array('type' => $AccountType, 'id' => $AccountId)
-	  );
-	  $Fields = json_encode ( $Fields );
-	  $Headers = array (
-		  'Authorization: key=' . "AIzaSyBeRmElaurFazBae9pJWuecqaNA-4dPrgc",
-		  'Content-Type: application/json'
-	  );
-	  // initilize curl
-	  $Curl = curl_init();
-	  curl_setopt ( $Curl, CURLOPT_URL, $URL );
-	  curl_setopt ( $Curl, CURLOPT_POST, true );
-	  curl_setopt ( $Curl, CURLOPT_HTTPHEADER, $Headers );
-	  curl_setopt ( $Curl, CURLOPT_RETURNTRANSFER, true );
-	  curl_setopt ( $Curl, CURLOPT_POSTFIELDS, $Fields );
-	  // execute command
-	  $result = curl_exec ( $Curl );
-	  curl_close ( $Curl );
-  }
 	
 }

@@ -18,40 +18,45 @@
         <thead>
         <tr>
             <th> الصور </th>
-            <th>انتهاء التاريح </th>
-            <th>الحالة</th>
-            <th>التاريح الانشاء</th>
+            <th> تاريخ البداء </th>
+            <th> تاريخ الانتهاء </th>
+            <th>اللغة </th>
+            <th>الحاله </th>
             <th>الافعال</th>
+            <th>حذف</th>
         </tr>
         </thead>
         <tbody>  
 @foreach($ads as $ad)
         <tr>
 
-<th><img src="{{asset('https://00a306-qamarwahed-orange.magdsoft.com/'.$ad->image)}}" width=50px > </th>
-<th>{{Carbon\Carbon::parse($ad->end_date)->format('Y-m-d H:m a')}}</th>
+<th><img src="{{asset($ad->image)}}" width=50px > </th>
+<th>{{Carbon\Carbon::parse($ad->start_from)->format('Y-m-d H:m a')}}</th>
+<th>{{Carbon\Carbon::parse($ad->end_at)->format('Y-m-d H:m a')}}</th>
+<th>{{$ad->lang}}</th>
+<th>
+@if(Carbon\Carbon::parse($ad->start_from)->greaterThanOrEqualTo(Carbon\Carbon::now()))
 
-@if($ad->is_active == 1)
-<th><a  href="/ad/status/{{$ad->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
+  <span class="badge badge-info"> قريبا  </span>  
+@else 
+
+@if(Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::parse($ad->start_from)) 
+&& Carbon\Carbon::now()->lessThanOrEqualTo(Carbon\Carbon::parse($ad->end_at)))  
+<span class="badge badge-success">  يعرض الان  </span> 
 @else
-<th><a  href="/ad/status/{{$ad->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
+<span class="badge badge-danger"> انتهي الاعلان </span> 
 @endif
-<th>{{Carbon\Carbon::parse($ad->created_at)->format('Y-m-d H:m a')}}</th>
+@endif
+
+</th>
 <th><a href="/ad/edit/{{$ad->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/ad/edit/{{$ad->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
         </tr>
 
         @endforeach  
 
         </tbody>
-        <!--<tfoot>-->
-        <!--<tr>-->
-        <!--    <th> الصور </th>-->
-        <!--    <th>انتهاء التاريح </th>-->
-        <!--    <th>الحالة</th>-->
-        <!--    <th>التاريح الانشاء</th>-->
-        <!--    <th>الافعال</th>-->
-        <!--</tr>-->
-        <!--</tfoot>-->
+
         </table>
 
 @endif

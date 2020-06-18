@@ -227,7 +227,7 @@ if (typeof jQuery === 'undefined') {
     function resetFileTab($fileTab) {
         $fileTab.find('.alert').remove();
         $fileTab.find('img').remove();
-        $fileTab.find('.btn span').text('Browse');
+        $fileTab.find('.btn span').text('اضافة');
         $fileTab.find('.btn:eq(1)').hide();
         $fileTab.find('input').val('');
     }
@@ -257,7 +257,7 @@ if (typeof jQuery === 'undefined') {
                 fileReader.onload = function(e) {
                     // Show thumbnail and remove button.
                     $fileTab.prepend(getImageThumbnailHtml(e.target.result));
-                    $browseFileButton.find('span').text('Change');
+                    $browseFileButton.find('span').text('تغير الصورة');
                     $removeFileButton.css('display', 'inline-block');
                 };
 
@@ -270,7 +270,7 @@ if (typeof jQuery === 'undefined') {
             }
             else {
                 $fileTab.prepend(getAlertHtml(message));
-                $browseFileButton.find('span').text('Browse');
+                $browseFileButton.find('span').text('اضافة ');
                 $fileInput.val('');
             }
 

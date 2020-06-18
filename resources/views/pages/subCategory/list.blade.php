@@ -8,7 +8,7 @@
 @section('content')
 
 @component('components.panel',['subTitle'=>' ادارة الاقسام الفرعية'])
-@if($categories->isEmpty())
+@if($subCategories->isEmpty())
 
 @component('components.empty',['section'=>'اقسام الفرعية ']) @endcomponent
 
@@ -22,16 +22,21 @@
             <th>القسم  </th>
             <th> الصور</th>
             <th>الافعال</th>
+            <th> حذف</th>
         </tr>
         </thead>
         <tbody>  
+
 @foreach($subCategories as $subCategor)
+
         <tr>
-<th> <a href="/subCategor/info/{{$subCategor->id}}">{{$subCategor->name_ar}}</a></th>
-<th><a href="/subCategor/info/{{$subCategor->id}}"> {{$subCategor->name_en}}</a></th>
-<th><a href="/categor/info/{{$subCategor->categor->id}}"> {{$subCategor->categor->name_ar}}</a></th>
-<th><img src="{{asset($subCategor->logo)}}" width=50px > </th>
-<th><a href="/subCategor/edit/{{$subCategor->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th> <a href="/subcategory/info/{{$subCategor->id}}">{{$subCategor->name_ar}}</a></th>
+<th><a href="/subcategory/info/{{$subCategor->id}}"> {{$subCategor->name_en}}</a></th>
+<th><a href="/category/info/{{$subCategor->category->id}}"> {{$subCategor->category->name_ar}}</a></th>
+<th><img src="{{asset($subCategor->image)}}" width=50px > </th>
+<th><a href="/subcategory/edit/{{$subCategor->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/subcategory/delete/{{$subCategor->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+
         </tr>
 
         @endforeach  
@@ -51,7 +56,8 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/subCategor/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة متجر  </a>
+<a  href="/subcategory/add" class="btn btn-block btn-success btn-lg">
+ <i class="fa fa-plus" aria-hidden="true"></i> اضافة قسم فرعي  </a>
 </div>
 @endslot
 

@@ -23,7 +23,7 @@ use Carbon\Carbon;
                                       __/ |            __/ |
                                      |___/            |___/ 
  */
-class subCategoriesController extends Controller
+class subcategoiesController extends Controller
 {
 /**  
 * show list of subCategory
@@ -33,7 +33,7 @@ class subCategoriesController extends Controller
 public function list(){
 
     $subCategories=subCategory::with('category')->get();
-    return view('pages.categories.list',compact('categories'));
+    return view('pages.subCategory.list',compact('subCategories'));
     }
     /**  
     * show info of  subCategory By id
@@ -43,7 +43,7 @@ public function list(){
     */
     public function info($id){
         $subCategory=subCategory::where('id',$id)->with('category')->first();
-        return view('pages.categories.info',compact('subCategory'));
+        return view('pages.subCategory.info',compact('subCategory'));
     }
        
 
@@ -55,8 +55,8 @@ public function list(){
     */
     public function formEdit($id){
         $category=category::get();
-        $subCategor=subCategor::where('id',$id)->with('category')->first();
-        return view('pages.categories.edit',compact('subCategor','category'));
+        $subCategory=subCategory::where('id',$id)->with('category')->first();
+        return view('pages.subCategory.edit',compact('subCategory','category'));
     }    
 
     /**  
@@ -69,18 +69,18 @@ public function list(){
 
         $rules=['name_ar'=>'required|max:255','name_en'=>'required|max:255','category_id'=>'required|not_in:0'];
 
-$message=
-['name_ar.required'=>'يجب ادخال اسم القسم ',
-'name_en.required'=>'يجب ادخال اسم القسم',
-"name_ar.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
-"name_en.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
-"category_id.required"=>"يجب اختيار القسم الرئيسي ",
-"category_id.not_in"=>"يجب اختيار القسم الرئيسي ",
-];   
-  
+        $message=
+        ['name_ar.required'=>'يجب ادخال اسم القسم ',
+        'name_en.required'=>'يجب ادخال اسم القسم',
+        "name_ar.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
+        "name_en.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
+        "category_id.required"=>"يجب اختيار القسم الرئيسي ",
+        "category_id.not_in"=>"يجب اختيار القسم الرئيسي ",
+        ];   
+        
         $request->validate($rules,$message);
 
-        $subCategor=subCategor::where('id',$id)->first();
+        $subCategor=subCategory::where('id',$id)->first();
         $subCategor->name_ar=$request->name_ar;
         $subCategor->name_en=$request->name_en;
         if($request->hasFile('image')){
@@ -94,7 +94,7 @@ $message=
         $subCategor->created_at=Carbon::now();
         $subCategor->save();
 
-        \Notify::success('تم تعديل بيانات القسم بنجاح', ' تعديل بيانات القسم   ');
+        \Notify::success('تم تعديل بيانات القسم الفرعي بنجاح', ' تعديل بيانات القسم الفرعي   ');
         return redirect()->back();
     }  
 
@@ -106,7 +106,7 @@ $message=
     */
     public function formAdd(){
         $category=category::get();
-        return view('pages.categories.add',compact('category'));
+        return view('pages.subCategory.add',compact('category'));
     }    
 
     /**  
@@ -115,7 +115,6 @@ $message=
     * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
     */
     public function submitAdd(Request $request){
-
     $rules=['name_ar'=>'required|max:255','name_en'=>'required|max:255','image'=>'required|image','category_id'=>'required|not_in:0'];
   
   
@@ -125,14 +124,16 @@ $message=
     'image.required'=>'يجب اختيار  صورة للقسم',
     'image.image'=>'يجب اختيار',
     "name_ar.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
-"name_en.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
-"category_id.required"=>"يجب اختيار القسم الرئيسي ",
-"category_id.not_in"=>"يجب اختيار القسم الرئيسي ",
+    "name_en.max"=>"يجب لا يزيد عدد الاحرف عن 255 حرف ",
+    "category_id.required"=>"يجب اختيار القسم الرئيسي ",
+    "category_id.not_in"=>"يجب اختيار القسم الرئيسي ",
     ];
   
   
 $request->validate($rules,$message);
-        $subCategor=new subCategor;
+
+        $subCategor=new subCategory;
+    
         $subCategor->name_ar=$request->name_ar;
         $subCategor->name_en=$request->name_en;
         if($request->hasFile('image')){
@@ -142,8 +143,23 @@ $request->validate($rules,$message);
         $subCategor->created_at=Carbon::now();
         $subCategor->save();
 
-        \Notify::success('تم اضافة قسم جديد بنجاح', ' اضافة  القسم   ');
+        \Notify::success('تم اضافة قسم جديد بنجاح', ' اضافة  القسم الفرعي   ');
         return redirect()->back();
     }  
+
+
+
+
+
+/**  
+* delete(soft delete ) subCategory By id
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function deleteSubcategory($id){
+    $subcategory=subCategory::where('id',$id)->delete();
+    \Notify::success('تم حذف  القسم الفرعي  بنجاح', ' تم الحذف بنجاح    ');
+    return redirect()->back();
+}        
     
 }

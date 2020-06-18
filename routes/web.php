@@ -17,20 +17,6 @@ Route::get('/user/status/{id}','usersControllers@status')->name('user.status')->
 #----------------------------------------------------------------------------------
 
 
-
-/*
-|--------------------------------------------------------------------------
-| provider Section
-|--------------------------------------------------------------------------
-| this will handle all provider part
-*/
-Route::get('/providers','providersControllers@list')->name('providers');
-Route::get('/provider/info/{id}','providersControllers@info')->name('provider.info')->where('id', '[0-9]+');
-Route::get('/provider/status/{id}','providersControllers@status')->name('provider.status')->where('id', '[0-9]+')->middleware('role:provider,edit');
-Route::get('/provider/status/beautyCenter/{id}','providersControllers@statusbeautyCenter')->name('provider.status.beautyCenter')->where('id', '[0-9]+')->middleware('role:provider,edit');
-#----------------------------------------------------------------------------------
-
-
 /*
 |--------------------------------------------------------------------------
 | category Section
@@ -54,28 +40,13 @@ Route::post('/category/add','categoriesController@submitAdd')->name('category.ad
 | this will handle all subcategor part
 */
 Route::get('/subcategoies','subcategoiesController@list')->name('subcategoies');
-Route::get('/subcategor/info/{id}','subcategoiesController@info')->name('subcategor.info')->where('id', '[0-9]+');
-Route::get('/subcategor/status/{id}','subcategoiesController@status')->name('subcategor.status')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
-Route::get('/subcategor/edit/{id}','subcategoiesController@formEdit')->name('subcategor.edit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
-Route::post('/subcategor/edit/{id}','subcategoiesController@submitEdit')->name('subcategor.edit.submit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
-Route::get('/subcategor/add','subcategoiesController@formAdd')->name('subcategor.add')->middleware('role:subcategor,add');
-Route::post('/subcategor/add','subcategoiesController@submitAdd')->name('subcategor.add.submit')->middleware('role:subcategor,add');
-#---
-
-/*
-|--------------------------------------------------------------------------
-| shop levels Section
-|--------------------------------------------------------------------------
-| this will handle all shop levels part
-*/
-Route::get('/shop/levels','shopLevelsController@list')->name('shop.levels');
-Route::get('/shop/level/info/{id}','shopLevelsController@info')->name('shop.level.info')->where('id', '[0-9]+');
-Route::get('/shop/level/status/{id}','shopLevelsController@status')->name('shop.level.status')->where('id', '[0-9]+')->middleware('role:shop,edit');
-Route::get('/shop/level/edit/{id}','shopLevelsController@formEdit')->name('shop.level.edit')->where('id', '[0-9]+')->middleware('role:shop,edit');
-Route::post('/shop/level/edit/{id}','shopLevelsController@submitEdit')->name('shop.level.edit.submit')->where('id', '[0-9]+')->middleware('role:shop,edit');
-Route::get('/shop/level/add','shopLevelsController@formAdd')->name('shop.level.add')->middleware('role:shop,add');
-Route::post('/shop/level/add','shopLevelsController@submitAdd')->name('shop.level.add.submit')->middleware('role:shop,add');
-#----------------------------------------------------------------------------------
+Route::get('/subcategory/info/{id}','subcategoiesController@info')->name('subcategory.info')->where('id', '[0-9]+');
+Route::get('/subcategory/status/{id}','subcategoiesController@status')->name('subcategory.status')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::get('/subcategory/edit/{id}','subcategoiesController@formEdit')->name('subcategory.edit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::post('/subcategory/edit/{id}','subcategoiesController@submitEdit')->name('subcategory.edit.submit')->where('id', '[0-9]+')->middleware('role:subcategor,edit');
+Route::get('/subcategory/add','subcategoiesController@formAdd')->name('subcategory.add')->middleware('role:subcategor,add');
+Route::post('/subcategory/add','subcategoiesController@submitAdd')->name('subcategory.add.submit')->middleware('role:subcategor,add');
+Route::get('/subcategory/delete/{id}','subcategoiesController@deleteSubcategory')->name('subcategory.delete')->where('id', '[0-9]+');
 
 
 
@@ -108,49 +79,23 @@ Route::group(['middleware' => 'superAdmin'], function()
 */
 Route::get('/orders','ordersController@list')->name('orders');
 Route::get('/order/info/{id}','ordersController@info')->name('order.info')->where('id', '[0-9]+');
-//Route::get('/order/status/{id}','usersControllers@status')->name('user.status')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/order/status/{id}','usersControllers@status')->name('user.status')->where('id', '[0-9]+')->middleware('role:users,edit');
 #----------------------------------------------------------------------------------
 
-/*
-|--------------------------------------------------------------------------
-| Balance recharging  Section
-|--------------------------------------------------------------------------
-| this will handle all Balance recharging part
-*/
-Route::get('/balance/recharging','balanceRechargingControllers@list')->name('Balance.recharging');
-Route::get('/balance/recharging/info/{id}','balanceRechargingControllers@info')->name('Balance.recharging.info')->where('id', '[0-9]+');
-Route::post('/balance/recharging/approve/{id}','balanceRechargingControllers@approve')->name('Balance.recharging.approve')->where('id', '[0-9]+')->middleware('role:Balance,edit');
-Route::get('/balance/recharging/disapprove/{id}','balanceRechargingControllers@disapprove')->name('Balance.recharging.disapprove')->where('id', '[0-9]+')->middleware('role:Balance,edit');
-#----------------------------------------------------------------------------------
 
-/*
-|--------------------------------------------------------------------------
-| Bank account Section
-|--------------------------------------------------------------------------
-| this will handle all Bank account part
-*/
-Route::get('/Bank/account','bankAccountsController@list')->name('Bank.account');
-Route::get('/Bank/account/info/{id}','bankAccountsController@info')->name('Bank.account.info')->where('id', '[0-9]+');
-Route::get('/Bank/account/status/{id}','bankAccountsController@status')->name('Bank.account.status')->where('id', '[0-9]+')->middleware('role:Bank,edit');
-Route::get('/Bank/account/edit/{id}','bankAccountsController@formEdit')->name('Bank.account.edit')->where('id', '[0-9]+')->middleware('role:Bank,edit');
-Route::post('/Bank/account/edit/{id}','bankAccountsController@submitEdit')->name('Bank.account.edit.submit')->where('id', '[0-9]+')->middleware('role:Bank,edit');
-Route::get('/Bank/account/add','bankAccountsController@formAdd')->name('Bank.account.add')->middleware('role:Bank,add');
-Route::post('/Bank/account/add','bankAccountsController@submitAdd')->name('Bank.account.add.submit')->middleware('role:Bank,add');
-#----------------------------------------------------------------------------------
-
-/*
-|--------------------------------------------------------------------------
-| Notifications Section
-|--------------------------------------------------------------------------
-| this will handle all Notifications part
-*/
-Route::get('/Notifications','NotificationsController@list')->name('Notifications');
-Route::get('/Notification/info/{id}','NotificationsController@info')->name('Notification.info')->where('id', '[0-9]+');
-Route::get('/Notification/edit/{id}','NotificationsController@formEdit')->name('Notification.edit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
-Route::post('/Notification/edit/{id}','NotificationsController@submitEdit')->name('Notification.edit.submit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
-Route::get('/Notification/add','NotificationsController@formAdd')->name('Notification.add')->middleware('role:Notification,add');
-Route::post('/Notification/add','NotificationsController@submitAdd')->name('Notification.add.submit')->middleware('role:Notification,add');
-#----------------------------------------------------------------------------------
+// /*
+// |--------------------------------------------------------------------------
+// | Notifications Section
+// |--------------------------------------------------------------------------
+// | this will handle all Notifications part
+// */
+// Route::get('/Notifications','NotificationsController@list')->name('Notifications');
+// Route::get('/Notification/info/{id}','NotificationsController@info')->name('Notification.info')->where('id', '[0-9]+');
+// Route::get('/Notification/edit/{id}','NotificationsController@formEdit')->name('Notification.edit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
+// Route::post('/Notification/edit/{id}','NotificationsController@submitEdit')->name('Notification.edit.submit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
+// Route::get('/Notification/add','NotificationsController@formAdd')->name('Notification.add')->middleware('role:Notification,add');
+// Route::post('/Notification/add','NotificationsController@submitAdd')->name('Notification.add.submit')->middleware('role:Notification,add');
+// #----------------------------------------------------------------------------------
 
 
 /*
@@ -223,13 +168,11 @@ Route::post('/code/add','codeController@submitAdd')->name('code.add.submit')->mi
 
 /*
 |--------------------------------------------------------------------------
-| Reports Orders
+|  dashboard system
 |--------------------------------------------------------------------------
-| this will handle all Reports part
+|  
+| this will handle all   dashboard system 
 */
-Route::get('/reports','dashBoardController@report')->name('reports');
-Route::get('/reports/search','dashBoardController@search')->name('reports.search');
-
 
 Route::get('/home','dashBoardController@index')->name('dashboard');
 Route::get('/','dashBoardController@index')->name('dashboard');

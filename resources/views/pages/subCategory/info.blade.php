@@ -11,7 +11,7 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="{{asset($subCategor->logo)}}" alt="User profile picture">
+                  <img class="img-fluid " width="150px" height="150px" src="{{asset($subCategory->image)}}" alt="User profile picture">
                 </div>
 
 
@@ -19,18 +19,18 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                      <li class="list-group-item">
-                    <span>{{$subCategor->name_ar}}</span> <b class="float-right">الاسم  العربي  </b>
+                    <span>{{$subCategory->name_ar}}</span> <b class="float-right">الاسم  العربي  </b>
                   </li>
                   <li class="list-group-item">
-                    <span>{{$subCategor->name_en}}</span> <b class="float-right">الاسم  بالاجنبي  </b>
-                  </li>
-
-                  <li class="list-group-item">
-                    <span>{{$subCategor->category->name_ar}}</span> <b class="float-right">  القسم   </b>
+                    <span>{{$subCategory->name_en}}</span> <b class="float-right">الاسم  بالاجنبي  </b>
                   </li>
 
                   <li class="list-group-item">
-                  <span>{{Carbon\Carbon::parse($subCategor->created_at)->format('Y-m-d H:m a')}}</span> <b class="float-right"> تاريخ الانضمام </b>
+                    <span><a href="/category/info/{{$subCategory->category->id}}">{{$subCategory->category->name_ar}}</a></span> <b class="float-right">  القسم   </b>
+                  </li>
+
+                  <li class="list-group-item">
+                  <span>{{Carbon\Carbon::parse($subCategory->created_at)->format('Y-m-d H:m a')}}</span> <b class="float-right"> تاريخ الانضمام </b>
                   </li>
                 </ul>
               </div>

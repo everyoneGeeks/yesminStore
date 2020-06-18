@@ -27,25 +27,8 @@
 
             </li>
             
-             <!-- users Route-->  
-            <li class="nav-item ">
-              <a href="/users" class="nav-link {{ Request::is(Route::currentRouteName() == 'users') ? 'active' : '' }}">
-                <i class="nav-icon  fa fa-users" aria-hidden="true"></i>
-                <p>
-                 المستخدميين
-                </p>
-              </a>
-            </li>
+
             
-             <!-- providers Route-->  
-             <li class="nav-item ">
-              <a href="/providers" class="nav-link {{ Request::is(Route::currentRouteName() == 'providers') ? 'active' : '' }}">
-                <i class="nav-icon  fa fa-users" aria-hidden="true"></i>
-                <p>
-                 المندوبين
-                </p>
-              </a>
-            </li>   
 
              <!-- categories Route-->  
              <li class="nav-item ">
@@ -55,31 +38,33 @@
                  الاقسام
                 </p>
               </a>
-            </li>   
-             <!-- shop levels Route-->  
+            </li> 
+
+                         <!-- categories Route-->  
              <li class="nav-item ">
-          
-              <a href="/shop/levels" class="nav-link {{ Request::is(Route::currentRouteName() == 'shop.levels') ? 'active' : '' }}">
+              <a href="/subcategoies" class="nav-link {{ Request::is(Route::currentRouteName() == 'subcategoies') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
-                 مستوي المتجر
+                 الاقسام الفرعية
                 </p>
               </a>
-            </li> 
-            
-          <!-- admin Route-->  
+            </li>   
+
+           <!-- product  Route-->  
           <li class="nav-item ">
           
-          <a href="/admins" class="nav-link {{ Request::is(Route::currentRouteName() == 'admins') ? 'active' : '' }}">
+          <a href="/product " class="nav-link {{ Request::is(Route::currentRouteName() == 'product') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
-            ادارة المسئولين
+          المنتجات
             </p>
           </a>
-        </li> 
+        </li>   
 
-          <!-- Order Route-->  
-          <li class="nav-item ">
+
+
+            <!-- Order Route-->  
+            <li class="nav-item ">
           
           <a href="/orders" class="nav-link {{ Request::is(Route::currentRouteName() == 'orders') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
@@ -87,29 +72,19 @@
             ادارة الطلبات
             </p>
           </a>
-        </li>       
+        </li> 
 
-          <!-- balance recharging  Route-->  
-          <li class="nav-item ">
-          
-          <a href="/balance/recharging" class="nav-link {{ Request::is(Route::currentRouteName() == 'Balance.recharging') ? 'active' : '' }}">
-            <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
-            <p>
-            شحن الرصيد 
-            </p>
-          </a>
-        </li>   
 
-          <!-- Bank account  Route-->  
-          <li class="nav-item ">
-          
-          <a href="/Bank/account" class="nav-link {{ Request::is(Route::currentRouteName() == 'Bank.account') ? 'active' : '' }}">
-            <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
-            <p>
-             الحسابات البنكية  
-            </p>
-          </a>
-        </li>      
+             <!-- users Route-->  
+             <li class="nav-item ">
+              <a href="/users" class="nav-link {{ Request::is(Route::currentRouteName() == 'users') ? 'active' : '' }}">
+                <i class="nav-icon  fa fa-users" aria-hidden="true"></i>
+                <p>
+                 المستخدميين
+                </p>
+              </a>
+            </li>
+
           <!-- ads  Route-->  
           <li class="nav-item ">
           
@@ -130,29 +105,11 @@
  اكواد الخصم
             </p>
           </a>
-        </li>           
-        
-          <!-- Notifications  Route-->  
-          <li class="nav-item ">
-          
-          <a href="/Notifications " class="nav-link {{ Request::is(Route::currentRouteName() == 'Notifications') ? 'active' : '' }}">
-            <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
-            <p>
-          الاشعارات
-            </p>
-          </a>
-        </li>    
+        </li>      
 
-          <!-- appSetting  Route-->  
-          <li class="nav-item ">
-          
-          <a href="/appSetting " class="nav-link {{ Request::is(Route::currentRouteName() == 'appSetting') ? 'active' : '' }}">
-            <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
-            <p>
-          اعدادات النطبيق
-            </p>
-          </a>
-        </li>          
+
+
+ 
         
         
         
@@ -167,16 +124,32 @@
             </p>
           </a>
         </li>    
-                  <!-- reports  Route-->  
-                  <li class="nav-item ">
+    
+
+
+          <!-- appSetting  Route-->  
+          <li class="nav-item ">
           
-          <a href="/reports " class="nav-link {{ Request::is(Route::currentRouteName() == 'reports') ? 'active' : '' }}">
+          <a href="/appSetting " class="nav-link {{ Request::is(Route::currentRouteName() == 'appSetting') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
-              التقارير 
+          اعدادات النطبيق
             </p>
           </a>
-        </li>            
+        </li>         
+
+                  <!-- admin Route-->  
+          <li class="nav-item ">
+          
+          <a href="/admins" class="nav-link {{ Request::is(Route::currentRouteName() == 'admins') ? 'active' : '' }}">
+            <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
+            <p>
+            ادارة المسئولين
+            </p>
+          </a>
+        </li> 
+
+
              
           </ul>
         </nav>

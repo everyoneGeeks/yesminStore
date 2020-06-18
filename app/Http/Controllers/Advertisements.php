@@ -75,14 +75,21 @@ public function list(){
     public function submitEdit(Request $request,$id){
 
             $rules=[
-            'end_date'=>'required|date',
+                "start_from"=>'date',
+                "lang"=>'in:ar,en',
+                'end_at'=>'date',
         ];
-        $message=['image.required'=>'يجب ادخال  الصورة ','end_date.required'=>'يجب ادخال  التاريخ'];
+        $message=[    
+        'end_at.date'=>'يجب ادخال  التاريخ  ',
+        'start_from.date'=>'يجب ادخال  التاريخ ',
+        'lang.in'=>'   يجب ان تكون اللغه المدخلة مابين  ar او en  ',];
         $request->validate($rules,$message);
 
         $ad=Ads::where('id',$id)->first();
-        $ad->end_date=$request->end_date;
-        $ad->is_active=$request->active ? $request->active : 0;
+        $ad->end_at=$request->end_at;
+        $ad->start_from=$request->start_from;
+        $ad->lang=$request->lang;
+
         if($request->hasFile('image')){
             $this->SaveFile($ad,'image','image','upload/ads');
         }
@@ -112,22 +119,34 @@ public function list(){
     public function submitAdd(Request $request){
         $rules=[
             'image'=>'required',
-            'end_date'=>'required|date',
+            "start_from"=>'required|date',
+            "lang"=>'required|in:ar,en',
+            'end_at'=>'required|date',
         ];
-        $message=['image.required'=>'يجب ادخال  الصورة ','end_date.required'=>'يجب ادخال  التاريخ'];
+        $message=[
+        'image.required'=>'يجب ادخال  الصورة ',
+        'end_at.required'=>'يجب ادخال  التاريخ انتهاء الاعلان',
+        'start_from.required'=>'يجب ادخال  التاريخ البداء الاعلان',
+        'lang.required'=>'يجب ادخال  اللغة  ',
+        'lang.in'=>'   يجب ان تكون اللغه المدخلة مابين  ar او en  ',
+
+        
+        ];
         $request->validate($rules,$message);
 
 
 
         $ad=new Ads;
-        $ad->end_date=$request->end_date;
-        $ad->is_active=$request->active ? $request->active : 0;
+        $ad->end_at=$request->end_at;
+        $ad->start_from=$request->start_from;
+        $ad->lang=$request->lang;
+
         if($request->hasFile('image')){
             $this->SaveFile($ad,'image','image','upload/ads');
         }
-
         $ad->created_at=Carbon::now();
         $ad->save();
+        
         \Notify::success('تم اضافة بيانات الاعلان بنجاح', 'اضافة بيانات  الاعلان');
 
         return redirect()->back();
