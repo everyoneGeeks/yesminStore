@@ -83,19 +83,28 @@ Route::get('/order/status/{id}','usersControllers@status')->name('user.status')-
 #----------------------------------------------------------------------------------
 
 
-// /*
-// |--------------------------------------------------------------------------
-// | Notifications Section
-// |--------------------------------------------------------------------------
-// | this will handle all Notifications part
-// */
-// Route::get('/Notifications','NotificationsController@list')->name('Notifications');
-// Route::get('/Notification/info/{id}','NotificationsController@info')->name('Notification.info')->where('id', '[0-9]+');
-// Route::get('/Notification/edit/{id}','NotificationsController@formEdit')->name('Notification.edit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
-// Route::post('/Notification/edit/{id}','NotificationsController@submitEdit')->name('Notification.edit.submit')->where('id', '[0-9]+')->middleware('role:Notification,edit');
-// Route::get('/Notification/add','NotificationsController@formAdd')->name('Notification.add')->middleware('role:Notification,add');
-// Route::post('/Notification/add','NotificationsController@submitAdd')->name('Notification.add.submit')->middleware('role:Notification,add');
-// #----------------------------------------------------------------------------------
+/*
+|--------------------------------------------------------------------------
+| products Section
+|--------------------------------------------------------------------------
+| this will handle all products part
+*/
+Route::get('/products','productsController@list')->name('products');
+Route::get('/product/info/{id}','productsController@info')->name('product.info')->where('id', '[0-9]+');
+Route::get('/product/edit/{id}','productsController@formEdit')->name('product.edit')->where('id', '[0-9]+')->middleware('role:product,edit');
+Route::post('/product/edit/{id}','productsController@submitEdit')->name('product.edit.submit')->where('id', '[0-9]+')->middleware('role:product,edit');
+
+Route::post('/product/delete/image/{id}','productsController@uploadProductImage')->name('product.delete.image')->where('id', '[0-9]+')->middleware('role:product,edit');
+
+Route::post('/product/add/image/{id}','productsController@uploadProductImage')->name('product.add.image')->where('id', '[0-9]+')->middleware('role:product,edit');
+
+
+Route::get('/product/add','productsController@formAdd')->name('product.add')->middleware('role:product,add');
+Route::post('/product/add','productsController@submitAdd')->name('product.add.submit')->middleware('role:product,add');
+Route::get('/product/delete/{id}','productsController@deleteProduct')->name('product.delete.submit')->middleware('role:product,add');
+
+
+#----------------------------------------------------------------------------------
 
 
 /*

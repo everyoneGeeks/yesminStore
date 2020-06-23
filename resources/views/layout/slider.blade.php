@@ -53,7 +53,7 @@
            <!-- product  Route-->  
           <li class="nav-item ">
           
-          <a href="/product " class="nav-link {{ Request::is(Route::currentRouteName() == 'product') ? 'active' : '' }}">
+          <a href="/products" class="nav-link {{ Request::is(Route::currentRouteName() == 'products') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
           المنتجات

@@ -20,9 +20,11 @@ class Controller extends BaseController
 public function SaveFile($object_table,$cloName,$fileName,$path){
     if(request()->hasFile($fileName))
 		{
+	
 			$file = request()->file($fileName);
 			$filename = \Str::random(6).'_'.time().'.'.$file->getClientOriginalExtension();
 			$file->move($path,$filename);
+		
 			$object_table->$cloName ="/".$path.'/'.$filename;
 		}
   }
