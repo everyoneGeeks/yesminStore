@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الاحصائيات' ,'subTitle'=>'ادارة الاحصائيات'])
+@extends('layoutDashboard.app',['title'=>'الاحصائيات' ,'subTitle'=>'ادارة الاحصائيات'])
 @section('content')
 <div class="row">
           <div class="col-md-3 col-sm-6 col-12">
@@ -21,7 +21,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">المندوبين</span>
-                <span class="info-box-number"> {{$provider->count()}}</span>
+                <span class="info-box-number"> {{$products->count()}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -63,27 +63,21 @@
         <tr>
             <th>الاسم  </th>
             <th>التاريخ</th>
-            <th>الحالة</th>
         </tr>
         </thead>
-        <tbody>  
-@foreach($lastProvider as $provider)
+        <tbody>
+@foreach($lastOrder as $order)
         <tr>
-<th> <a href="/provider/info/{{$provider->id}}">{{$provider->name}}</th>
+<th> <a href="/order/info/{{$order->id}}">{{$order->id}}</th>
 
-<th>{{Carbon\Carbon::parse($provider->created_at)->format('Y-m-d')}}</th>
-
-@if($provider->is_active == 1)
-<th><a  href="/provider/status/{{$provider->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
-@else
-<th><a  href="/provider/status/{{$provider->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
-@endif
+<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
 
 
-          
+
+
         </tr>
 
-        @endforeach  
+        @endforeach
         </tbody>
         <!--<tfoot>-->
         <!--<tr>-->
@@ -111,7 +105,7 @@
             <th>الحالة</th>
         </tr>
         </thead>
-        <tbody>  
+        <tbody>
 @foreach($lastUser as $user)
         <tr>
 <th> <a href="/user/info/{{$user->id}}">{{$user->name}}</th>
@@ -122,10 +116,10 @@
 <th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
 @endif
 
-          
+
         </tr>
 
-        @endforeach  
+        @endforeach
         </tbody>
         <!--<tfoot>-->
         <!--<tr>-->
@@ -140,11 +134,11 @@
         </table>
 @endcomponent
 <div class="row">
-  
+
 <div class="col-lg-12" style="
     margin-bottom: 40px;
 ">
-{!! $providerChart->html() !!}
+{!! $ordersChart->html() !!}
 </div>
 
 <div class="col-lg-12">
@@ -152,11 +146,11 @@
 </div>
 
 </div>
- @endsection        
+ @endsection
 
  @section('javascript')
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
  {!! Charts::scripts() !!}
 {!! $userChart->script() !!}
-{!! $providerChart->script() !!}
+{!! $ordersChart->script() !!}
  @endsection

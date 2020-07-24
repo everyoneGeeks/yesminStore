@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'حسابات بنكية'])
+@extends('layoutDashboard.app',['title'=>'حسابات بنكية'])
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 @component('components.panel',['subTitle'=>' اضافة حسابات بنكية'])

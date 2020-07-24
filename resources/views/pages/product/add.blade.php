@@ -1,10 +1,12 @@
 
-@extends('layout.app',['title'=>'المنتجات '] )
+@extends('layoutDashboard.app',['title'=>'المنتجات '] )
 @section('style')
 <link rel="stylesheet" href="{{asset('dist/css/bootstrap-imageupload.min.css')}}">
 <!-- font -->
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css"><link rel="stylesheet" href="{{asset('dist/dist/jquery.fileuploader.min.css')}}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="{{asset('plugins/bootstrap3-wysihtml5/dist/bootstrap3-wysihtml5.min.css')}}" rel="stylesheet" />
+
 @endsection
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
@@ -31,16 +33,48 @@
 
                   <div class="form-group">
                     <label for="InputNameEn"> وصف  المنتج عربي</label>
-                    <textarea  class="form-control"   name="description_en">  وصف المنتج </textarea>
+                    <textarea id="some-textarea1" class="form-control"   name="description_ar" placeholder=" وصف المنتج" style="styles to copy to the iframe"></textarea>
+
                   </div>
 
 
 
                   <div class="form-group">
                     <label for="InputNameEn"> وصف  المنتج اجنبي</label>
-                    <textarea  class="form-control"   name="description_ar">  وصف المنتج </textarea>
+                    <div id="editor" data-placeholder="Go on, start editing..."></div>
+                    <textarea id="some-textarea" class="form-control"   name="description_en" placeholder=" وصف المنتج" style="styles to copy to the iframe"></textarea>
+
                   </div>
 
+                  <div class="form-group">
+                    <label for="InputNameEn">   المناسبة </label>
+                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
+                    @foreach($occasions as $occasion)
+                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+                    @endforeach
+                    </select>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   المناسبة </label>
+                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
+                    @foreach($occasions as $occasion)
+                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+                    @endforeach
+                    </select>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   المناسبة </label>
+                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
+                    @foreach($occasions as $occasion)
+                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+                    @endforeach
+                    </select>
+                  </div>
 
 
                   <div class="form-group">
@@ -118,6 +152,9 @@
                 </div>
                 </div>
                 <!-- /.card-body -->
+
+
+                
               </form>
               
               </div>
@@ -144,6 +181,13 @@
  @section('javascript')
 <!-- DataTables -->
 <script src="{{asset('dist/js/bootstrap-imageupload.js')}}"></script>
+
+<!-- wysihtml core javascript with default toolbar functions --> 
+<script src="{{ asset('plugins/wysihtml/dist/wysihtml.toolbar.js')  }}"></script>
+
+<!-- rules defining tags, attributes and classes that are allowed -->
+
+<script src="{{ asset('plugins/wysihtml/dist/wysihtml.table_editing.js')  }}"></script>
 <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script><script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- page script -->
 <script>
@@ -164,6 +208,20 @@ $('.imageupload').imageupload({
     allowedFormats: [ 'jpg', 'jpeg', 'png', 'gif'  ],
     maxFileSizeKb: 5000
 });
+
+$(".js-example-responsive").select2({
+    width: 'resolve' // need to override the changed default
+});
+
+
+$(function() {
+       var editor = new wysihtml.Editor("editor", { // id of textarea element
+              toolbar:      "wysihtml-toolbar", // id of toolbar element
+              parserRules:  wysihtml5ParserRules // defined in parser rules set 
+            });
+     });
+
+
 </script>
 
 

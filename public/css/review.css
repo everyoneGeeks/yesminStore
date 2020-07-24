@@ -1,0 +1,14 @@
+.shipping-address{
+    padding: 1.25rem;
+    background-color: #F6F9FC;
+}
+.shipping-address p{
+    color: #7d879c;
+    font-size: 14px;
+    margin-bottom: .5rem;
+}
+
+.checkout-details .proceed{
+    padding-top: 1.5rem;
+    border-top: none
+}

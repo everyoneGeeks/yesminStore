@@ -1,0 +1,102 @@
+@extends('layoutWebsite.app')
+@section('style')
+<link rel="stylesheet" href="{{asset('css/shop.css')}}">
+@endsection
+@section('content')
+
+
+        <div class="cart-details">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="cart-summary shop-sidebar">
+                            <div class="categories">
+                                <div class="content-bar">
+                                    <div class="head-bar">
+                                        <h3>{{App::getLocale() == 'ar' ? "الاقسام" : "Category"}}<i class="fa fa-angle-down"></i></h3>
+                                    </div>
+                                    <div class="bar-content">
+                                        <ul class="list-unstyled">
+                                            <li class=""><a href="/products">{{App::getLocale() == 'ar' ? "عرض الكل " : "View all"}}</a><span>{{$AllProducts->count()}}</span></li>
+                                            @foreach($subCategories as $subCategory)
+                                            <li><a href="/products/{{$subCategory->id}}">  {{ App::getLocale() == 'ar' ? $subCategory->name_ar : $subCategory->name_en }}</a><span>{{$AllProducts->where('sub_category_id',$subCategory->id)->count()}}</span></li>
+                                   
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><hr>
+                            <div class="categories">
+                                <div class="content-bar">
+                                    <div class="head-bar">
+                                        <h3>{{App::getLocale() == 'ar' ? "الاحداث / المناسبات" : "Event / Occasion"}}<i class="fa fa-angle-down"></i></h3>
+                                    </div>
+                                    <div class="bar-content">
+                                        <ul class="list-unstyled">
+                 
+                                        @foreach($occasions as $occasion)
+                                            <li><a href="/products/occasion/{{$occasion->id}}">  {{ App::getLocale() == 'ar' ? $occasion->name_ar : $occasion->name_en }}</a><span>{{$AllProducts->where('occasion_id',$occasion->id)->count()}}</span></li>
+                                   
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><hr>
+                            <div class="categories">
+                                <div class="content-bar">
+                                    <div class="head-bar">
+                                        <h3>{{App::getLocale() == 'ar' ? "الرسومات" : "Character"}}<i class="fa fa-angle-down"></i></h3>
+                                    </div>
+                                    <div class="bar-content">
+                                        <ul class="list-unstyled">
+                                        @foreach($characters as $character)
+                                            <li><a href="/products/characters/{{$character->id}}">  {{ App::getLocale() == 'ar' ? $character->name_ar : $character->name_en }}</a><span>{{$AllProducts->where('characters_id',$character->id)->count()}}</span></li>
+                                   
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><hr>
+                            <div class="categories">
+                                <div class="content-bar">
+                                    <div class="head-bar">
+                                        <h3>{{App::getLocale() == 'ar' ? "نوع الحفل " : "Party Theme"}}<i class="fa fa-angle-down"></i></h3>
+                                    </div>
+                                    <div class="bar-content">
+                                        <ul class="list-unstyled">
+                                            
+                                        @foreach($party as $Party_Theme)
+                                            <li><a href="/products/party/theme/{{$Party_Theme->id}}">  {{ App::getLocale() == 'ar' ? $Party_Theme->name_ar : $Party_Theme->name_en }}</a><span>{{$AllProducts->where('Party_Theme_id',$Party_Theme->id)->count()}}</span></li>
+                                   
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="product-cards">
+                            <div class="row">
+                            @foreach($products as $product)
+                                <div class="col-md-4">
+
+                            @component('components.product',['product'=>$product]) @endcomponent
+
+
+                                </div>
+                         @endforeach
+
+                            </div>  
+                        </div>
+                        {{ $products->links('vendor.pagination.default') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+@endsection

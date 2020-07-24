@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الطلبات'])
+@extends('layoutDashboard.app',['title'=>'الطلبات'])
 @section('style')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -15,65 +15,166 @@
 
 @section('content')
 
-@component('components.panel',['subTitle'=>' ادارة الطلبات'])
+@component('components.panel',['subTitle'=>'ادارة الطلبات الجديدة '])
 @if($orders->isEmpty())
 
 @component('components.empty',['section'=>'الطلبات ']) @endcomponent
 
-@else 
+@else
 
-<table id="example2" class="table table-bordered table-hover">
+<table id="example2" class="table table-bordered table-hover example2">
         <thead>
         <tr>
             <th> رقم الطلب </th>
-            <th>مواد التجميل</th>
-            <th> جدول الجلسة</th>
-            <th>حاله الطلب </th>
-            <th>السعر الكلي </th>
-            <th> تاريخ الانشاء </th>
             <th> اسم المستخدم  </th>
-            <th>   اسم المندوب </th>
+            <th>السعر الكلي </th>
+            <th>الخصم</th>
+            <th> تاريخ الانشاء </th>
+              <th>   </th>
         </tr>
         </thead>
-        <tbody>  
+        <tbody>
 
 @foreach($orders as $order)
-@if($order->created_at >= Carbon\Carbon::now())
-<tr class="highlight">
-@else
-<tr>
-@endif
-        
-<th> {{$order->id}}</th>        
-<th> <a href="/order/info/{{$order->id}}">{{$order->cosmetic_material}}</a></th>
-<th>{{Carbon\Carbon::parse($order->schedule_session)->format('Y-m-d H:m a')}}</th>
-<th>{{$order->status}}</th>
-<th>{{$order->total}}</th>
-<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d H:m a')}}</th>
-
+@if($order->status == 'new')
+<th>{{$order->id}}</th>
 <th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
-<th><a href="/provider/info/{{$order->provider->id}}">{{$order->provider->name}}</a></th>
+<th>{{$order->price}}</th>
+<th>{{$order->discount}}</th>
+<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
+<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+@endif
         </tr>
-        @endforeach  
+@endforeach
         </tbody>
-        <!--<tfoot>-->
-        <!--<tr>-->
-        <!--<th> رقم الطلب </th>-->
-        <!--    <th>مواد التجميل</th>-->
-        <!--    <th> جدول الجلسة</th>-->
-        <!--    <th>حاله الطلب </th>-->
-        <!--    <th>السعر الكلي </th>-->
-        <!--    <th> تاريخ الانشاء </th>-->
-        <!--    <th> اسم المستخدم  </th>-->
-        <!--    <th>   اسم المندوب </th>-->
-        <!--</tr>-->
-        <!--</tfoot>-->
         </table>
 
 @endif
 
 @endcomponent
- @endsection     
+
+
+
+@component('components.panel',['subTitle'=>' الطلبات قيد التوصيل  '])
+@if($orders->isEmpty())
+
+@component('components.empty',['section'=>'الطلبات ']) @endcomponent
+
+@else
+
+<table id="example2" class="table table-bordered table-hover example2">
+        <thead>
+        <tr>
+            <th> رقم الطلب </th>
+            <th> اسم المستخدم  </th>
+            <th>مكان التوصيل </th>
+            <th> تاريخ الانشاء </th>
+              <th>   </th>
+        </tr>
+        </thead>
+        <tbody>
+
+@foreach($orders as $order)
+@if($order->status == 'inprogress')
+<th>{{$order->id}}</th>
+<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
+<th>{{$order->price}}</th>
+<th>{{$order->discount}}</th>
+<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
+<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+@endif
+        </tr>
+@endforeach
+        </tbody>
+        </table>
+
+@endif
+
+@endcomponent
+
+
+
+@component('components.panel',['subTitle'=>'  الطلبات تم التوصيل  '])
+@if($orders->isEmpty())
+
+@component('components.empty',['section'=>'الطلبات ']) @endcomponent
+
+@else
+
+<table id="example2" class="table table-bordered table-hover example2">
+        <thead>
+        <tr>
+            <th> رقم الطلب </th>
+            <th> اسم المستخدم  </th>
+            <th>السعر الكلي </th>
+            <th>الخصم</th>
+            <th> تاريخ الانشاء </th>
+              <th>   </th>
+        </tr>
+        </thead>
+        <tbody>
+
+@foreach($orders as $order)
+@if($order->status == 'delivered')
+<th>{{$order->id}}</th>
+<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
+<th>{{$order->price}}</th>
+<th>{{$order->discount}}</th>
+<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
+<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+@endif
+        </tr>
+@endforeach
+        </tbody>
+        </table>
+
+@endif
+
+@endcomponent
+
+
+
+
+
+
+@component('components.panel',['subTitle'=>'   الطلبات المرفوضة  '])
+@if($orders->isEmpty())
+
+@component('components.empty',['section'=>'الطلبات ']) @endcomponent
+
+@else
+
+<table id="example2" class="table table-bordered table-hover example2">
+        <thead>
+        <tr>
+            <th> رقم الطلب </th>
+            <th> اسم المستخدم  </th>
+            <th>السعر الكلي </th>
+            <th>الخصم</th>
+            <th> تاريخ الانشاء </th>
+              <th>   </th>
+        </tr>
+        </thead>
+        <tbody>
+
+@foreach($orders as $order)
+@if($order->status == 'cancel')
+<th>{{$order->id}}</th>
+<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
+<th>{{$order->price}}</th>
+<th>{{$order->discount}}</th>
+<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
+<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+@endif
+        </tr>
+@endforeach
+        </tbody>
+        </table>
+
+@endif
+
+@endcomponent
+ @endsection
 
  @section('javascript')
 <!-- DataTables -->
@@ -91,8 +192,8 @@
 <script>
 
   $(function () {
-      
-    $('#example2').DataTable({
+
+    $('.example2').DataTable({
 
         "language": {
             "paginate": {
@@ -106,18 +207,18 @@
       "searching": true,
       "ordering": true,
       "autoWidth": true,
-        "dom": 'Bfrtip', 
-        "buttons": [ 'csv' ,'pageLength',
-        {
-            extend: 'pdfHtml5',
-            text: 'pdf',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                }}}]
+        // "dom": 'Bfrtip',
+        // "buttons": [ 'csv' ,'pageLength',
+        // {
+        //     extend: 'pdfHtml5',
+        //     text: 'pdf',
+        //     exportOptions: {
+        //         modifier: {
+        //             page: 'current'
+        //         }}}]
     });
   });
-  
+
 
 </script>
 

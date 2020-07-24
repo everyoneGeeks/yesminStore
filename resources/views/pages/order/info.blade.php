@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الطلبات'])
+@extends('layoutDashboard.app',['title'=>'الطلبات'])
 @section('style')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -18,36 +18,44 @@
               <div class="card-body box-profile">
                 <ul class="list-group list-group-unbordered mb-3">
                      <li class="list-group-item">
-                    <span>{{$order->cosmetic_material}}</span> <b class="float-right">مواد التجميل </b>
+                    <span>{{$order->id}}</span> <b class="float-right">مواد التجميل </b>
                   </li>
                   <li class="list-group-item">
-                    <span>{{$order->schedule_session}}</span> <b class="float-right">  الوقت  </b>
+                    <span>{{$order->user->name}}</span> <b class="float-right">  الوقت  </b>
                   </li>
                   <li class="list-group-item">
-                    <span>{{$order->total}}</span> <b class="float-right">  اجمالي السعر  </b>
+                    <span>{{$order->price}}</span> <b class="float-right">  اجمالي السعر  </b>
                   </li>
                   <li class="list-group-item">
-                    <span>{{$order->status}}</span> <b class="float-right">  حالة الطلب   </b>
+                    <span>{{$order->discount}}</span> <b class="float-right">  حالة الطلب   </b>
                   </li>
                   <li class="list-group-item">
-                    <span>{{$order->phone}}</span> <b class="float-right">  رقم الهاتف  </b>
-                  </li>       
+                    <span>
+                      @if($order->status == 'new')
+                      جديد
+                      @elseif($order->status == 'inprogress')
+                      قيد التنفيذ
+                      @elseif($order->status == 'delivered')
+                      تم التوصيل
+                      @endif
+                    </span> <b class="float-right">  رقم الهاتف  </b>
+                  </li>
                   <li class="list-group-item">
                     <span>{{$order->payment_method}}</span> <b class="float-right">  وسبلة الدفع  </b>
-                  </li>          
-                  
+                  </li>
+
                   <li class="list-group-item">
                     <span>{{$order->extra_comment}}</span> <b class="float-right">  تعليق  </b>
-                  </li>          
+                  </li>
                   <li class="list-group-item">
                     <span>{{$order->fees}}</span> <b class="float-right">  رسوم  </b>
-                  </li>          
+                  </li>
                   <li class="list-group-item">
                     <span><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></span> <b class="float-right">  اسم المستخدم  </b>
-                  </li>          
+                  </li>
                   <li class="list-group-item">
                     <span><a href="/provider/info/{{$order->provider->id}}">{{$order->provider->name}}</a></span> <b class="float-right">اسم المندول  </b>
-                  </li>                                                      
+                  </li>
 
                   <li class="list-group-item">
                   <span>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d H:m a')}}</span> <b class="float-right"> تاريخ الانضمام </b>
@@ -59,7 +67,7 @@
             <!-- /.card -->
           </div>
           <!-- /.col -->
-          
+
           <!-- /.col -->
         </div>
         <!-- /.row -->
@@ -76,9 +84,9 @@
             <th> مركز تجميل   </th>
         </tr>
         </thead>
-        <tbody>  
+        <tbody>
 
-        @foreach($order->services as $services)
+        @foreach($order->product as $services)
       <tr>
       <th> {{$services->service}}</th>
       <th> {{$services->price}}</th>
@@ -98,7 +106,7 @@
 
 
 @endcomponent
- @endsection     
+ @endsection
 
  @section('javascript')
 <!-- DataTables -->

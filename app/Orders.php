@@ -11,17 +11,17 @@ class Orders extends Model
 
 
     public function user(){
-        return $this->belongsTo('App\Users','users_id');
+        return $this->belongsTo('App\Users','user_id');
     }
 
 
-    public function provider(){
-        return $this->belongsTo('App\Providers','providers_id');
+    public function orderCancel(){
+        return $this->hasMany('App\orderCancel','order_id');
     }
 
 
-        public function services(){
-        return $this->belongsTomany('App\beautyServices','orders_services','orders_id','beauty_services_id');
+        public function orderProduct(){
+        return $this->belongsTomany('App\product','order_products','order_id','product_id');
     }
 
 

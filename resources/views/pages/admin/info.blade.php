@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'المسئولين'])
+@extends('layoutDashboard.app',['title'=>'المسئولين'])
 @section('content')
 
 @component('components.panel',['subTitle'=>' ادارة المسئولين'])

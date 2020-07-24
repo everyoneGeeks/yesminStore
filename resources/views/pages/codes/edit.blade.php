@@ -1,4 +1,4 @@
-@extends('layout.app',['title'=>' اكواد الخصم'])
+@extends('layoutDashboard.app',['title'=>' اكواد الخصم'])
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 @component('components.panel',['subTitle'=>' ادارة  اكواد الخصم'])

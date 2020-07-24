@@ -1,0 +1,93 @@
+h3{
+    margin: -3rem 0 1rem;
+    color: #97e3f0;
+    font-weight: bold;
+    font-size: 24px;
+}
+h3 img{
+    width: 40px;
+    height: 40px;
+    margin-right: .5rem;
+}
+
+.addresses > h4{
+    color: #f86eac;
+    font-weight: bold;
+    padding: .5rem;
+    border-top: 2px solid #97e3f0;
+    border-bottom: 2px solid #97e3f0;
+    overflow: hidden;
+}
+.addresses > h4 span{
+    float: right;
+}
+.content-bar .head-bar h5{
+    cursor: pointer;
+    padding: .5rem;
+    color: #f86eac;
+    border-bottom: 1px solid #97e3f0;
+    margin-bottom: 0;
+    font-size: 16px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+.content-bar .head-bar h5 .fa-angle-down{
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    padding: -2.5rem;
+    font-size: 20px;
+}
+.content-bar .head-bar h5 img{
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+.content-bar .bar-content{
+    display: none;
+}
+.checkout-details > h6{
+    padding-top: .25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e3e9ef;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #373f50;
+    text-transform: capitalize;
+}
+.checkout-details form{
+    margin: 1rem 0 2rem;
+}
+.checkout-details label{
+    color: #61bfd0;
+    padding-top: .0625rem;
+    font-size: .875rem;
+    font-weight: bold;
+}
+.checkout-details .form-control{
+    padding: .625rem 1rem;
+    font-size: .9375rem;
+    color: #f86eac;
+    border: 1px solid #61bfd0;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 0 transparent;
+    transition: border-color 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+}
+.checkout-details .proceed{
+    padding-top: 3rem;
+}
+.btn.save{
+    background-color: #f86eac;
+    color: #fff;
+    margin-right: .5rem;
+    border-radius: .5rem;
+    padding: 3px 1.5rem;
+}
+.btn.cancel{
+    border: 1px solid #f86eac;
+    color: #f86eac;
+    padding: 3px 1.5rem;
+    border-radius: .5rem;
+}

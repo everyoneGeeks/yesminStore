@@ -1,0 +1,95 @@
+.orders h3{
+    margin: -3rem 0 .5rem;
+    color: #97e3f0;
+    font-weight: bold;
+    font-size: 24px;
+}
+.orders h3 img{
+    width: 40px;
+    height: 40px;
+    margin-right: .5rem;
+}
+.orders .order{
+    border: 2px solid #97e3f0;
+    border-radius: .5rem;
+    margin-top: 2rem;
+}
+.orders .order:first-of-type{
+    margin-top: 0;
+}
+.orders .order .order-header{
+    padding: 1rem;
+    border-bottom: 2px solid #97e3f0;
+}
+.orders .order .order-header h6{
+    color: #4eb9cb;
+    font-weight: bold;
+    font-size: 14px;
+}
+.orders .order .order-body{
+    padding: 2rem;
+}
+.orders .order .order-body .order-steps{
+    margin-bottom: 0;
+}
+.orders .order .order-body .order-steps .step-item .step-label{
+    padding-top: 1rem;
+}
+.orders .order-products .product{
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #97e3f0;
+}
+.orders .order-products .product:last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.orders .order-products .product .details{
+    display: flex;
+    justify-content: space-between;
+}
+.orders .order-products .product .details img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    margin-right: .5rem;
+}
+.orders .order-products .product .details .product-name h4{
+    color: #fb8abc;
+    font-weight: bold;
+    font-size: 15px;
+    width: max-content;
+    line-height: 150%;
+    margin-top: .5rem;
+}
+.orders .order-products .product .details .btn{
+    background-color: #97e3f0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    float: right;
+    width: 130px;
+    text-align: center;
+    border-radius: 1.5rem;
+    padding: 3px;
+}
+.orders .order-products .product .details .review{
+    margin-top: 2rem;
+}
+.orders .order-products .product .details .review h6{
+    color: #fb8abc;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.orders .order-products .product .details .review .fa-star{
+    color: #fb8abc;
+}
+.orders .order-products .product .details .review p{
+    border: 2px solid #97e3f0;
+    border-radius: .5rem;
+    padding: .5rem;
+    margin-top: 1rem;
+    color: #4eb9cb;
+    font-weight: bold;
+}

@@ -1,4 +1,4 @@
-@extends('layout.app',['title'=>'مستوي المتجر'])
+@extends('layoutDashboard.app',['title'=>'مستوي المتجر'])
 @section('content')
 
 @component('components.panel',['subTitle'=>' ادارة مستوي المتاجر'])

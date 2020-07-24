@@ -7,6 +7,7 @@ use App\product;
 use App\subCategory;
 use App\category;
 use App\productImage;
+use App\occasion;
 use Carbon\Carbon;
 /**                  _            _   
                     | |          | |  
@@ -49,7 +50,8 @@ public function list(){
     */
     public function formAdd(){
         $categories=category::with('subcategory')->get();
-        return view('pages.product.add',compact('categories'));
+        $occasions=occasion::get();
+        return view('pages.product.add',compact('categories','occasions'));
     }    
 
     /**  

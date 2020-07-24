@@ -12,6 +12,11 @@ class product extends Model
 
     use SoftDeletes;
 
+    protected $fillable = [
+        'character_id',
+
+    ];
+
     public function category()
     {
         return $this->belongsTo('App\category','category_id');
@@ -25,11 +30,51 @@ class product extends Model
 
     }
 
-    
 
+    public function occasion()
+    {
+        return $this->belongsToMany('App\occasion','occasion_product','product_id','occasion_id');
+
+    }
+
+
+    public function character()
+    {
+        return $this->belongsToMany('App\characters','character_product','product_id','character_id');
+
+    }
+
+
+    public function party_theme()
+    {
+        return $this->belongsToMany('App\Party_Theme','party_theme_product','product_id','party_theme_id');
+
+    }
+
+    public function rateProduct()
+    {
+        return $this->hasMany('App\rateProduct','product_id');
+
+    }
+    
+    public function size()
+    {
+        return $this->belongsToMany('App\size','size_product','product_id','size_id');
+
+    }
+
+    
+    
+    
     public function images()
     {
         return $this->hasMany('App\productImage','product_id');
 
     }
+
+    // public function rate()
+    // {
+    //     return $this->hasMany('App\RateProducts','product_id');
+
+    // }
 }

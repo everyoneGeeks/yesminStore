@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الاقسام'] )
+@extends('layoutDashboard.app',['title'=>'الاقسام'] )
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 @component('components.panel',['subTitle'=>'  اضافة بيانات  القسم '])

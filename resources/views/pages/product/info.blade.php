@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>' المنتجات'] )
+@extends('layoutDashboard.app',['title'=>' المنتجات'] )
 @section('content')
 
 @component('components.panel',['subTitle'=>'    بيانات المنتج'])

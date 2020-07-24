@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'المستخدمين'])
+@extends('layoutDashboard.app',['title'=>'المستخدمين'])
 @section('content')
 @component('components.panel',['subTitle'=>' بيانات المستخدم'])
 <div class="container-fluid">

@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'المسئولين'])
+@extends('layoutDashboard.app',['title'=>'المسئولين'])
 @section('style')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">

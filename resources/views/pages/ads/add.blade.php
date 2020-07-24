@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'الاعلانات'])
+@extends('layoutDashboard.app',['title'=>'الاعلانات'])
 @section('style')
 <link rel="stylesheet" href="{{asset('dist/css/bootstrap-imageupload.min.css')}}">
 @endsection

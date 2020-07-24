@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>'المندوبين' ,'subTitle'=>'ادارة المندوبين'])
+@extends('layoutDashboard.app',['title'=>'المندوبين' ,'subTitle'=>'ادارة المندوبين'])
 
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">

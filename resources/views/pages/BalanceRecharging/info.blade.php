@@ -1,4 +1,4 @@
-@extends('layout.app',['title'=>'شحن الرصيد' ,'subTitle'=>' بيانات  شحن الرصيد '])
+@extends('layoutDashboard.app',['title'=>'شحن الرصيد' ,'subTitle'=>' بيانات  شحن الرصيد '])
 @section('style')
 <style>
 .content-wrapper, .main-footer, .main-header{

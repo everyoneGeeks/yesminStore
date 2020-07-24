@@ -2,7 +2,7 @@
 
 
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth'],'prefix'=>'admin'], function() {
 
 
 /*
@@ -30,6 +30,60 @@ Route::get('/category/edit/{id}','categoriesController@formEdit')->name('categor
 Route::post('/category/edit/{id}','categoriesController@submitEdit')->name('category.edit.submit')->where('id', '[0-9]+')->middleware('role:category,edit');
 Route::get('/category/add','categoriesController@formAdd')->name('category.add')->middleware('role:category,add');
 Route::post('/category/add','categoriesController@submitAdd')->name('category.add.submit')->middleware('role:category,add');
+#----------------------------------------------------------------------------------
+
+
+
+/*
+|--------------------------------------------------------------------------
+| partyTheme Section
+|--------------------------------------------------------------------------
+| this will handle all partyTheme part
+*/
+Route::get('/partyThemes','partyThemeControler@list')->name('partyThemes');
+Route::get('/partyTheme/info/{id}','partyThemeControler@info')->name('partyTheme.info')->where('id', '[0-9]+');
+Route::get('/partyTheme/status/{id}','partyThemeControler@status')->name('partyTheme.status')->where('id', '[0-9]+')->middleware('role:partyTheme,edit');
+Route::get('/partyTheme/edit/{id}','partyThemeControler@formEdit')->name('partyTheme.edit')->where('id', '[0-9]+')->middleware('role:partyTheme,edit');
+Route::post('/partyTheme/edit/{id}','partyThemeControler@submitEdit')->name('partyTheme.edit.submit')->where('id', '[0-9]+')->middleware('role:partyTheme,edit');
+Route::get('/partyTheme/add','partyThemeControler@formAdd')->name('partyTheme.add')->middleware('role:partyTheme,add');
+Route::post('/partyTheme/add','partyThemeControler@submitAdd')->name('partyTheme.add.submit')->middleware('role:partyTheme,add');
+Route::get('/partyTheme/delete/{id}','partyThemeControler@delete')->name('partyTheme.delete')->middleware('role:partyTheme,add');
+#----------------------------------------------------------------------------------
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| characters Section
+|--------------------------------------------------------------------------
+| this will handle all characters part
+*/
+Route::get('/characters','charactersControler@list')->name('characters');
+Route::get('/characters/info/{id}','charactersControler@info')->name('characters.info')->where('id', '[0-9]+');
+Route::get('/characters/status/{id}','charactersControler@status')->name('characters.status')->where('id', '[0-9]+')->middleware('role:characters,edit');
+Route::get('/characters/edit/{id}','charactersControler@formEdit')->name('characters.edit')->where('id', '[0-9]+')->middleware('role:characters,edit');
+Route::post('/characters/edit/{id}','charactersControler@submitEdit')->name('characters.edit.submit')->where('id', '[0-9]+')->middleware('role:characters,edit');
+Route::get('/characters/add','charactersControler@formAdd')->name('characters.add')->middleware('role:characters,add');
+Route::post('/characters/add','charactersControler@submitAdd')->name('characters.add.submit')->middleware('role:characters,add');
+Route::get('/characters/delete/{id}','charactersControler@delete')->name('characters.delete')->middleware('role:characters,add');
+#----------------------------------------------------------------------------------
+
+
+/*
+|--------------------------------------------------------------------------
+| characters Section
+|--------------------------------------------------------------------------
+| this will handle all characters part
+*/
+Route::get('/occasion','occasionControler@list')->name('occasion');
+Route::get('/occasion/info/{id}','occasionControler@info')->name('occasion.info')->where('id', '[0-9]+');
+Route::get('/occasion/status/{id}','occasionControler@status')->name('occasion.status')->where('id', '[0-9]+')->middleware('role:occasion,edit');
+Route::get('/occasion/edit/{id}','occasionControler@formEdit')->name('occasion.edit')->where('id', '[0-9]+')->middleware('role:occasion,edit');
+Route::post('/occasion/edit/{id}','occasionControler@submitEdit')->name('occasion.edit.submit')->where('id', '[0-9]+')->middleware('role:occasion,edit');
+Route::get('/occasion/add','occasionControler@formAdd')->name('occasion.add')->middleware('role:occasion,add');
+Route::post('/occasion/add','occasionControler@submitAdd')->name('occasion.add.submit')->middleware('role:occasion,add');
+Route::get('/occasion/delete/{id}','occasionControler@delete')->name('occasion.delete')->middleware('role:occasion,add');
 #----------------------------------------------------------------------------------
 
 
@@ -158,6 +212,41 @@ Route::get('/ad/edit/{id}','Advertisements@formEdit')->name('ad.edit')->where('i
 Route::post('/ad/edit/{id}','Advertisements@submitEdit')->name('ad.edit.submit')->where('id', '[0-9]+')->middleware('role:ad,edit');
 Route::get('/ad/add','Advertisements@formAdd')->name('ad.add')->middleware('role:ad,add');
 Route::post('/ad/add','Advertisements@submitAdd')->name('ad.add.submit')->middleware('role:ad,add');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| costomer Photo  Section
+|--------------------------------------------------------------------------
+| this will handle all ads part
+*/
+Route::get('/costomers','costomerPhotoController@list')->name('costomers');
+Route::get('/costomer/status/{id}','costomerPhotoController@status')->name('costomer.status')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::get('/costomer/edit/{id}','costomerPhotoController@formEdit')->name('costomer.edit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::post('/costomer/edit/{id}','costomerPhotoController@submitEdit')->name('costomer.edit.submit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::get('/costomer/add','costomerPhotoController@formAdd')->name('costomer.add')->middleware('role:ad,add');
+Route::post('/costomer/add','costomerPhotoController@submitAdd')->name('costomer.add.submit')->middleware('role:ad,add');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| costomersRate Section
+|--------------------------------------------------------------------------
+| this will handle all ads part
+*/
+Route::get('/costomersRate','costomerRateController@list')->name('costomersRate');
+Route::get('/costomersRate/status/{id}','costomerRateController@status')->name('costomersRate.status')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::get('/costomersRate/edit/{id}','costomerRateController@formEdit')->name('costomersRate.edit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::post('/costomersRate/edit/{id}','costomerRateController@submitEdit')->name('costomersRate.edit.submit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::get('/costomersRate/add','costomerRateController@formAdd')->name('costomersRate.add')->middleware('role:ad,add');
+Route::post('/costomersRate/add','costomerRateController@submitAdd')->name('costomersRate.add.submit')->middleware('role:ad,add');
+
+
+
 #----------------------------------------------------------------------------------
 
 /*
@@ -179,14 +268,44 @@ Route::post('/code/add','codeController@submitAdd')->name('code.add.submit')->mi
 |--------------------------------------------------------------------------
 |  dashboard system
 |--------------------------------------------------------------------------
-|  
-| this will handle all   dashboard system 
+|
+| this will handle all   dashboard system
 */
 
 Route::get('/home','dashBoardController@index')->name('dashboard');
-Route::get('/','dashBoardController@index')->name('dashboard');
+Route::get('/dashboard','dashBoardController@index')->name('dashboard');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout.get');
 });
 
 Auth::routes(['register' => false, 'verify' => false]);
+/*
+|--------------------------------------------------------------------------
+|  website  
+|--------------------------------------------------------------------------
+|
+| this will handle all  website
+*/
+
+//change lang
+Route::get('/lang/{locale}', function ($locale) {
+    $lang=['ar','en'];
+    if(in_array($locale,$lang)){
+        session(['language' =>$locale]);
+        App::setLocale($locale);
+        return redirect()->back();
+
+    }else{
+      return  redirect('/404');
+    }
+});
+//Home page 
+Route::get('/wows','website\homePageController@index')->name('homePage');
+Route::get('/category/{id}','website\categoriesController@subCategories')->name('subcategorys');
+Route::get('/products/{id}','website\productConroller@products')->name('product.subcategories');
+Route::get('/products/occasion/{id}','website\productConroller@products_occasion')->name('product.products_occasion');
+Route::get('/products/party/theme/{id}','website\productConroller@products_party_theme')->name('product.products_party_theme');
+Route::get('/products/characters/{id}','website\productConroller@products_characters')->name('product.products_characters');
+Route::get('/products','website\productConroller@Allproducts')->name('product.Allproducts');
+
+Route::get('/product/info/{id}','website\productConroller@productInfo')->name('product.info');
 

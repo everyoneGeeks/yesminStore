@@ -1,5 +1,5 @@
 
-@extends('layout.app',['title'=>' الاشعارات'])
+@extends('layoutDashboard.app',['title'=>' الاشعارات'])
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 

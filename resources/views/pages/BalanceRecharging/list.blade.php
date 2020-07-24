@@ -1,4 +1,4 @@
-@extends('layout.app',['title'=>'شحن الرصيد' ,'subTitle'=>'ادارة شحن الرصيد '])
+@extends('layoutDashboard.app',['title'=>'شحن الرصيد' ,'subTitle'=>'ادارة شحن الرصيد '])
 @section('style')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">

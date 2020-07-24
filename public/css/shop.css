@@ -1,0 +1,56 @@
+.cart-details{
+    margin-top: 5rem;
+}
+.cart-details .shop-sidebar{
+    margin-left: 0;
+    padding: 1.5rem;
+}
+.cart-details .shop-sidebar hr{
+    border-color: #f86eac;
+}
+.categories .content-bar .head-bar{
+    cursor: pointer;
+}
+.categories .content-bar .head-bar h3{
+    color: #f495be;
+    font-size: 18px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+.categories .content-bar .head-bar:hover h3{
+    color: #f780b2;
+}
+.categories .content-bar .head-bar h3 .fa-angle-down{
+    position: absolute;
+    right: 0;
+}
+.categories .content-bar .bar-content ul li{
+    padding-left: .75rem;
+    margin-bottom: .375rem;
+    color: #82D0DC;
+    font-size: .875rem;
+    display: flex;
+    justify-content: space-between;
+}
+.categories .content-bar .bar-content ul li a{
+    color: #82D0DC;
+    transition: all .3s ease-in-out;
+}
+.categories .content-bar .bar-content ul li a:hover{
+    color: #f495be;
+    text-decoration: none;
+}
+.price-range{
+    margin-top: 1.5rem;
+}
+.price-range .input-group-prepend .input-group-text{
+    background-color: #fff;
+    color: #4b566b;
+    padding: 6.8px 12px;
+    font-size: 13px;
+}
+.price-range input.form-control{
+    padding: 6.8px 12px;
+    height: calc(1.5em + .85rem + 2px);
+    font-size: 13px;
+}

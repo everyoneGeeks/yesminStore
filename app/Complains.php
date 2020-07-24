@@ -13,8 +13,5 @@ class Complains extends Model
         return $this->belongsTo('App\Users','users_id');
     }
 
-
-    public function provider(){
-        return $this->belongsTo('App\Providers','providers_id');
-    }    
+   
 }

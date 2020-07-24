@@ -1,0 +1,63 @@
+.login-form {
+    width: 50%;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    border: 2px solid #97e3f0;
+    border-radius: 2rem;
+}
+.login-form label{
+    color: #61bfd0;
+    font-size: 14px;
+    font-weight: bold;
+}
+.login-form .form-control{
+    font-size: 14px;
+    border: 1.5px solid #97e3f0;
+    border-radius: .7rem;
+    color: #61bfd0;
+}
+.login-form .form-control::placeholder{
+    color: #61bfd0;
+}
+.login-form .form-check-label{
+    color: #f86eac;
+}
+.login-form .forget{
+    float: right;
+    transition: all .2s ease-in-out;
+    color: #f86eac;
+}
+.login-form .forget:hover{
+    color: #f495be;
+}
+.login-form .btn{
+    background-color: #f494be;
+    color: #fff;
+    border-radius: 1rem;
+    font-weight: bold;
+    margin: .7rem 0;
+}
+.login-form .btn:hover{
+    background-color: #f780b2;
+    box-shadow: none;
+}
+.login-form .create{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+.login-form .create p{
+    color: #61bfd0;
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+.login-form .create a{
+    transition: all .2s ease-in-out;
+    color: #f86eac;
+    font-weight: bold;
+    font-size: 16px;
+}
+.login-form .create a:hover{
+    color: #f780b2;
+}

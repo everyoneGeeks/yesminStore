@@ -1,0 +1,26 @@
+.party-supplies{
+    margin: 2rem 0 5rem;
+}
+.party-supplies .container{
+    width: 60%;
+}
+.party-supplies .one-category img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    margin-top: 2rem;
+}
+.party-supplies .one-category h4{
+    text-align: center;
+    color: #ff96c5;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 1rem;
+    text-transform: capitalize;
+}
+
+header.home{
+    height: 58vh;
+    overflow: hidden;
+}

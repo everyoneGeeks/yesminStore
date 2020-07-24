@@ -1,0 +1,95 @@
+.profile-info h3{
+    margin: -3rem 0 .5rem;
+    color: #f86eac;
+    font-weight: bold;
+    font-size: 24px;
+}
+.profile-info h3 img{
+    width: 40px;
+    height: 40px;
+    margin-right: .5rem;
+}
+.profile-info .user-prief{
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid #f495be;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.profile-info .user-prief img{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    float: left;
+}
+.profile-info .user-prief p{
+    float: left;
+    color: #4eb9cb;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.profile-info .user-prief .user-info>a{
+    box-shadow: 0 0.5rem 1.125rem -0.5rem rgba(0,0,0,0.15);
+    padding: .425rem 1rem;
+    font-size: .8125rem;
+    line-height: 1.5;
+    border-radius: .1875rem;
+    color: #4b566b;
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+.profile-info .user-prief .user-info>a:hover{
+    box-shadow: none;
+}
+.profile-info .user-prief .user-info>a .fa-edit{
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.profile-info form{
+    margin-top: 3rem;
+}
+.profile-info form label{
+    color: #61bfd0;
+    padding-top: .0625rem;
+    font-size: 16px;
+    font-weight: bold;
+}
+.profile-info form input.form-control{
+    padding: .5rem;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f494be;
+    border: 1px solid #97e3f0;
+    border-radius: .7rem;
+    box-shadow: 0 0 0 0 transparent;
+    transition: border-color 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+}
+.profile-info form .date input{
+    width: 100px;
+    margin-right: .5rem;
+    float: left;
+}
+.profile-info form input.form-control::placeholder{
+    color: #f495be;
+}
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #F6F9FC;
+}
+.form-control:disabled:hover,
+.form-control[readonly]:hover{
+    cursor: not-allowed;
+}
+.profile-info form .btn{
+    background-color: #f495be;
+    color: #fff;
+    float: right;
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+}
+.profile-info form .btn:hover{
+    background-color: #f7599b;
+}

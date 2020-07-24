@@ -1,0 +1,45 @@
+
+.checkout-details > h6{
+    padding-top: .25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e3e9ef;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #373f50;
+    text-transform: capitalize;
+}
+.checkout-details form{
+    margin-bottom: 2rem;
+}
+.checkout-details label{
+    color: #61bfd0;
+    padding-top: .0625rem;
+    font-size: .875rem;
+    font-weight: bold;
+}
+.checkout-details .form-control{
+    padding: .625rem 1rem;
+    font-size: .9375rem;
+    color: #f86eac;
+    border: 1px solid #61bfd0;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 0 transparent;
+    transition: border-color 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+}
+.checkout-details .proceed{
+    padding-top: 3rem;
+}
+.btn.save{
+    background-color: #f86eac;
+    color: #fff;
+    margin-right: .5rem;
+    border-radius: .5rem;
+    padding: 3px 1.5rem;
+}
+.btn.cancel{
+    border: 1px solid #f86eac;
+    color: #f86eac;
+    padding: 3px 1.5rem;
+    border-radius: .5rem;
+}

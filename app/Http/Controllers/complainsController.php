@@ -30,7 +30,7 @@ class complainsController extends Controller
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function list(){
-    $Complains=Complains::with('provider')->with('user')->get();
+    $Complains=Complains::with('user')->get();
     
 
     return view('pages.Complain.list',compact('Complains'));
