@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Users;
 use App\passwordReset;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | authenticationController
@@ -32,7 +35,7 @@ class authenticationController extends Controller
 public function registerForm()
 {
 
- return view('website.homePage',compact('ads','costomerRate','costomerPhoto','topSellingProduct','newProduct'));
+ return view('website.register');
 }
 
 /**
@@ -42,26 +45,33 @@ public function registerForm()
 public function registerSbmit(Request $request)
 {
     $rules=[
-        'name'=>'required|max:255',
+        'first_name'=>'required|max:255',
+        'last_name'=>'required|max:255',
         'email'=>'required|unique:users,email|max:255',
-        'password'=>'required|min:8',
+        'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+        'password_confirmation' => 'min:8',
         'phone'=>'required|numeric',
         'terms'=>'required|accepted',
         ];
 
 
 
-   $request->validate($rules,$message);  
+   $request->validate($rules);  
    
    $user=new Users();
-   $user->name=$request->name;
+   $user->first_name=$request->first_name;
+   $user->last_name=$request->last_name;
    $user->email=$request->email;
+   $user->phone=$request->phone;
    $user->password=\Hash::make($request->passord);
    $user->is_accept=1;
+   $user->image="img/user-image.svg";
    $user->is_active=1;
    $user->save();
+   Auth::guard('users')->loginUsingId($user->id);
 
-    
+   \Notify::success('   تم التسجيل بنجاح ', ' تم التسجيل بنجاح   ');
+
  return \redirect('/');
 }
 
@@ -88,15 +98,22 @@ public function loginSubmit(Request $request)
 {
     $rules=[
         'email'=>'required|exists:users,email|max:255',
-        'password'=>'required|min:8',
+        'password'=>'required',
            ];
 
 
 
-   $request->validate($rules,$message);  
-   
-   if (Auth::attempt(['email' => $request->email,'password' => $request->password, 'is_active' => 1],$remember)) {
+   $request->validate($rules);  
+   if (Auth::guard('users')->attempt(['email' => $request->email,'password' => $request->password, 'is_active' => 1],$request->remember)) {
     return redirect()->intended('/');
+    }else{
+        if(\App::getLocale() == 'ar')
+        {
+            $errors = new MessageBag(['password' => ['.الايميل او الباسورد غير صحيح']]); 
+        }else{
+        $errors = new MessageBag(['password' => ['Email and/or password invalid.']]); 
+        }
+        return redirect()->back()->withErrors($errors); 
     }
 
 }
@@ -109,7 +126,7 @@ public function loginSubmit(Request $request)
 public function forgetPasswordForm(Request $request)
 {
 
-    return view('website.ForgetPassword');
+    return view('website.forgetPassword');
 
 }
 
@@ -127,7 +144,7 @@ public function forgetPasswordSubmit(Request $request)
 
 
 
-   $request->validate($rules,$message);  
+   $request->validate($rules);  
    
 
    $passwordReset=new passwordReset();
@@ -136,28 +153,31 @@ public function forgetPasswordSubmit(Request $request)
    $passwordReset->created_at=Carbon::now();
    $passwordReset->save();
 
-   Mail::send('auth.password.verify',['token' => $passwordReset->token], function($message) use ($request) {
+   \Mail::send('auth.verify',['token' => $passwordReset->token], function($message) use ($request) {
     $message->from($request->email);
     $message->to('codingdriver15@gmail.com');
     $message->subject('Reset Password Notification');
  });
- return back()->with('message', 'We have e-mailed your password reset link!');
+ \App::getLocale() == 'ar' ?  \Notify::success('    تم ارسال الايميل بنجاح  ', '  استرجاع الباسورد ') :  \Notify::success(' email has been send ','  password Reset  ');
+
+ return back();
 }
 
 
 public function getPassword($token) {
 
-    return view('auth.password.reset', ['token' => $token]);
+    return view('auth.passwords.Websitereset', ['token' => $token]);
  }
 
  public function updatePassword(Request $request)
  {
+
      $request->validate([
          'email' => 'required|email|exists:users',
-         'password' => 'required|string|min:6|confirmed',
-         'password_confirmation' => 'required',
+         'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
+         'password_confirmation' => 'min:8',
 
-     ]);
+     ]); 
 
      $updatePassword = passwordReset::where(['email' => $request->email, 'token' => $request->token])
                          ->first();
@@ -170,10 +190,14 @@ public function getPassword($token) {
 
         passwordReset::where(['email'=> $request->email])->delete();
 
-       return redirect('/login')->with('message', 'Your password has been changed!');
+       return redirect('/signin');
 
  }
 
  
-
+ public function logout(Request $request) {
+    Auth::guard('users')->logout();
+    $request->session()->invalidate();
+    return redirect('/signin');
+  }
 }

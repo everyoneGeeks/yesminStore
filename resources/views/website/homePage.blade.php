@@ -4,15 +4,15 @@
                 <!-- Slider Section -->
                 <div class="slider top-slider">
                     <div class="container" style="height: inherit;">
-                        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                        <div id="Adscarousel" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                             @foreach($ads as $ad)
 
                             @if($loop->count > $loop->index )
                                 @if($loop->first)
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                    <li data-target="#Adscarousel" data-slide-to="0" class="active"></li>
                                 @else
-                                <li data-target="#carouselExampleCaptions" data-slide-to="{{$loop->index}}"></li>
+                                <li data-target="#Adscarousel" data-slide-to="{{$loop->index}}"></li>
                                 @endif
                                 @endif
                             @endforeach    
@@ -74,15 +74,15 @@
             <!-- customer pictures section -->
             <div class="slider pic">
                 <div class="container">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <div id="costomerPhoto" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                         @foreach($costomerPhoto as $photo)
 
-                            @if($photo->count > $photo->index )
+                            @if($loop->count > $loop->index )
                                 @if($loop->first)
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                    <li data-target="#costomerPhoto" data-slide-to="0" class="active"></li>
                                 @else
-                                <li data-target="#carouselExampleCaptions" data-slide-to="{{$loop->index}}"></li>
+                                <li data-target="#costomerPhoto" data-slide-to="{{$loop->index}}"></li>
                                 @endif
                                 @endif
                         @endforeach    
@@ -108,15 +108,15 @@
             <!-- customer reviews section -->
             <div class="slider rev">
                 <div class="container">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <div id="costomerRate" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                         @foreach($costomerRate as $photo)
 
-                            @if($photo->count > $photo->index )
+                            @if($loop->count > $loop->index)
                                 @if($loop->first)
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                    <li data-target="#costomerRate" data-slide-to="0" class="active"></li>
                                 @else
-                                <li data-target="#carouselExampleCaptions" data-slide-to="{{$loop->index}}"></li>
+                                <li data-target="#costomerRate" data-slide-to="{{$loop->index}}"></li>
                                 @endif
                                 @endif
                         @endforeach    

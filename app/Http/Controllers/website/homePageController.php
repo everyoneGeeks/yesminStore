@@ -69,4 +69,7 @@ class homePageController extends Controller
     }
 
     
+    public function not_found(){
+        return view('website.404');
+    }
 }

@@ -52,40 +52,41 @@
                                                 <img src="{{asset('img/User-account.svg')}}" alt="">
                                             </a>
                                             <!-- User Not Logged In -->
-                                            @if(Auth::guest() == true)
+                                            @guest('users')
                                             <div class="dropdown-menu not-loged" aria-labelledby="navbarDropdown">
-                                                <a href="login.html" class="dropdown-item btn log">{{App::getLocale() == 'ar' ? "تسجيل الدخول": " signin"}}</a>
+                                                <a href="/signin" class="dropdown-item btn log">{{App::getLocale() == 'ar' ? "تسجيل الدخول": " sign in"}}</a>
                                                 <span class="d-block">{{App::getLocale() == 'ar' ? " او  ": " OR  "}}</span>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item btn out">{{App::getLocale() == 'ar' ? "تسجيل حساب ": " Creat an account"}}</a>
+                                                <a href="/signup" class="dropdown-item btn out">{{App::getLocale() == 'ar' ? "تسجيل حساب ": " Creat an account"}}</a>
                                             </div>
-                                            @endif
+                                            @endguest
                                             <!-- IF User Logged In OR Register -->
-                                            @if(Auth::guest())
+                                        
+                                            @auth('users')
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <span>{{App::getLocale() == 'ar' ? "الحساب": "Account"}}</span>
                                                 <div class="dropdown-divider"></div>
                          
-                                                <a class="dropdown-item" href="profile.html"><i class="fas fa-cog"></i>{{App::getLocale() == 'ar' ? "الاعدادات": "settings"}}</a>
-                                                <a class="dropdown-item" href="orders.html"><i class="fas fa-shopping-basket"></i>{{App::getLocale() == 'ar' ? "الطلبات": "Orders"}}</a>
-                                                <a class="dropdown-item" href="wishlist.html"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "المفضله": "Favorites"}}</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item btn" href="#"><i class="fas fa-sign-out-alt"></i>{{App::getLocale() == 'ar' ? "تسجيل الخروج": "Log Out"}}</a>
+                                                <a class="dropdown-item" href="/profile"><i class="fas fa-cog"></i>{{App::getLocale() == 'ar' ? "الاعدادات": "settings"}}</a>
+                                                <a class="dropdown-item" href="/orders"><i class="fas fa-shopping-basket"></i>{{App::getLocale() == 'ar' ? "الطلبات": "Orders"}}</a>
+                                                <a class="dropdown-item" href="/wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "المفضله": "Favorites"}}</a>
+                                                <div class="dropdown-divider"></div> 
+                                                <a class="dropdown-item btn" href="/user/logout"><i class="fas fa-sign-out-alt"></i>{{App::getLocale() == 'ar' ? "تسجيل الخروج": "Log Out"}}</a>
                                 
                                              
                                             </div>
-                                            @endif
+                                            @endauth
                                         </li>
-                                        @if(Auth::guest() == false)
+                                        @auth('users')
                                         <li class="nav-item" data-toggle="tooltip" data-placement="left" title="WishList">
-                                            <a class="nav-link count-wrap" href="wishlist.html"><img src="{{ asset('img/Favourite.svg') }}" alt=""><span class="count">0</span></a>
+                                            <a class="nav-link count-wrap" href="/wishlist"><img src="{{ asset('img/Favourite.svg') }}" alt=""><span class="count">{{\App\wishList::where('user_id',\Auth::guard('users')->user()->id)->count()}}</span></a>
                                         </li>
                                         <li class="nav-item cart" data-toggle="tooltip" title="Shopping-cart">
-                                            <a class="nav-link count-wrap" href="shopping-cart.html">
-                                                <img src="{{asset('img/cart.svg')}}" alt=""><span class="count">0</span>
+                                            <a class="nav-link count-wrap" href="/cart">
+                                                <img src="{{asset('img/cart.svg')}}" alt=""><span class="count">{{\App\cart::where('user_id',\Auth::guard('users')->user()->id)->count()}}</span>
                                             </a>
                                         </li>
-                                        @endif
+                                        @endauth
                                         <li class="nav-item dropdown lang">
                                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{App::getLocale() == "ar" ?  "العربية " : "En" }}</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -111,7 +112,7 @@
                                     <a href="/category/1" class="btn category cake-btn"><span>   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
                                 </div>
                                 <div class="col-md-2">
-                                    <a href="/category/1" class="logo-img"><img src="{{asset('img/Towipi-logo.svg')}}" alt="Logo"></a>
+                                    <a href="/" class="logo-img"><img src="{{asset('img/Towipi-logo.svg')}}" alt="Logo"></a>
                                 </div>
                                 <div class="col-md-5">
                                     <a href="/category/2" class="btn category party-btn"><span>{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
@@ -122,17 +123,41 @@
                     <nav class="navbar navbar-expand-lg bottom-nav">
                         <div class="container">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="index.html" class="nav-link category">{{App::getLocale() == 'ar' ? "الرائسية" : "Home"}}<Span></Span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
-                                <li class="nav-item"><a href="about.html" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
-                                <li class="nav-item"><a href="contact.html" class="nav-link category"><span>{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+                                <li class="nav-item"><a href="/" class="nav-link category">{{App::getLocale() == 'ar' ? "الرائسية" : "Home"}}<Span></Span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+                                <li class="nav-item"><a href="/about" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
+                                <li class="nav-item"><a href="/contact" class="nav-link category"><span>{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
                             </ul>
                         </div>
                     </nav>
+                    <form action="/product/search" method="get" id="searchForm">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{{App::getLocale() == 'ar' ? 'ابحث عن منتجات....':'Search for products...' }}" aria-label="Username" aria-describedby="basic-addon1">
+          
+                        <input type="text" name="name"  form="searchForm" class="form-control" placeholder="{{App::getLocale() == 'ar' ? 'ابحث عن منتجات....':'Search for products...' }}" aria-label="Username" aria-describedby="basic-addon1">
+   
                         <div class="input-group-prepend">
-                            <a href="#"><span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span></a>
+
+@if(App::getLocale() == 'ar')
+<button type="submit" form='searchForm'                         style="
+    border: none;
+    border-color: #F495BE;
+    background-color: #F495BE;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+">
+@else 
+      <button type="submit" form="searchForm" style="
+    border: none;
+    border-color: #F495BE;
+    background-color: #F495BE;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+">
+@endif
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </button>
                         </div>
+              
+                    </form>
+                     
                     </div>
-                </div>
                 </header>

@@ -286,6 +286,9 @@ Auth::routes(['register' => false, 'verify' => false]);
 | this will handle all  website
 */
 
+
+Route::get('/404','website\homePageController@not_found')->name('error');
+
 //change lang
 Route::get('/lang/{locale}', function ($locale) {
     $lang=['ar','en'];
@@ -299,13 +302,64 @@ Route::get('/lang/{locale}', function ($locale) {
     }
 });
 //Home page 
-Route::get('/wows','website\homePageController@index')->name('homePage');
+Route::get('/','website\homePageController@index')->name('homePage');
+
 Route::get('/category/{id}','website\categoriesController@subCategories')->name('subcategorys');
 Route::get('/products/{id}','website\productConroller@products')->name('product.subcategories');
 Route::get('/products/occasion/{id}','website\productConroller@products_occasion')->name('product.products_occasion');
 Route::get('/products/party/theme/{id}','website\productConroller@products_party_theme')->name('product.products_party_theme');
 Route::get('/products/characters/{id}','website\productConroller@products_characters')->name('product.products_characters');
 Route::get('/products','website\productConroller@Allproducts')->name('product.Allproducts');
-
 Route::get('/product/info/{id}','website\productConroller@productInfo')->name('product.info');
+Route::get('/product/search','website\productConroller@search_product')->name('product.search');
 
+
+
+
+
+
+Route::get('/signin','website\authenticationController@loginForm')->name('loginForm');
+Route::post('/signin/submit','website\authenticationController@loginSubmit')->name('loginSubmit');
+Route::get('/user/logout','website\authenticationController@logout')->name('logout');
+Route::get('/signup','website\authenticationController@registerForm')->name('registerForm');
+Route::post('/signup/submit','website\authenticationController@registerSbmit')->name('registerSbmit');
+Route::get('/forgetPassword','website\authenticationController@forgetPasswordForm')->name('forgetPasswordForm');
+Route::post('/forgetPassword/submit','website\authenticationController@forgetPasswordSubmit')->name('forgetPasswordSubmit');
+Route::get('/getPassword/{token}','website\authenticationController@getPassword')->name('getPassword');
+Route::post('/updatePassword/submit','website\authenticationController@updatePassword')->name('updatePassword');
+
+Route::group(['middleware' => 'User'], function () {
+
+
+Route::get('/profile','website\UserController@info')->name('info');
+Route::get('/address','website\UserController@address')->name('address');
+Route::post('/profile/update','website\UserController@editSubmit')->name('editSubmit');
+Route::get('/address','website\UserController@address')->name('address');
+Route::post('/address/add','website\UserController@addAddress')->name('addAddress');
+Route::post('/address/update/{id}','website\UserController@updateAddress')->name('updateAddress');
+Route::get('/address/delete/{id}','website\UserController@deleteAddress')->name('deleteAddress');
+
+Route::get('/wishlist','website\wishListController@wishList')->name('wishList');
+Route::get('/wishlist/add/{id}','website\wishListController@addWishList')->name('addWishList');
+Route::get('/wishlist/delete/{id}','website\wishListController@deleteWishList')->name('deleteWishList');
+
+Route::get('/cart','website\CartController@cart')->name('cart');
+Route::get('/cart/add/{id}','website\CartController@addCart')->name('addCart');
+Route::get('/cart/update/{id}','website\CartController@updateProductcart')->name('updateCart');
+Route::get('/cart/delete/{id}','website\CartController@deleteCart')->name('deleteCart');
+Route::get('/cart/personalize/','website\CartController@addPersonalize')->name('addPersonalize');
+Route::get('/checkout','website\CartController@shippingCart')->name('shippingCart');
+Route::get('/payment','website\CartController@paymentCart')->name('paymentCart');
+Route::get('/add/address/cart','website\CartController@addAddressCart')->name('addAddressCart');
+Route::get('/address/cart','website\CartController@AddressCart')->name('AddressCart');
+
+Route::get('/add/order','website\CartController@AddOrderCart')->name('AddOrderCart');
+
+Route::get('/order/cart','website\CartController@orderCart')->name('orderCart');
+
+Route::get('/orders','website\CartController@orders')->name('orders');
+
+Route::get('/product/rate','website\CartController@productRate')->name('productRate');
+
+
+});

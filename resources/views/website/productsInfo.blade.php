@@ -29,14 +29,14 @@
                                     <span class="bef-dis">EGP {{$product->price}}</span>
                                     <span class="discount">{{$product->discount}}% </span>
                                     @else 
-
+                                    <span class="aft-dis">EGP {{$product->price}}</span>
                                     @endif
                                 </div><hr>
 
-                                @if($product->character)
+                                @if(!$product->character->isEmpty())
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "الرسومات" : "character"}}</h5>
-                                    <select class="custom-select form-control" id="inputGroupSelect03">
+                                    <select form="addToCart" name="character_id" class="custom-select form-control" id="inputGroupSelect03 ">
                                         <option selected>Mini...</option>
                                         @foreach($product->character as $character)
                                       
@@ -47,10 +47,10 @@
                                 </div>
                                 @endif
 
-                                @if($product->occasion)
+                                @if(!$product->occasion->isEmpty())
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "المناسبة / الحدث" : "Event / Occasion"}}</h5>
-                                    <select class="custom-select form-control" id="inputGroupSelect03">
+                                    <select form="addToCart" name="occasion_id"  class="custom-select form-control" id="inputGroupSelect03">
                                         <option selected>Mini...</option>
                                         @foreach($product->occasion as $occasion)
                                       
@@ -62,10 +62,10 @@
                                 @endif
 
 
-                                @if($product->party_theme)
+                                @if(!$product->party_theme->isEmpty())
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "نوع الحفلة " : "party theme"}}</h5>
-                                    <select class="custom-select form-control" id="inputGroupSelect03">
+                                    <select form="addToCart" name="party_theme_id" class="custom-select form-control" id="inputGroupSelect03">
                                         <option selected>Mini...</option>
                                         @foreach($product->party_theme as $party_theme)
                                         <option value="{{ $party_theme->id }}">{{App::getLocale() == 'ar' ? $party_theme->name_ar:$party_theme->name_en}}</option>
@@ -74,10 +74,10 @@
                                     </select>
                                 </div>
                                 @endif
-                                @if($product->size)
+                                @if(!$product->size->isEmpty())
                                 <div class="size">
                                     <h5>{{App::getLocale() == 'ar' ? " الحجم" : "size "}}</h5>
-                                    <select class="custom-select form-control" id="inputGroupSelect03">
+                                    <select form="addToCart" name="size_id"  class="custom-select form-control" id="inputGroupSelect03">
                                         <option selected>Mini...</option>
                                         @foreach($product->size as $size)
                                         <option value="{{ $size->id }}">{{App::getLocale() == 'ar' ? $size->name_ar:$size->name_en}}</option>
@@ -87,7 +87,7 @@
                                 @endif
                                 <div class="quantity">
                                     <span class="qun"><label for="quantity">{{App::getLocale() == 'ar' ? "":"QTY"}}</label>
-                                    <input type="number" name="quantity" id="quantity" min="0" max="{{$product->amount}}">
+                                    <input type="number" form="addToCart"  name="amount" id="quantity" min="0" max="{{$product->amount}}">
                                     </span>
                                     <span class="availability"> {{App::getLocale() == 'ar' ? "في المخزن":"In stock"}} {{$product->amount}}</span>
                                 </div>
@@ -95,9 +95,12 @@
                                 <hr>
 
                                 <div class="add">
-                                    <button class="btn add-cart"><a href="#"><img src="{{asset('img/cart.svg')}}" alt=""> {{App::getLocale() == 'ar' ? "اضافة الي السلة":"Add To Cart" }}</a></button>
-                                    <a href="#" class="wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
+                                <form id="addToCart" action="/cart/add/{{$product->id}}" method="get">
+                                    <button  type="submit" class="btn add-cart"><img src="{{asset('img/cart.svg')}}" alt=""> {{App::getLocale() == 'ar' ? "اضافة الي السلة":"Add To Cart" }}</button>
+                                    </form>
+                                    <a href="/wishlist/add/{{$product->id}}" class="wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
                                 </div><hr>
+
                                 <div class="brief-desc">
                                     <h4> {{App::getLocale() == 'ar' ? " تفاصيل المنتج  ":"Product Details" }}</h4>
                                     <p> {{App::getLocale() == 'ar' ?  $product->description_ar: $product->description_en }}</p>

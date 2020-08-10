@@ -13,15 +13,15 @@ return [
     //Toastr
     //Documentation: https://github.com/CodeSeven/toastr#other-options
     'ToastrOptions' => [
-        "closeButton" => false, //Optionally enable a close button
+        "closeButton" => true, //Optionally enable a close button
         //"closeHtml" => '', //Optionally override the close button's HTML. <button><i class="icon-off"></i></button>
         "newestOnTop" => true,
-        "progressBar" => false, //Visually indicate how long before a toast expires.
+        "progressBar" => true, //Visually indicate how long before a toast expires.
         "positionClass" => 'toast-top-right',
         "preventDuplicates" => true, //Duplicates are matched to the previous toast based on their message content.
         "showDuration" => '500',
         "hideDuration" => '900',
-        "timeOut" => '4000', // How long the toast will display without user interaction
+        "timeOut" => '5000', // How long the toast will display without user interaction
         "extendedTimeOut" => '1000', // How long the toast will display after a user hovers over it
         "showEasing" => 'linear',
         "hideEasing" => 'linear',

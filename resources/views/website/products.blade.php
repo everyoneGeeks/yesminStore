@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="bar-content">
                                         <ul class="list-unstyled">
-                 
+                
                                         @foreach($occasions as $occasion)
                                             <li><a href="/products/occasion/{{$occasion->id}}">  {{ App::getLocale() == 'ar' ? $occasion->name_ar : $occasion->name_en }}</a><span>{{$AllProducts->where('occasion_id',$occasion->id)->count()}}</span></li>
                                    
@@ -78,6 +78,11 @@
                     <div class="col-md-9">
                         <div class="product-cards">
                             <div class="row">
+                             
+                            @if($products->isEmpty())
+                            @component('components.emptyWebsite',['sectionِAr'=>'منتجات','sectionِEn'=>'products']) @endcomponent
+
+                            @endif
                             @foreach($products as $product)
                                 <div class="col-md-4">
 

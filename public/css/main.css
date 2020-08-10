@@ -976,6 +976,28 @@ footer .bottom-footer .copy{
     border-radius: 2rem;
 }
 
+.cart-details.proceed{
+    padding-top: 2.5rem;
+    border-top: none;
+}
+.cart-details .proceed .btn{
+    background-color: #70d0e0;
+    color: #fff;
+    border-radius: 2rem;
+}
+
+
+
+.redirect .proceed{
+    padding-top: 2.5rem;
+    border-top: none;
+}
+.redirect .proceed .btn{
+    background-color: #70d0e0;
+    color: #fff;
+    border-radius: 2rem;
+}
+
 /* Start user account sidebar styles */
 .cart-details .user-account{
     border-radius: .4375rem;

@@ -43,7 +43,7 @@ public function products($id){
     $party=Party_Theme::get();
     $characters=characters::get();
     $products=product::where('sub_category_id',$id)->paginate(12);
-    $AllProducts=product::get();
+    $AllProducts=product::with('size')->with('character')->with('images')->with('occasion')->with('party_theme')->get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
 
@@ -146,7 +146,27 @@ public function products_characters($id){
 }
 
 
+/**
+ * search  products by name
+ * @param int $id
+ * @return \Illuminate\Contracts\Support\Renderable
+ */
+public function search_product(Request $request){
+    if(\App::getLocale() == 'ar'){
+        $products=product::where('name_ar',$request->name)->paginate(12);
+    }else{
+        $products=product::where('name_en',$request->name)->paginate(12);   
+    }
+    $subCategories=subCategory::get();
+    $occasions=occasion::get();
+    $party=Party_Theme::get();
+    $characters=characters::get();
+    $AllProducts=product::get();
 
+    return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
+
+
+}
 
 
 

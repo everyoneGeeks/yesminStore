@@ -13,4 +13,10 @@ class rateProduct extends Model
     {
         return $this->belongsTo('App\Users','user_id');
     }
+
+
+    public function product()
+    {
+        return $this->belongsTo('App\product','product_id');
+    }
 }

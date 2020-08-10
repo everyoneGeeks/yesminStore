@@ -27,7 +27,7 @@
           <div class="cart-view">
                <a  href="product/add/cart/{{$product->id}}" class="btn add-cart">{{App::getLocale() == 'ar' ? "شراء":"Buy"}}</a>
                <a  href="product/info/{{$product->id}}" class="btn q-view">{{App::getLocale() == 'ar' ? "مشاهدة":"View"}}</a>
-               <a  href="product/add/favorite/{{$product->id}}"class="btn fav"><i class="far fa-heart"></i></a>
+               <a  href="/wishlist/add/{{ $product->id }}" class="btn fav"><i class="far fa-heart"></i></a>
           </div>
      </div>
 </div>

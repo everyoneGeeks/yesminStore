@@ -14,6 +14,7 @@ return [
     */
 
     'accepted' => 'يجب الموافقة علي الشروط والاحكام',
+
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -30,7 +31,7 @@ return [
         'array' => 'The :attribute must have between :min and :max items.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => ' :attribute  الايوجد تطابق ',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -39,7 +40,7 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => ' :attribute يجب ادخال الايميل الصحيح ',
+    'email' => '  يجب ادخال الايميل الصحيح ',
     'ends_with' => 'The :attribute must end with one of the following: :values',
     'exists' => 'غير مسجل  :attribute ',
     'file' => 'The :attribute must be a file.',
@@ -102,7 +103,7 @@ return [
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same' => 'The :attribute and :other must match.',
+    'same' => ' :attribute  لايوجد تطابق',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file' => 'The :attribute must be :size kilobytes.',
@@ -145,6 +146,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "first_name"=>'الاسم الاول ',
+        "last_name"=>'الاسم الاخير ',
+        "password"=>'كلمة السر ',
+        "password_confirmation"=>'كلمة السر'
+
+
+    ],
 
 ];
