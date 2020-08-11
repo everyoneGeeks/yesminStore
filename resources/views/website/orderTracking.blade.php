@@ -9,157 +9,105 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2><img src="img/Shipping.svg" alt="">Track Your Order</h2>
-                        <div class="order-steps">
-                            <a href="shopping-cart.html" class="step-item active">
-                                <div class="step-progress">
-                                    <div class="step-count">1</div>
-                                </div>
-                                <div class="step-label">Cart</div>
-                            </a>
-                            <a href="checkout.html" class="step-item active">
-                                <div class="step-progress">
-                                    <div class="step-count">2</div>
-                                </div>
-                                <div class="step-label">Shipping</div>
-                            </a>
-                            <a href="payment.html" class="step-item active">
-                                <div class="step-progress">
-                                    <div class="step-count">3</div>
-                                </div>
-                                <div class="step-label">Payment</div>
-                            </a>
-                            <a href="order-tracking.html" class="step-item active current">
-                                <div class="step-progress">
-                                    <div class="step-count">4</div>
-                                </div>
-                                <div class="step-label">Tracking</div>
-                            </a>
-                        </div>
+                        <h2><img src="{{asset('img/Shipping.svg')}}" alt="">{{App::getLocale() == 'ar' ?  "":"Track Your Order"}}</h2>
+                        @component('components.orderProgress',['statu'=>3]) @endcomponent
                         <div class="right-msg">
-                            <img src="img/Right (sign).svg" alt="">
-                            <h3>Your order has been successfully completed <br>
-                                You can track your order now
+                            <img src="{{asset('img/Right (sign).svg')}}" alt="">
+                            <h3>
+                            {{App::getLocale() == 'ar' ? "تم إكمال طلبك بنجاح يمكنك تتبع طلبك الآن"
+                            :"Your order has been successfully completed You can track your order now"}}
+      
                             </h3>
                         </div>
-                        <div class="orders">
-                            <div class="order-steps">
-                                <a href="shopping-cart.html" class="step-item active">
-                                    <div class="step-progress">
-                                        <div class="step-count">1</div>
-                                    </div>
-                                    <div class="step-label">Ready for shipping</div>
-                                </a>
-                                <a href="checkout.html" class="step-item">
-                                    <div class="step-progress">
-                                        <div class="step-count">2</div>
-                                    </div>
-                                    <div class="step-label">Out for delivery</div>
-                                </a>
-                                <a href="payment.html" class="step-item">
-                                    <div class="step-progress">
-                                        <div class="step-count">3</div>
-                                    </div>
-                                    <div class="step-label">Delivered</div>
-                                </a>
-                            </div>
+                      
+
+                        @component('components.orderTrackingProgress',['statu'=>0]) @endcomponent
+
+@foreach($orderPrduct as $product)
+
+
                             <div class="product-cart-details">
                                 <div class="img-section">
-                                    <img src="img/happy-birthday-wishes.png" alt="">
+                                    <img src="{{$product->product->main_image}}" alt="">
                                     <div>
-                                        <a href="product-details.html">product name product name product name</a>
+                                        <a href="/product/info/{{$product->product->id}}">{{App::getLocale() == 'ar' ?  $product->product->name_ar: $product->product->name_en}}</a>
                                         <div class="price">
-                                            <span class="aft-dis">EGP 50</span>
-                                            <span class="bef-dis">EGP 75</span>
-                                            <span class="discount">20% off</span>
-                                        </div>
-                                        <div class="character">
-                                            <h5>characters: <span>Micky Mouse</span></h5>
-                                        </div>
-                                        <div class="size">
-                                            <h5>Cupcake Size: <span>SIZE</span></h5>
-                                        </div>
-                                        <div class="quantity">
-                                            <h5>Quantity: <span>QUANTITY</span></h5>
-                                        </div>
+                                    @if($product->discount !== 0 )
+                                    <span class="aft-dis">EGP {{$product->product->price - $product->product->price*$product->product->discount/100 }}</span>
+                                    <span class="bef-dis">EGP {{$product->product->price}}</span>
+                                    <span class="discount">{{$product->product->discount}}% </span>
+                                    @else 
+                                    <span class="aft-dis">EGP {{$product->product->price}}</span>
+                                    @endif
+                                </div><hr>
+
+
+                                @if($product->character)
+                                    <div class="character">
+                                        <h5>{{App::getLocale() == 'ar' ? "الروسومات": "characters"}}: <span>{{App::getLocale() == 'ar' ? $product->character->name_ar:$product->character->name_en}}</span></h5>
                                     </div>
-                                </div>
-                            </div><hr>
-                            <div class="product-cart-details">
-                                <div class="img-section">
-                                    <img src="img/happy-birthday-wishes.png" alt="">
-                                    <div>
-                                        <a href="product-details.html">product name product name product name</a>
-                                        <div class="price">
-                                            <span class="aft-dis">EGP 50</span>
-                                            <span class="bef-dis">EGP 75</span>
-                                            <span class="discount">20% off</span>
-                                        </div>
-                                        <div class="character">
-                                            <h5>characters: <span>Micky Mouse</span></h5>
-                                        </div>
-                                        <div class="size">
-                                            <h5>Cupcake Size: <span>SIZE</span></h5>
-                                        </div>
-                                        <div class="quantity">
-                                            <h5>Quantity: <span>QUANTITY</span></h5>
-                                        </div>
+                                    @endif
+
+                                    @if($product->occasion)
+                                    <div class="character">
+                                        <h5>{{App::getLocale() == 'ar' ? "المناسبة": "occasion"}}: <span>{{App::getLocale() == 'ar' ? $product->occasion->name_ar:$product->occasion->name_en}}</span></h5>
                                     </div>
+                                    @endif
+
+                                    @if($product->party_theme)
+                                    <div class="character">
+                                        <h5>{{App::getLocale() == 'ar' ? "نوع الحفلة ": "party_theme"}}: <span>{{App::getLocale() == 'ar' ? $product->party_theme->name_ar:$product->party_theme->name_en}}</span></h5>
+                                    </div>
+                                    @endif
+                                    @if($product->size)
+                                    <div class="size">
+                                        <h5>{{App::getLocale() == 'ar' ? "الحجم": "size"}}: <span>{{App::getLocale() == 'ar' ? $product->size->name_ar:$product->size->name_en}}</span></h5>
+                                    </div>
+                                    @endif
+
+                                    <div class="quantity">
+                                        <h5> {{App::getLocale() == 'ar' ? "الكمية": "QUANTITY"}} : <span>{{$product->amount}}</span></h5>
+                                    </div>
+                                        
+                                    
+                                    </div>
+                                @if($product->personalize)
                                     <div class="personalize">
-                                        <h5>Child Name: <br><span>Ahmed</span></h5>
-                                        <h5>Child Age: <br><span>11</span></h5>
+                                        <h5>{{App::getLocale() == 'ar' ? "اسم الطفل ":"Child Name"}}: <br><span>{{$product->child_name}}</span></h5>
+                                        <h5>{{App::getLocale() == 'ar' ? "عمر الطفل ":"Child Age"}}: <br><span>{{$product->child_age}}</span></h5>
                                     </div>
+                                @endif    
                                 </div>
                             </div><hr>
-                            <div class="product-cart-details">
-                                <div class="img-section">
-                                    <img src="img/happy-birthday-wishes.png" alt="">
-                                    <div>
-                                        <a href="product-details.html">product name product name product name</a>
-                                        <div class="price">
-                                            <span class="aft-dis">EGP 50</span>
-                                            <span class="bef-dis">EGP 75</span>
-                                            <span class="discount">20% off</span>
-                                        </div>
-                                        <div class="character">
-                                            <h5>characters: <span>Micky Mouse</span></h5>
-                                        </div>
-                                        <div class="size">
-                                            <h5>Cupcake Size: <span>SIZE</span></h5>
-                                        </div>
-                                        <div class="quantity">
-                                            <h5>Quantity: <span>QUANTITY</span></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+@endforeach
                         </div>
                         <div class="shipping-address">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5>Shipping to:</h5>
-                                    <p>Client: <span>Said Omar</span></p>
-                                    <p>Address: <span>15 Alharam, Giza</span></p>
-                                    <p>Phone: 01012202020</p>
+                                    <h5>{{App::getLocale() =='ar' ? "الشحن الي " : "Shipping to"}}:</h5>
+                                    <p>{{App::getLocale() == 'ar' ? "العميل ":"Client"}}: <span>{{$orders->user->first_name }} {{$orders->user->last_name}}</span></p>
+                                    <p>{{App::getLocale() == 'ar' ? "العنوان ":"Address"}}: <span>{{$orders->shipping->cities->name_en}}</span></p>
+                                    <p>{{App::getLocale() == 'ar' ? "الهاتف ":"Phone"}}: {{$orders->user->phone}}</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <h5>Payment method:</h5>
-                                    <p>PayPal: *************</p>
-                                    <h5>Total amount:</h5>
-                                    <p>EGP 255</p>
+                                    <h5>{{App::getLocale() == 'ar' ? "طرق الدفع": "Payment method"}}:</h5>
+                                    <p>{{App::getLocale() == 'ar' ? " باي بال": "PayPal"}}: *************</p>
+                                    <h5>{{App::getLocale() == 'ar' ? "  اجمالي الطلب ": "Total amount"}}:</h5>
+                                    <p>EGP {{$orders->price - ($orders->price*$orders->discount/100) +\App\websiteSetting::find(1)->Taxes + $orders->shipping->cost}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="cart-summary">
-                            <h4>order summary</h4>
+                        <h4>{{App::getLocale() == 'ar' ? 'ملخص الطلب ' : 'order summary'}}</h4>
+                            
                             <div class="total-summary">
-                                <p>subtotal: <span>EGP 200</span></p>
-                                <p>shipping : <span>EGP 2</span></p>
-                                <p>taxes: <span>EGP 2</span></p>
-                                <p>discount: <span>EGP 3</span></p><hr>
-                                <p class="total">total<span>EGP 201</span></p>
+                                <p>{{App::getLocale() == 'ar' ? "سعر الطلب  ": "subtotal"}}: <span>EGP {{$orders->price}}</span></p>
+                                <p>{{App::getLocale() == 'ar' ? " الشحن  ": "shipping"}} : <span>EGP {{$orders->shipping->cost}}</span></p>
+                                <p>{{App::getLocale() == 'ar' ? " الضرائب": "taxes"}}: <span>EGP {{ \App\websiteSetting::find(1)->Taxes}}</span></p>
+                                <p>{{App::getLocale() == 'ar' ? " الخصم": "discount"}}: <span>EGP {{$orders->discount}}</span></p><hr>
+                                <p class="total">{{App::getLocale() == 'ar' ? " السعر الكلي ": "total"}}<span>EGP {{$orders->price - ($orders->price*$orders->discount/100) +\App\websiteSetting::find(1)->Taxes + $orders->shipping->cost}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -171,7 +119,7 @@
 
 @section('javascript')
 
-
+age
 
 <script>
 

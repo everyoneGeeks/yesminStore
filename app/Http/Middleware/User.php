@@ -18,7 +18,7 @@ class User
         if(\Auth::guard('users')->check()){
         return $next($request);
         }else{
-            return redirect('/404');
+            return redirect()->back()->with('AuthLogin','error');
         }
     }
 }

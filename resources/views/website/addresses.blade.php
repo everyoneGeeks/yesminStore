@@ -32,8 +32,9 @@
 @section('javascript')
 <script>
 $( document ).ready(function() {
-    $('#country').change(function(){
-    $('#city option')
+    $('.country').change(function(){
+
+    $('#city-'+$(this).attr('data-address')+' '+'option')
         .hide() // hide all
         .filter('[data-country="'+$(this).val()+'"]') // filter options with required value
             .show(); // and show them

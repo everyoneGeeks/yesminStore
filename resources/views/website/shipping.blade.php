@@ -40,7 +40,7 @@
 </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-                    @component('components.orderSummary',['subtotal'=>200,'shipping'=>50,'taxes'=>20,'discount'=>30,'total'=>40]) @endcomponent
+                    @component('components.orderSummary',['subtotal'=>$subtotal,'shipping'=>$shipping,'day'=>$day,'taxes'=>$taxes,'discount'=>$discount,'total'=>$allprice]) @endcomponent
 
                     </div>
                 </div>
@@ -54,7 +54,123 @@
 
 <script>
 
-    
+$( document ).ready(function() {
+$('.countryAddress').change(function(){
+    var countryID = $(this).val();    
+    var cityAddress=$(this).attr('data-address');
+    if(countryID){
+        $.ajax({
+           type:"GET",
+           url:'/shipping/cities/'+countryID,
+           success:function(res){               
+            if(res){
+             $('#city-'+cityAddress).empty();
+             $('#city-'+cityAddress).append('<option>Select</option>');
+                $.each(res,function(key,value){
+        
+                    if(key=='data'){
+                    value.forEach(function(city,index, value){
+
+                    console.log(city);
+                    @if(App::getLocale() == 'ar')
+                    $('#city-'+cityAddress).append('<option value="'+city.cities.id+'">'+city.cities.name_ar+'</option>');
+                
+
+                    @else 
+                    $('#city-'+cityAddress).append('<option value="'+city.cities.id+'">'+city.cities.name_en+'</option>');
+
+
+                    @endif
+                });
+                }
+                });
+           
+            }else{
+                $('#city-'+cityAddress).empty();
+            }
+           }
+        });
+    }else{
+        $('#city-'+cityAddress).empty();
+
+    }      
+   });
+
+
+
+
+
+
+
+$('.cityAddress').change(function(){
+    var cityId = $(this).val();    
+    if(cityId){
+        $.ajax({
+           type:"GET",
+           url:'/shipping/cost/'+cityId,
+           success:function(res){               
+            if(res){
+                $.each(res,function(key,value){
+        
+                    if(key=='data'){
+                    
+
+                        $('#Shipping').empty();
+                         $('#Shipping').text('EGP'+" "+value.cost);
+              
+                }
+                });
+           
+            }else{
+                $('#Shipping').text('EGP 0');
+            }
+           }
+        });
+    }else{
+        $('#Shipping').text('EGP 0');
+
+    }      
+   });
+
+
+
+
+   $('.ShippingCity').change(function(){
+    var cityId = $(this).attr('data-cityId');    
+    if(cityId){
+        $.ajax({
+           type:"GET",
+           url:'/shipping/cost/'+cityId,
+           success:function(res){               
+            if(res){
+                $.each(res,function(key,value){
+        
+                    if(key=='data'){
+                    
+
+                        $('#Shipping').empty();
+                         $('#Shipping').text('EGP'+" "+value.cost);
+                         var total=$('#TotalPrice').attr('data-total');
+                         console.log(total);
+                          var updateCost=parseInt(total)+ value.cost;
+                          $('#TotalPrice').text('EGP'+" "+updateCost)  
+              
+                }
+                });
+           
+            }else{
+                $('#Shipping').text('EGP 0');
+            }
+           }
+        });
+    }else{
+        $('#Shipping').text('EGP 0');
+
+    }      
+   });
+
+});
+
 function updateCart(val){
     var id= $(val).attr("data-id");
     if ($('#check_id').is(":checked"))

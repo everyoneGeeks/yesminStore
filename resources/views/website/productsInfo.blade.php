@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{asset('css/product-details.css')}}">
 @endsection
 @section('content')
+@component('components.AuthLoginModel') @endcomponent
 
 
 <div class="product-details">
@@ -248,7 +249,15 @@
 
 @endsection
 
-@section('script')
+@section('javascript')
+@if( Session::has('AuthLogin'))
+   <script type="text/javascript">
+      $(document).ready(function() {
+         
+        $('#AuthLoginModel').modal();
+      });
+   </script>
+@endif
 
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v7.0" nonce="n5b6h5re"></script>
 

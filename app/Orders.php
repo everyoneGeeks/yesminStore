@@ -26,4 +26,14 @@ class Orders extends Model
 
 
 
+
+
+    
+    public function shipping()
+    {
+        return $this->belongsTo('App\shipping','shipping_id');
+
+    }
+
+
 }

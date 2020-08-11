@@ -28,9 +28,12 @@
                     </div>
 
 
+
+
+
                     <div class="form-group col-md-6">
                     <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
-                    <select  form="Address" class="form-control" id="country" name="country">
+                    <select  form="Address" class="form-control countryAddress" data-address="0" id="country" name="country">
                         
                     @foreach($Countries as $country)
 
@@ -42,14 +45,18 @@
                   </div>
 
 
+
+
+
+
                   <div class="form-group col-md-6">
                     <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
-                    <select  form="Address" class="form-control" id="city" name="city">
+                    <select  form="Address" class="form-control cityAddress" id="city-0" name="city">
                    
                     @foreach($cities as $city) 
 
+                    <option  data-country="{{$city->country->isEmpty()  ? 0: $city->country[0]->id  }}" style="{{$city->country->isEmpty()    ?  'display: none;' : '' }}"  value="{{ $city->id }}"   > {{App::getLocale() == 'ar' ? $city->name_ar :$city->name_en}} </option>
 
-                    <option value="{{ $city->id  }}"   > {{App::getLocale() == 'ar' ? $city->name_ar :$city->name_en}} </option>
                  
                     @endforeach
 

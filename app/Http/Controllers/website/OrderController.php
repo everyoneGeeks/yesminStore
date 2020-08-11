@@ -4,7 +4,7 @@ namespace App\Http\Controllers\website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Order;
+use App\Orders;
 use App\orderProduct;
 use App\Users;
 /*
@@ -34,10 +34,11 @@ class OrderController extends Controller
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function orders(){
-    $orderProduct=Order::where('user_id',\Auth::guard('users')->user()->id)->with('orderProduct')->get();
+    $orders=Orders::where('user_id',\Auth::guard('users')->user()->id)->with('orderProduct')->get();
+    $user=Users::where('id',\Auth::guard('users')->user()->id)->first();
+
   
-  
-      return view('website.orders',\compact('orderProduct'));
+      return view('website.orders',\compact('orders','user'));
   }
 
 

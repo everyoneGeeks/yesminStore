@@ -10,6 +10,11 @@ class city extends Model
     public $timestamps = false;
 
     public function country(){
-        return $this->belongsToMany('App\country','country_city','city_id','country_id');
+        return $this->belongsToMany('App\country','shipping','city_id','country_id');
+    }
+
+
+    public function shipping(){
+        return $this->belongsTo('App\shipping','city_id');
     }
 }

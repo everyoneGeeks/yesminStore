@@ -12,8 +12,8 @@
 
         
         </h5>
-        </a>
-        <span style="float:right;"><input type="radio"  form="Address"  name="address" value="{{$address->id}}" {{ $cart->address_id == $address->id  ? "checked" :'' }} ></span>
+        </a>   
+        <span style="float:right;"><input type="radio"  class="ShippingCity"  data-cityId="{{ $address->city->id }}"  form="Address"  name="address" value="{{$address->id}}" {{ $cart->address_id == $address->id  ? "checked" :'' }} ></span>
         </div>
         <div class="collapse" id="Address-{{$address->id}}">
         <div class="well">
@@ -36,7 +36,7 @@
 
                     <div class="form-group col-md-6">
                     <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
-                    <select class="form-control" id="country" name="country">
+                    <select class="form-control countryAddress" id="country-{{$address->id}}" data-address="{{$address->id}}" name="country" data-countryaddress="{{$address->id}}">
                         
                     @foreach($Countries as $country)
                     @if($country->id == $address->country->id)
@@ -53,7 +53,7 @@
 
                   <div class="form-group col-md-6">
                     <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
-                    <select class="form-control" id="city" name="city">
+                    <select class="form-control cityAddress" id="city-{{$address->id}}" name="city" >
                    
                     @foreach($cities as $city) 
                     @if($city->id ==$address->city->id )
@@ -119,6 +119,10 @@
 
     </div>
     <hr>
+
+
+
+
     @endforeach
 
 

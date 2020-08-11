@@ -8,6 +8,7 @@ use App\Users;
 use App\Address;
 use App\country;
 use App\city;
+use App\shipping;
 use Auth;
 
 /*
@@ -49,7 +50,7 @@ public function address(){
     $user=Users::where('id',\Auth::guard('users')->user()->id)->with('address')->first();
     $Countries=country::all();
 
-    $cities=city::with('country')->get();
+    $cities=shipping::with('cities')->get();
 
 
     return view('website.addresses',compact('Countries','cities','user'));
@@ -62,7 +63,7 @@ public function address(){
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function addAddress(Request $request){
-    
+
     $rules=[
         'address_name'=>'required|unique:addresses,address_name|max:255',
         'first_name'=>'required|max:255',
@@ -116,6 +117,7 @@ public function addAddress(Request $request){
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function updateAddress(Request $request,$id){
+    
     $Address=Address::where('id',$id)->first();
     $Address->user_id=\Auth::guard('users')->user()->id;
     $Address->first_name=$request->first_name;

@@ -355,9 +355,13 @@ Route::get('/address/cart','website\CartController@AddressCart')->name('AddressC
 
 Route::get('/add/order','website\CartController@AddOrderCart')->name('AddOrderCart');
 
-Route::get('/order/cart','website\CartController@orderCart')->name('orderCart');
+Route::get('/order/cart/{id}','website\CartController@orderCart')->name('orderCart');
 
-Route::get('/orders','website\CartController@orders')->name('orders');
+Route::get('/orders','website\OrderController@orders')->name('orders');
+Route::get('/shipping/cities/{id}','website\CartController@shippingCities')->name('shippingCities');
+Route::get('/shipping/cost/{id}','website\CartController@shippingCost')->name('shippingCost');
+
+Route::get('/add/coupon/','website\CartController@addCoupon')->name('addCoupon');
 
 Route::get('/product/rate','website\CartController@productRate')->name('productRate');
 

@@ -165,4 +165,28 @@
             </div>
 
         </div>
+
+
+@endsection
+
+
+
+@section('javascript')
+
+@if( Session::has('AuthLogin'))
+   <script type="text/javascript">
+      $(document).ready(function() {
+          alert('sss');
+        $('#AuthLoginModel').modal();
+      });
+   </script>
+@endif
+<script>
+$( document ).ready(function() {
+
+
+   });
+
+</script>
+
 @endsection

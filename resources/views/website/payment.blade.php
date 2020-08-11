@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-                    @component('components.orderSummary',['subtotal'=>200,'shipping'=>50,'taxes'=>20,'discount'=>30,'total'=>40]) @endcomponent
+                    @component('components.orderSummary',['subtotal'=>$subtotal,'shipping'=>$shipping,'day'=>$day,'taxes'=>$taxes,'discount'=>$discount,'total'=>$allprice]) @endcomponent
 
                     </div>
                 </div>

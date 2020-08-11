@@ -7,12 +7,17 @@
 @component('components.Websiteerror',['errors'=>$errors ?? NULL]) @endcomponent
 <div class="cart-details">
             <div class="container">
+            @if($carts->isEmpty())
+                            @component('components.emptyWebsite',['sectionِAr'=>'سله التسوق','sectionِEn'=>'cart']) @endcomponent
+                            @else 
+
                 <div class="row">
               
                     <div class="col-md-7">
 
                     <h2><img src="{{asset('img/Cart-c.svg')}}" alt="">{{App::getLocale() == 'ar' ? "سلة التسوق": "your shopping cart"}}</h2>
 
+                    
                     
                     @component('components.orderProgress',['statu'=>0]) @endcomponent
                     
@@ -169,7 +174,7 @@
                                             <label class="form-check-label" for="exampleCheck1">{{App::getLocale() == 'ar' ? "":"ON"}}</label>
                                         </div>
 
-                                        <span class="discount">50 EGP</span>
+                                        <span class="discount">{{ \App\websiteSetting::find(1)->personalize }} EGP</span>
                                         <div class="form-group">
                                             <label for="fname">{{App::getLocale() == 'ar' ? "اسم الطفل ":"Child Name"}}</label>
                                             <input type="text"  form="addpersonalize" class="form-control" id="child_name[]" name="child_name[]" value="{{$cart->child_name}}">
@@ -218,12 +223,16 @@
 
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-                    @component('components.orderSummary',['subtotal'=>200,'shipping'=>50,'taxes'=>20,'discount'=>30,'total'=>40]) @endcomponent
+                    @component('components.orderSummary',['subtotal'=>$subtotal,'shipping'=>$shipping,'day'=>$day,'taxes'=>$taxes,'discount'=>$discount,'total'=>$allprice]) @endcomponent
 
                     
                     </div>
+
+
+                    @endif      
                 </div>
             </div>
+            
         </div>
 @endsection
 

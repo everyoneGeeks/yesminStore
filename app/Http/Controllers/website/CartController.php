@@ -10,9 +10,12 @@ use App\product;
 use App\country;
 use App\city;
 use App\Address;
-use App\Order;
-use App\orderProduct;
-
+use App\Orders;
+use App\orderPrduct;
+use App\shipping;
+use App\websiteSetting;
+use App\Codes;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | CartController
@@ -37,7 +40,6 @@ class CartController extends Controller
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function cart(){
-cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']);
     $carts=cart::where('user_id',\Auth::guard('users')->user()->id)
     ->with('product')
 ->with('character')
@@ -45,11 +47,89 @@ cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']
 ->with('party_theme')
 ->with('size')->get();
 
+
     $user=Users::where('id',\Auth::guard('users')->user()->id)->first();
-    return view('website.cart',compact('carts','user'));
+    // redirect to page if status changes [0 to 3]
+if(!$carts->isEmpty()){
+    if($carts[0]->status == 0 ){
+        cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']);
+
+        return view('website.cart',compact('carts','user'))->with($this->OrderSummary());
+    }elseif($carts[0]->status == 1){
+        return redirect('/checkout');
+
+    }elseif($carts[0]->status == 2){
+        return redirect('/payment');
+    }else{
+        return redirect('/order/cart');
+    }
+}else{
+ //empty Cart   
+ return view('website.cart',compact('carts','user'))->with($this->OrderSummary());
+
+}
 }
 
+/**  
+* Order Summary price list
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function OrderSummary(){
+        $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->get();
+        //if no cart
+        if($cart->isEmpty()){
 
+        $subtotal=0;
+        $shipping=0;
+        $costofShipping=0;
+        $daytoDelivery=0;
+        $discount=0;
+        $taxes=0;
+        $allprice=0;
+
+        }else{
+        $subtotal=0;
+        $shipping=0;
+        $costofShipping=0;
+        $daytoDelivery=0;
+        foreach($cart as $price){
+        $totla=$price->price * $price->amount;
+
+        $subtotal=+$totla- ($totla*$price->discount)/100;
+
+        if($price->personalize == '1'){
+
+            $subtotal=$subtotal+$price->personalize_price;
+        }
+        if($price->address_id !== null){
+            $shipping=$price->address_id;
+        }
+        }
+        $taxes=websiteSetting::find(1)->Taxes;
+        $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->first();
+
+        if($cart->order_discount !==null ){
+        if($shipping !==0){
+            $address=Address::find($shipping);
+            $Shipping=shipping::where('city_id',$address->city_id)->first();
+            $costofShipping=$Shipping->cost;
+            $daytoDelivery=$Shipping->day;
+            
+
+        }
+        $beforDiscount=$subtotal;
+        $allprice=$beforDiscount -($beforDiscount * $price->order_discount/100 );
+        $discount=($beforDiscount * $price->order_discount/100 );
+        $allprice+=$taxes+$costofShipping;
+
+        }else{
+        $allprice=$subtotal+$taxes+$costofShipping;
+        $discount=0;
+        }
+        }
+        return ['subtotal'=>$subtotal,'allprice'=>$allprice,'taxes'=>$taxes,'discount'=>$discount,'shipping'=>$costofShipping,'day'=>$daytoDelivery];
+}
 /**  
 * update product cart
 * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -76,6 +156,8 @@ public function updateProductcart(Request $request,$id){
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function addPersonalize(Request $request){
+    $personalize=websiteSetting::find(1)->personalize;
+
     foreach($request->id as $key=>$id){
         $cart=cart::where('id',$id)->update(['personalize'=>0]);
         $cart=cart::where('id',$id)->first();
@@ -86,7 +168,7 @@ public function addPersonalize(Request $request){
     }
     if($request->personalize){
         foreach($request->personalize as $id){
-            $cart=cart::where('id',$id)->update(['personalize'=>1]);
+            $cart=cart::where('id',$id)->update(['personalize'=>1,'personalize_price'=>$personalize]);
 
         }
 
@@ -168,9 +250,79 @@ public function shippingCart(){
 
     $cities=city::with('country')->get();
 
-    return view('website.shipping',\compact('cart','user','Countries','cities','Alladdress'));
+    return view('website.shipping',\compact('cart','user','Countries','cities','Alladdress'))->with($this->OrderSummary());
 }
 
+
+
+/**  
+* shipping   cities 
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function shippingCities($id){
+   $shipping=shipping::where('country_id',$id)->with('cities')->get();
+
+if($shipping->isEmpty()){
+    return response()->json(['code'=>'400',"message" => "now shipping city in this country"]);
+  }else{
+    return response()->json(['code'=>'200',"data" => $shipping]);
+
+  }
+
+}
+
+
+/**  
+* shipping   Cost 
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function shippingCost($id){
+    $shipping=shipping::where('city_id',$id)->first();
+ 
+ if($shipping == null){
+     return response()->json(['code'=>'400',"message" => "now shipping city in this country"]);
+   }else{
+     return response()->json(['code'=>'200',"data" => $shipping]);
+ 
+   }
+ 
+ }
+
+
+
+/**  
+* add Coupon
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function addCoupon(Request $request){
+    $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->first();
+    if($cart->order_discount !== null){
+        \App::getLocale() == 'ar' ?  \Notify::error('         يمكنك اضافة كود خصم واحد   ' , '          تم اضافة كود خصم     '  ): 
+             \Notify::error('You can apply only one coupon ','  A discount code has been added
+             ');
+
+    }
+
+    $Codes=Codes::where('code',$request->coupon)->where('count','!=',0)->where('end_date','>=',Carbon::now())->first();
+ 
+ if($Codes == null){ 
+    \App::getLocale() == 'ar' ?  \Notify::error('     تم استخدام او انتهاء كود الخصم  ' , '     خطاء كود الخصم   '  ):  \Notify::error(' The discount code has been used or expired','  error in discount code   ');
+        return back();
+}else{
+    
+    cart::where('user_id',\Auth::guard('users')->user()->id)->update(['order_discount'=>$Codes->discount,'order_code_discount'=>$Codes->code]);   
+    \App::getLocale() == 'ar' ?  \Notify::success('    لديك خصم بقيمة      ', '   تم اضافة كود الخصم  '.$Codes->discount)
+     :  \Notify::success(' You have a '.$Codes->discount.'% discount.','  discount code    ');
+     $Codes=Codes::where('code',$request->coupon)->update(['count'=> \DB::raw('count-1')]);
+
+    return back();
+
+   }
+ 
+ }
 
 /**  
 * add new address to user cart
@@ -255,7 +407,7 @@ public function paymentCart(){
 
     $cities=city::with('country')->get();
 
-    return view('website.payment',\compact('cart','user','Countries','cities'));
+    return view('website.payment',\compact('cart','user','Countries','cities'))->with($this->OrderSummary());
 }
 
 
@@ -264,23 +416,24 @@ public function paymentCart(){
 * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
-public function AddOrderCart(){
+public function AddOrderCart(Request $request){
  $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->with('address')->first();
-
-  $orderProduct=new Order();
-  $orderProduct->order_id=rand(100,100000);
-  $orderProduct->user_id=\Auth::guard('users')->user()->id;
-  $orderProduct->shipping_id=$cart->address_id;
-  $orderProduct->status="new";
-  $orderProduct->discount=$request->discount;
-  $orderProduct->price=$request->price;
-  $orderProduct->save();
+ $shipping=shipping::where('city_id',$cart->address->city_id)->first();
+  $orderPrduct=new Orders();
+  $orderPrduct->order_id=rand(100,100000);
+  $orderPrduct->user_id=\Auth::guard('users')->user()->id;
+  $orderPrduct->shipping_id=$shipping->id;
+  $orderPrduct->status="new";
+  $orderPrduct->discount=$cart->order_discount;
+  $orderPrduct->discount_code=$cart->order_code_discount;
+  $orderPrduct->save();
 
   $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->with('address')->get();
-
+  $personalize=websiteSetting::find(1)->personalize;
+    $price=0;
   foreach($cart as $productInfo){
   $product=new orderPrduct();
-  $product->order_id=$orderProduct->id;
+  $product->order_id=$orderPrduct->id;
   $product->product_id=$productInfo->product_id;
   $product->character_id=$productInfo->character_id;
   $product->occasion_id=$productInfo->occasion_id;
@@ -290,15 +443,25 @@ public function AddOrderCart(){
   $product->amount=$productInfo->amount;
   $product->price=$productInfo->price;
   $product->discount=$productInfo->discount;
-  $product->personalize=$productInfo->personalize;
+  $product->personalize=$personalize;
   $product->child_name=$productInfo->child_name;
   $product->child_age=$productInfo->child_age;
   $product->save();
-
+  
+ $price=+($product->price * $product->amount)*($product->discount/100)+$personalize;
   }
-  $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->where('status',2)->delete();
 
-return redirect('/cart/order');
+  if($orderPrduct->discount){
+    $total=$price*$orderPrduct->discount/100;
+  }
+
+  $price=$total+$shipping->cost;
+  
+ $orderPrduct=Orders::where('id',$orderPrduct->id)->update(['price'=>$price]);
+
+ $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->where('status','2')->delete();
+
+return redirect('/order/cart/'.$orderPrduct->id);
 }
 
 
@@ -308,12 +471,14 @@ return redirect('/cart/order');
 * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
-public function orderCart(){
+public function orderCart($id){
     cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'3']);
-  $orderProduct=Order::where('user_id',\Auth::guard('users')->user()->id)->with('orderProduct')->get();
+  $orderPrduct=orderPrduct::where('order_id',$id)->get();
+  $orders=Orders::where('id',$id)->first();
 
 
-    return view('website.orderTracking',\compact('cart','user','Countries','cities'));
+
+    return view('website.orderTracking',\compact('cart','user','Countries','cities','orders','orderPrduct'));
 }
 
 
