@@ -5,8 +5,8 @@
     width: 60%;
 }
 .party-supplies .one-category img{
-    width: 250px;
-    height: 250px;
+    width: 170px;
+    /* height: 250px; */
     border-radius: 50%;
     border: 1px solid #eee;
     margin-top: 2rem;

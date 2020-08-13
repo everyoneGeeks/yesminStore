@@ -2,7 +2,9 @@
  <div class="col-md-4">
                         <div class="cart-summary user-account">
                             <div class="user-prief">
-                                <img src="{{asset('img/user-image.svg')}}" alt="">
+                                <img src="{{asset('img/user-image.svg')}}" alt="" style="
+    width: 45px;
+">
                                 <div class="user-info">
                                     <h6>{{$user->name}}</h6>
                                     <p>{{$user->email}}</p>

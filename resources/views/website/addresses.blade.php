@@ -16,6 +16,8 @@
 @component('components.userAddress',['user'=>$user,'Countries'=>$Countries,'cities'=>$cities]) @endcomponent
 @endif
 
+@component('components.newAddress',['Countries'=>$Countries,'cities'=>$cities]) @endcomponent
+
 </div>
             </div>
         </div>
@@ -43,4 +45,88 @@ $( document ).ready(function() {
 
 
 </script>
+
+<script>
+
+$( document ).ready(function() {
+$('.countryAddress').change(function(){
+    var countryID = $(this).val();    
+    var cityAddress=$(this).attr('data-address');
+    if(countryID){
+        $.ajax({
+           type:"GET",
+           url:'/shipping/cities/'+countryID,
+           success:function(res){               
+            if(res){
+             $('#city-'+cityAddress).empty();
+             $('#city-'+cityAddress).append('<option>Select</option>');
+                $.each(res,function(key,value){
+        
+                    if(key=='data'){
+                    value.forEach(function(city,index, value){
+
+                    console.log(city);
+                    @if(App::getLocale() == 'ar')
+                    $('#city-'+cityAddress).append('<option value="'+city.cities.id+'">'+city.cities.name_ar+'</option>');
+                
+
+                    @else 
+                    $('#city-'+cityAddress).append('<option value="'+city.cities.id+'">'+city.cities.name_en+'</option>');
+
+
+                    @endif
+                });
+                }
+                });
+           
+            }else{
+                $('#city-'+cityAddress).empty();
+            }
+           }
+        });
+    }else{
+        $('#city-'+cityAddress).empty();
+
+    }      
+   });
+
+
+
+
+
+
+
+$('.cityAddress').change(function(){
+    var cityId = $(this).val();    
+    if(cityId){
+        $.ajax({
+           type:"GET",
+           url:'/shipping/cost/'+cityId,
+           success:function(res){               
+            if(res){
+                $.each(res,function(key,value){
+        
+                    if(key=='data'){
+                    
+
+                        $('#Shipping').empty();
+                         $('#Shipping').text('EGP'+" "+value.cost);
+              
+                }
+                });
+           
+            }else{
+                $('#Shipping').text('EGP 0');
+            }
+           }
+        });
+    }else{
+        $('#Shipping').text('EGP 0');
+
+    }      
+   });
+});
+
+</script>
+
 @endsection

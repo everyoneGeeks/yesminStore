@@ -1,4 +1,5 @@
 
+
 <div class="card">
      <div class="pro-img">
           <a href="/product/info/{{$product->id}}"><img src="{{$product->main_image}}" alt="product"></a>
@@ -25,9 +26,29 @@
                <span class="aft-dis">EGP {{$product->price}}</span></span>
           </div>
           <div class="cart-view">
-               <a  href="product/add/cart/{{$product->id}}" class="btn add-cart">{{App::getLocale() == 'ar' ? "شراء":"Buy"}}</a>
-               <a  href="product/info/{{$product->id}}" class="btn q-view">{{App::getLocale() == 'ar' ? "مشاهدة":"View"}}</a>
+               <button form="AddTocart-{{$product->id}}"  type="submit" class="btn add-cart">{{App::getLocale() == 'ar' ? "شراء":"Buy"}}</button>
+               <form id='AddTocart-{{$product->id}}' action="/product/add/cart/{{$product->id}}" method="get">
+</form>
+               <a  href="/product/info/{{$product->id}}" class="btn q-view">{{App::getLocale() == 'ar' ? "مشاهدة":"View"}}</a>
+             
+               @auth('users')
+               @if(!$product->wishList->isEmpty())
+               <a  href="/wishlist/delete/{{ $product->id }}" class="btn fav"><i class="fas fa-heart"></i></a>
+               @else 
                <a  href="/wishlist/add/{{ $product->id }}" class="btn fav"><i class="far fa-heart"></i></a>
+
+               @endif
+
+               @endauth
+
+               @guest('users')
+               <a  href="/wishlist/add/{{ $product->id }}" class="btn fav"><i class="far fa-heart"></i></a>
+
+               @endguest
+
+               
           </div>
      </div>
 </div>
+
+

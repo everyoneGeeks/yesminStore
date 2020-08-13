@@ -50,8 +50,9 @@ public function address(){
     $user=Users::where('id',\Auth::guard('users')->user()->id)->with('address')->first();
     $Countries=country::all();
 
-    $cities=shipping::with('cities')->get();
+    $Countries=country::all();
 
+    $cities=city::with('country')->get();
 
     return view('website.addresses',compact('Countries','cities','user'));
 }
@@ -64,8 +65,9 @@ public function address(){
 */
 public function addAddress(Request $request){
 
+  
     $rules=[
-        'address_name'=>'required|unique:addresses,address_name|max:255',
+        'address_name'=>'required|max:255',
         'first_name'=>'required|max:255',
         'last_name'=>'required|max:255',
         'country'=>'required|exists:country,id|max:255',
@@ -73,6 +75,7 @@ public function addAddress(Request $request){
         'street_name'=>'required|max:255',
         'building_name'=>'required|max:255',
         'floor'=>'required',
+        'landLine'=>'int',
         'apartment'=>'required',
         'nearest'=>'required',
         'location'=>'required',
@@ -104,7 +107,6 @@ public function addAddress(Request $request){
     $Address->shipping_note=$request->shipping_note;
     $Address->address_name=$request->address_name;
     $Address->save();
-
     return back();
 }
 

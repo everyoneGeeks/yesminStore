@@ -1,6 +1,9 @@
 @extends('layoutWebsite.app')
 @section('content')
 
+
+
+
                 <!-- Slider Section -->
                 <div class="slider top-slider">
                     <div class="container" style="height: inherit;">
@@ -41,30 +44,32 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="service">
-                                <img src="img/customer-services.svg" alt="">
-                                <h5>customer service</h5>
-                                <p>You will get support and help to get your order</p>
+                                <img src="{{asset('img/customer-services.svg')}}" alt="">
+                                <h5>{{App::getLocale() == 'ar' ?   "خدمة العملاء": "customer service"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "سوف تحصل على الدعم والمساعدة للحصول على طلبك": "You will get support and help to get your order"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="service">
-                                <img src="img/VIDEO-TUTORIAL.svg" alt="">
-                                <h5>video tutorial</h5>
-                                <p>We explain to you how to use our products</p>
+                                <img src="{{asset('img/VIDEO-TUTORIAL.svg')}}" alt="">
+                                <h5>{{App::getLocale() == 'ar' ?   "فيديو تعليمي": "video tutorial"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نشرح لك كيفية استخدام منتجاتنا": "We explain to you how to use our products"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="service">
-                                <img src="img/DELIVER-ON-TIME.svg" alt="" class="deliver">
-                                <h5>deliver on time</h5>
-                                <p>We deliver your order on time</p>
+                                <img src="{{asset('img/DELIVER-ON-TIME.svg')}}" alt="" class="deliver">
+                                <h5>{{App::getLocale() == 'ar' ?   "التسليم في الوقت المحدد": "deliver on time"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نحن نقدم طلبك في الوقت المحدد": "We deliver your order on time"}}</p>
+
+                        
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="service">
-                                <img src="img/MANY-PAYMENT-OPTIONS.svg" alt="">
-                                <h5 class="payment">many payment options</h5>
-                                <p>We offer many local and international payment methods</p>
+                                <img src="{{asset('img/MANY-PAYMENT-OPTIONS.svg')}}" alt="">
+                                <h5 class="payment">{{App::getLocale() == 'ar' ?   "العديد من خيارات الدفع": "many payment options"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نقدم العديد من طرق الدفع المحلية والدولية": "We offer many local and international payment methods"}}</p>
                             </div>
                         </div>
                     </div>
@@ -141,9 +146,9 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" style="width: 65%;">
-                    <h4>TOP SELLING ITEMS ( PARTY SUPPLIES )</h4>
+                    <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الحفل) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
                     <div class="top-selling">   
-                    @foreach($topSellingProduct as $product)
+                    @foreach($topSellingProductParty as $product)
                     @component('components.product',['product'=>$product]) @endcomponent
 
                     @endforeach
@@ -154,9 +159,10 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" style="width: 65%;">
-                    <h4>TOP SELLING ITEMS ( CAKE TOOLS )</h4>
+                <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الكيك) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
+
                     <div class="top-selling">   
-                    @foreach($newProduct as $product)
+                    @foreach($topSellingProductCake as $product)
                     @component('components.product',['product'=>$product]) @endcomponent
 
                     @endforeach
@@ -171,22 +177,3 @@
 
 
 
-@section('javascript')
-
-@if( Session::has('AuthLogin'))
-   <script type="text/javascript">
-      $(document).ready(function() {
-          alert('sss');
-        $('#AuthLoginModel').modal();
-      });
-   </script>
-@endif
-<script>
-$( document ).ready(function() {
-
-
-   });
-
-</script>
-
-@endsection

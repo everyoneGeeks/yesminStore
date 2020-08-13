@@ -39,10 +39,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="navbar-nav social">
-                                        <li class="nav-item"><a href="#" class="nav-link insta"><img src="{{asset('img/instagram.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="#" class="nav-link fac"><img src="{{asset('img/Facebook.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="#" class="nav-link you"><img src="{{asset('img/Youtube.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="#" class="nav-link pin"><img src="{{asset('img/Pinterest.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->instagram}}" class="nav-link insta"><img src="{{asset('img/instagram.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->facebook}}" class="nav-link fac"><img src="{{asset('img/Facebook.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->youTube}}" class="nav-link you"><img src="{{asset('img/Youtube.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->pinterest}}" class="nav-link pin"><img src="{{asset('img/Pinterest.svg')}}" alt=""></a></li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
@@ -124,8 +124,8 @@
                         <div class="container">
                             <ul class="navbar-nav">
                                 <li class="nav-item"><a href="/" class="nav-link category">{{App::getLocale() == 'ar' ? "الرائسية" : "Home"}}<Span></Span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
-                                <li class="nav-item"><a href="/about" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
-                                <li class="nav-item"><a href="/contact" class="nav-link category"><span>{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+                                <li class="nav-item"><a href="/about/us" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
+                                <li class="nav-item"><a href="/contact/us" class="nav-link category" style="{{App::getLocale() == 'ar' ?  : 'width: 98px;'}}"><span>{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
                             </ul>
                         </div>
                     </nav>
@@ -161,3 +161,8 @@
                      
                     </div>
                 </header>
+
+                @component('components.flashMessage') @endcomponent
+                @component('components.AuthLoginModel') @endcomponent
+
+                

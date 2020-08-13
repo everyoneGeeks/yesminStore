@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\product;
 use App\costomerPhoto;
 use App\costomerRate;
+use App\faq;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,18 +59,77 @@ class homePageController extends Controller
         }
         
         //product
-        $topSellingProduct=product::orderBy('sell_count','desc')->take(8)->get();
+        $topSellingProductParty=product::where('category_id',2)->orderBy('sell_count','desc')->take(8)->get();
         
-        $newProduct=product::orderBy('created_at','desc')->take(8)->get();   
+        $topSellingProductCake=product::where('category_id',1)->orderBy('sell_count','desc')->take(8)->get();   
             
 
      //viwe
 
-     return view('website.homePage',compact('ads','costomerRate','costomerPhoto','topSellingProduct','newProduct'));
+     return view('website.homePage',compact('ads','costomerRate','costomerPhoto','topSellingProductParty','topSellingProductCake'));
     }
 
     
     public function not_found(){
         return view('website.404');
     }
+
+  /**
+     * show list of faq   
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function faq()
+    {
+        $faqs=faq::get();
+        return view('website.faq',\compact('faqs'));
+    }
+
+
+    /**
+     * about Us   
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function aboutus()
+    {
+        return view('website.aboutUs');
+    }
+
+
+
+    /**
+     * contact Us   
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function contactus()
+    {
+        return view('website.contactus');
+    }
+
+
+    /**
+     * policy  
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function policy()
+    {
+        return view('website.policy');
+    } 
+    
+    
+
+    /**
+     * deliveryReturns  
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function deliveryReturns()
+    {
+        return view('website.deliveryReturns');
+    } 
+
+
 }

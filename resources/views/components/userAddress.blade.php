@@ -4,14 +4,18 @@
     @foreach($user->address as $address)
     <div class="content-bar">
         <div class="head-bar">
-        <a  role="button" data-toggle="collapse" href="#Address-{{$address->id}}"
-             aria-expanded="false" aria-controls="Address-{{$address->id}}">
-        <h5>{{$address->address_name}} <i class="fa fa-angle-down"></i>
-  
-<!-- Button trigger modal -->
+        <a   role="button" data-toggle="collapse" href="#Address-{{$address->id}}"
+             aria-expanded="false" aria-controls="Address-{{$address->id}}" style="
+    color: #f86eac;
+">
+        <h5>{{$address->address_name}} <i class="fa fa-angle-down"></i> <!-- Button trigger modal -->
 <a  data-toggle="modal" data-target="#myModal-{{$address->id}}">
 <img src="{{asset('img/basket.svg')}}" alt="">
-</a>
+</a></h5>        </a>        </div>
+
+
+  
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal-{{$address->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -32,9 +36,8 @@
   </div>
 </div>
         
-        </h5>
-        </a>
-        </div>
+    
+        
         <div class="collapse" id="Address-{{$address->id}}">
         <div class="well">
             <form action="/address/update/{{$address->id}}" method="post" id="addAddress-{{$address->id}}">
@@ -56,7 +59,7 @@
 
                     <div class="form-group col-md-6">
                     <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
-                    <select class="form-control country " form="addAddress-{{$address->id}}" data-address="{{$address->id}}" id="country" name="country">
+                    <select class="form-control countryAddress " form="addAddress-{{$address->id}}" data-address="{{$address->id}}" id="country" name="country">
                     
                     @foreach($Countries as $country)
                     @if($country->id == $address->country->id)
@@ -73,15 +76,14 @@
 
                   <div class="form-group col-md-6">
                     <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
-                    <select class="form-control" form="addAddress-{{$address->id}}" id="city-{{$address->id}}"  name="city">
-                   
+                    <select class="form-control cityAddress" form="addAddress-{{$address->id}}" id="city-{{$address->id}}"  name="city">
                     @foreach($cities as $city) 
-                
+                    @if($city->id ==$address->city->id )
+                    <option  data-country="{{$address->country->id }}" value="{{ $address->city->id }}" selected  > {{App::getLocale() == 'ar' ? $address->city->name_ar :$address->city->name_en}} </option>
+                    @else  
 
-               
-
-                    <option  data-country="{{$city->cities == null  ? 0: $city->country_id  }}" style="{{ $city->country_id == $address->country->id   ?  ' ': 'display: none;' }}"     value="{{ $city->city_id }}"  {{ $city->city_id == $address->city_id   ?  'selected ': '' }}  > {{App::getLocale() == 'ar' ? $city->cities->name_ar :$city->cities->name_en}} </option>
-                
+                    <option  data-country="{{$city->country->isEmpty()  ? 0: $city->country[0]->id  }}" style="{{!$city->country->isEmpty() && $city->country[0]->id == $address->country->id   ?  : 'display: none;' }}"  value="{{ $city->id }}"   > {{App::getLocale() == 'ar' ? $city->name_ar :$city->name_en}} </option>
+                    @endif
                     @endforeach
 
                   </select>
@@ -125,7 +127,7 @@
                     </div>
                     <div class="form-group col-12">
                         <label for="note">{{App::getLocale() == 'ar' ? "ملاحظة الشحن":"Shipping Note"}}</label>
-                        <textarea form="addAddress-{{$address->id}}" class="form-control" id="note" rows="8" name="shipping_note" value="{{$address->shipping_note}}"></textarea>
+                        <textarea form="addAddress-{{$address->id}}" class="form-control" id="note" rows="8" name="shipping_note" value="">{{$address->shipping_note}}</textarea>
                     </div>
                     <div class="col-12">
                         <button form="addAddress-{{$address->id}}" type="submit" class="btn save">{{App::getLocale() == 'ar' ? "حفظ":"Save"}}</button>

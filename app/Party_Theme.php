@@ -11,4 +11,11 @@ class Party_Theme extends Model
     public $timestamps = false;
 
     use SoftDeletes;
+
+
+    public function products()
+    {
+        return $this->belongsToMany('App\product','party_theme_product','party_theme_id','product_id')->withPivot('party_theme_id');
+    
+    }
 }

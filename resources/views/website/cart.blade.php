@@ -90,7 +90,8 @@
                                 <div class="character">
                                     <h5 style="display: inline;">{{App::getLocale() == 'ar' ? "الرسومات" : "character"}}</h5>
                                     <select form="update-cart-{{ $cart->id }}" name="character_id" class="custom-select form-control" id="inputGroupSelect03 ">
-                                        <option selected value="">Mini...</option>
+                                        <option selected value=" ">Mini...</option>
+                                        
                                         @foreach($cart->product->character as $character)
                                       
                                         <option value="{{ $character->id }}">{{App::getLocale() == 'ar'? $character->name_ar:$character->name_en}}</option>

@@ -4,11 +4,11 @@
 @endsection
 @section('content')
 
-
         <div class="cart-details">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
+
                         <div class="cart-summary shop-sidebar">
                             <div class="categories">
                                 <div class="content-bar">
@@ -33,9 +33,10 @@
                                     </div>
                                     <div class="bar-content">
                                         <ul class="list-unstyled">
-                
+                                   
+
                                         @foreach($occasions as $occasion)
-                                            <li><a href="/products/occasion/{{$occasion->id}}">  {{ App::getLocale() == 'ar' ? $occasion->name_ar : $occasion->name_en }}</a><span>{{$AllProducts->where('occasion_id',$occasion->id)->count()}}</span></li>
+                                            <li><a href="/products/occasion/{{$occasion->id}}">  {{ App::getLocale() == 'ar' ? $occasion->name_ar : $occasion->name_en }}</a><span>{{$occasion->products_count}}</span></li>
                                    
                                             @endforeach
                                         </ul>
@@ -50,7 +51,7 @@
                                     <div class="bar-content">
                                         <ul class="list-unstyled">
                                         @foreach($characters as $character)
-                                            <li><a href="/products/characters/{{$character->id}}">  {{ App::getLocale() == 'ar' ? $character->name_ar : $character->name_en }}</a><span>{{$AllProducts->where('characters_id',$character->id)->count()}}</span></li>
+                                            <li><a href="/products/characters/{{$character->id}}">  {{ App::getLocale() == 'ar' ? $character->name_ar : $character->name_en }}</a><span>{{$character->products_count}}</span></li>
                                    
                                             @endforeach
                                         </ul>
@@ -66,7 +67,7 @@
                                         <ul class="list-unstyled">
                                             
                                         @foreach($party as $Party_Theme)
-                                            <li><a href="/products/party/theme/{{$Party_Theme->id}}">  {{ App::getLocale() == 'ar' ? $Party_Theme->name_ar : $Party_Theme->name_en }}</a><span>{{$AllProducts->where('Party_Theme_id',$Party_Theme->id)->count()}}</span></li>
+                                            <li><a href="/products/party/theme/{{$Party_Theme->id}}">  {{ App::getLocale() == 'ar' ? $Party_Theme->name_ar : $Party_Theme->name_en }}</a><span>{{$Party_Theme->products_count}}</span></li>
                                    
                                             @endforeach
                                         </ul>
@@ -83,6 +84,7 @@
                             @component('components.emptyWebsite',['sectionِAr'=>'منتجات','sectionِEn'=>'products']) @endcomponent
 
                             @endif
+
                             @foreach($products as $product)
                                 <div class="col-md-4">
 

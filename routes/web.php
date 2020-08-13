@@ -315,18 +315,32 @@ Route::get('/product/search','website\productConroller@search_product')->name('p
 
 
 
+Route::get('/faq','website\homePageController@faq')->name('faq');
+
+Route::get('/contact/us/','website\homePageController@contactus')->name('contactus');
+Route::get('/about/us/','website\homePageController@aboutus')->name('aboutus');
+Route::get('/policy','website\homePageController@policy')->name('policy');
+Route::get('/delivery/returns','website\homePageController@deliveryReturns')->name('deliveryReturns');
 
 
 
-Route::get('/signin','website\authenticationController@loginForm')->name('loginForm');
-Route::post('/signin/submit','website\authenticationController@loginSubmit')->name('loginSubmit');
-Route::get('/user/logout','website\authenticationController@logout')->name('logout');
-Route::get('/signup','website\authenticationController@registerForm')->name('registerForm');
+
+
+Route::group(['middleware' => 'UserRedirectIfAuthenticated'], function () {
+    Route::get('/signin','website\authenticationController@loginForm')->name('loginForm');
+    Route::post('/signin/submit','website\authenticationController@loginSubmit')->name('loginSubmit');
+    Route::get('/signup','website\authenticationController@registerForm')->name('registerForm');
 Route::post('/signup/submit','website\authenticationController@registerSbmit')->name('registerSbmit');
 Route::get('/forgetPassword','website\authenticationController@forgetPasswordForm')->name('forgetPasswordForm');
 Route::post('/forgetPassword/submit','website\authenticationController@forgetPasswordSubmit')->name('forgetPasswordSubmit');
 Route::get('/getPassword/{token}','website\authenticationController@getPassword')->name('getPassword');
 Route::post('/updatePassword/submit','website\authenticationController@updatePassword')->name('updatePassword');
+
+
+});
+
+
+Route::get('/user/logout','website\authenticationController@logout')->name('logout');
 
 Route::group(['middleware' => 'User'], function () {
 
@@ -345,6 +359,11 @@ Route::get('/wishlist/delete/{id}','website\wishListController@deleteWishList')-
 
 Route::get('/cart','website\CartController@cart')->name('cart');
 Route::get('/cart/add/{id}','website\CartController@addCart')->name('addCart');
+
+Route::get('/product/add/cart/{id}','website\CartController@addProductCartFast')->name('addProductCartFast');
+
+
+
 Route::get('/cart/update/{id}','website\CartController@updateProductcart')->name('updateCart');
 Route::get('/cart/delete/{id}','website\CartController@deleteCart')->name('deleteCart');
 Route::get('/cart/personalize/','website\CartController@addPersonalize')->name('addPersonalize');

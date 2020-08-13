@@ -7,18 +7,18 @@
                             <img class="logo-footer" src="{{asset('img/Towipi-logo.svg')}}" alt="logo">
                             <h3>{{App::getLocale() == 'ar' ? "تواصل معنا | تابعنا " :"FOLLOW US | CONTACT US"}}</h3>
                             <ul class="navbar-nav social">
-                                <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('img/instagram-footer.svg')}}" alt=""></a></li>
-                                <li class="nav-item"><a href="#" class="nav-link"><img src="{{ asset('img/facebook-footer.svg') }}" alt=""></a></li>
-                                <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('img/youtube-footer.svg')}}" alt=""></a></li>
-                                <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('img/pinterest-footer.svg')}}" alt=""></a></li>
-                            </ul>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->instagram}}" class="nav-link "><img src="{{asset('img/instagram.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->facebook}}" class="nav-link "><img src="{{asset('img/Facebook.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->youTube}}" class="nav-link "><img src="{{asset('img/Youtube.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->pinterest}}" class="nav-link "><img src="{{asset('img/Pinterest.svg')}}" alt=""></a></li>
+                                    </ul>
                         </div>
                         <div class="col-md-6">
                             <ul class="navbar-nav links">
-                                <li class="nav-item"><a href="/about" class="nav-link">{{App::getLocale() == 'ar' ? " من نحن ":"ABOUT US"}}</a></li>
-                                <li class="nav-item"><a href="/contact" class="nav-link">{{App::getLocale() == 'ar' ? " تواصل معنا ":"CONTACT US"}}</a></li>
+                                <li class="nav-item"><a href="/about/us" class="nav-link">{{App::getLocale() == 'ar' ? " من نحن ":"ABOUT US"}}</a></li>
+                                <li class="nav-item"><a href="/contact/us" class="nav-link">{{App::getLocale() == 'ar' ? " تواصل معنا ":"CONTACT US"}}</a></li>
                                 <li class="nav-item"><a href="/policy" class="nav-link">{{App::getLocale() == 'ar' ? " سياسة الخصوصية  ":"Privacy Policy"}}</a></li>
-                                <li class="nav-item"><a href="/policy" class="nav-link">{{App::getLocale() == 'ar' ? " التوصيل & والاسترجاع   ":"Delivery & Returns"}}</a></li>
+                                <li class="nav-item"><a href="/delivery/returns" class="nav-link">{{App::getLocale() == 'ar' ? " التوصيل & والاسترجاع   ":"Delivery & Returns"}}</a></li>
                                 <li class="nav-item"><a href="/faq" class="nav-link">{{App::getLocale() == 'ar' ? " الاسئلة الشائعة  ":"FAQs"}}</a></li>
                             </ul>
                             <div class="payment-options">
@@ -61,6 +61,17 @@
         @endif
         <script src="{{ asset('js/main.js') }}"></script>
         <!-- additional js files  -->
+        
+@if( Session::has('AuthLogin'))
+   <script type="text/javascript">
+      $(document).ready(function() {
+         
+        $('#AuthLoginModel').modal();
+      });
+   </script>
+@endif
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v7.0" nonce="n5b6h5re"></script>
 
         @yield('javascript')  
     </body>

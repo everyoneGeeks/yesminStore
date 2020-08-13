@@ -17,7 +17,7 @@
                                 <div class="img-section">
                                     <div class="image">
                                         <img src="{{asset($wishList->product->main_image)}}" alt="" class="pro-img">
-                                        <a href="/wishlist/delete/{{$wishList->id}}">{{App::getLocale() == 'ar' ?  "حذف": "Remove"}}</a>
+                                        <a href="/wishlist/delete/{{$wishList->product_id}}">{{App::getLocale() == 'ar' ?  "حذف": "Remove"}}</a>
                                     </div>
                                     <div class="details">
                                         <a href="/product/info/{{$wishList->product->id}}" class="name">
@@ -41,7 +41,7 @@
                                     @endif
                                         </div>
                                     </div>
-                                    <a href="#" class="btn">{{App::getLocale() == 'ar' ?  "اضافة الي السله ": "Add to cart"}} <img src="{{asset('img/cart.svg')}}" alt=""></a>
+                                    <a href="/cart/add/{{$wishList->product_id}}" class="btn">{{App::getLocale() == 'ar' ?  "اضافة الي السله ": "Add to cart"}} <img src="{{asset('img/cart.svg')}}" alt=""></a>
                                 </div>
                             </div>
                             @endforeach

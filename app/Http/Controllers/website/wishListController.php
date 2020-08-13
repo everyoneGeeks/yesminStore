@@ -71,7 +71,7 @@ public function addWishList($id){
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function deleteWishList($id){
-    $wishList=wishList::where('id',$id)->delete();
+    $wishList=wishList::where('product_id',$id)->where('user_id',\Auth::guard('users')->user()->id)->delete();
     return back();
 }
 

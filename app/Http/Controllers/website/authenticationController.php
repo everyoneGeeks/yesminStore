@@ -69,9 +69,14 @@ public function registerSbmit(Request $request)
    $user->is_active=1;
    $user->save();
    Auth::guard('users')->loginUsingId($user->id);
+    if(\App::getLocale() == 'ar'){
+   \Notify::success('   تم التسجيل بنجاح ', '   مرحبا بعودتك
+   ');
+}else{
+    \Notify::success('  welcome back    ', ' successfully registered
+    ');
 
-   \Notify::success('   تم التسجيل بنجاح ', ' تم التسجيل بنجاح   ');
-
+}
  return \redirect('/');
 }
 

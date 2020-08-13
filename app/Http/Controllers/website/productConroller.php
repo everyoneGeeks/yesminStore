@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Party_Theme;
 use App\characters;
 use App\occasion;
+use App\occasionProduct;
 use App\rateProduct;
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,14 @@ class productConroller extends Controller
  */
 public function products($id){
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
-    $products=product::where('sub_category_id',$id)->paginate(12);
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();
+    $user_id=\Auth::guard('users')->user()->id;
+    $products=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])
+    ->where('sub_category_id',$id)->paginate(12);
     $AllProducts=product::with('size')->with('character')->with('images')->with('occasion')->with('party_theme')->get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
@@ -58,8 +63,14 @@ public function products($id){
  */
 public function productInfo($id){
     $subCategories=subCategory::get();
-    $product=product::where('id',$id)->with('size')->with('character')->with('images')->with('occasion')->with('party_theme')->with('rateProduct')->first();
-    $RelatedProduct=product::where('sub_category_id',$product->sub_category_id)->take(8)->get(); 
+    $user_id=\Auth::guard('users')->user()->id;
+
+    $product=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->where('id',$id)->with('size')->with('character')->with('images')->with('occasion')->with('party_theme')->with('rateProduct')->first();
+    $RelatedProduct=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->where('sub_category_id',$product->sub_category_id)->take(8)->get(); 
     
     $rateProduct=rateProduct::where('product_id',$product->id)->paginate(4); 
 
@@ -73,10 +84,14 @@ public function productInfo($id){
  */
 public function Allproducts(){
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
-    $products=product::paginate(12);
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();
+    $user_id=\Auth::guard('users')->user()->id;
+
+    $products=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->paginate(12);
     $AllProducts=product::get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
@@ -93,13 +108,19 @@ public function Allproducts(){
  */
 public function products_occasion($id){
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
-    $products=product::where('occasion_id',$id)->paginate(12);
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();
+    $user_id=\Auth::guard('users')->user()->id;
+
+    $products=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->whereHas('occasion',function($q) use ($id){
+        $q->where('occasion_id',$id);
+    })->paginate(12);
     $AllProducts=product::get();
 
-    return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
+    return view('website.products',compact('products','countOccasions','AllProducts','characters','party','occasions','subCategories'));
 
 
 }
@@ -114,10 +135,16 @@ public function products_occasion($id){
  */
 public function products_party_theme($id){
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
-    $products=product::where('Party_Theme_id',$id)->paginate(12);
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();;
+    $user_id=\Auth::guard('users')->user()->id;
+
+    $products=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->whereHas('party_theme',function($q) use ($id){
+        $q->where('party_theme_id',$id);
+    })->paginate(12);
     $AllProducts=product::get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
@@ -134,10 +161,16 @@ public function products_party_theme($id){
  */
 public function products_characters($id){
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
-    $products=product::where('characters_id',$id)->paginate(12);
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();
+    $user_id=\Auth::guard('users')->user()->id;
+    
+    $products=product::with(['wishList'=>function($q) use($user_id){
+        $q->where('user_id',$user_id)->get();
+    }])->whereHas('character',function($q) use ($id){
+        $q->where('character_id',$id);
+    })->paginate(12);
     $AllProducts=product::get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));
@@ -153,14 +186,22 @@ public function products_characters($id){
  */
 public function search_product(Request $request){
     if(\App::getLocale() == 'ar'){
-        $products=product::where('name_ar',$request->name)->paginate(12);
+        $user_id=\Auth::guard('users')->user()->id;
+
+        $products=product::with(['wishList'=>function($q) use($user_id){
+            $q->where('user_id',$user_id)->get();
+        }])->where('name_ar',$request->name)->paginate(12);
     }else{
-        $products=product::where('name_en',$request->name)->paginate(12);   
+        $user_id=\Auth::guard('users')->user()->id;
+
+        $products=product::with(['wishList'=>function($q) use($user_id){
+            $q->where('user_id',$user_id)->get();
+        }])->where('name_en',$request->name)->paginate(12);   
     }
     $subCategories=subCategory::get();
-    $occasions=occasion::get();
-    $party=Party_Theme::get();
-    $characters=characters::get();
+    $occasions=occasion::withCount('products')->get();
+    $party=Party_Theme::withCount('products')->get();
+    $characters=characters::withCount('products')->get();
     $AllProducts=product::get();
 
     return view('website.products',compact('products','AllProducts','characters','party','occasions','subCategories'));

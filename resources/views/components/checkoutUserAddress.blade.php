@@ -4,8 +4,9 @@
         <div class="head-bar">
         <a  style="
     display: inline-block;
+    color: #f86eac;
 " role="button" data-toggle="collapse" href="#Address-{{$address->id}}"
-             aria-expanded="false" aria-controls="Address-{{$address->id}}">
+             aria-expanded="false" aria-controls="Address-{{$address->id}}" >
         <h5>{{$address->address_name}} <i class="fa fa-angle-down"></i>  
 
 
@@ -105,7 +106,7 @@
                     </div>
                     <div class="form-group col-12">
                         <label for="note">{{App::getLocale() == 'ar' ? "ملاحظة الشحن":"Shipping Note"}}</label>
-                        <textarea class="form-control" id="note" rows="8" name="shipping_note" value="{{$address->shipping_note}}"></textarea>
+                        <textarea class="form-control" id="note" rows="8" name="shipping_note" >{{$address->shipping_note}}</textarea>
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn save">{{App::getLocale() == 'ar' ? "حفظ":"Save"}}</button>

@@ -33,7 +33,7 @@ class product extends Model
 
     public function occasion()
     {
-        return $this->belongsToMany('App\occasion','occasion_product','product_id','occasion_id');
+        return $this->belongsToMany('App\occasion','occasion_product','product_id','occasion_id')->withPivot('occasion_id');
 
     }
 
@@ -71,6 +71,17 @@ class product extends Model
         return $this->hasMany('App\productImage','product_id');
 
     }
+
+
+    public function wishList()
+    {
+        return $this->hasMany('App\wishList','product_id');
+
+    }
+
+
+
+    
 
     // public function rate()
     // {

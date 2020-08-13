@@ -10,4 +10,11 @@ class occasionProduct extends Model
     protected $table="occasion_product";
     public $timestamps = false;
     use SoftDeletes;
+
+
+    public function occasions()
+    {
+        return $this->belongsTo('App\occasion');
+    }
+
 }

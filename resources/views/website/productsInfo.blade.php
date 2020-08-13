@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="{{asset('css/product-details.css')}}">
 @endsection
 @section('content')
-@component('components.AuthLoginModel') @endcomponent
 
 
 <div class="product-details">
@@ -19,7 +18,7 @@
                                     @endforeach
                                 </div>
                                 
-                                <iframe width="420" height="300" src="{{$product->url}}">
+                                <iframe width="250" height="200" src="{{$product->url}}">
                                 </iframe>
                             </div>
                             <div class="col-md-5">
@@ -38,7 +37,6 @@
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "الرسومات" : "character"}}</h5>
                                     <select form="addToCart" name="character_id" class="custom-select form-control" id="inputGroupSelect03 ">
-                                        <option selected>Mini...</option>
                                         @foreach($product->character as $character)
                                       
                                         <option value="{{ $character->id }}">{{App::getLocale() == 'ar'? $character->name_ar:$character->name_en}}</option>
@@ -52,7 +50,6 @@
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "المناسبة / الحدث" : "Event / Occasion"}}</h5>
                                     <select form="addToCart" name="occasion_id"  class="custom-select form-control" id="inputGroupSelect03">
-                                        <option selected>Mini...</option>
                                         @foreach($product->occasion as $occasion)
                                       
                                         <option value="{{ $occasion->id }}">{{App::getLocale() == 'ar'? $occasion->name_ar:$occasion->name_en}}</option>
@@ -67,7 +64,6 @@
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "نوع الحفلة " : "party theme"}}</h5>
                                     <select form="addToCart" name="party_theme_id" class="custom-select form-control" id="inputGroupSelect03">
-                                        <option selected>Mini...</option>
                                         @foreach($product->party_theme as $party_theme)
                                         <option value="{{ $party_theme->id }}">{{App::getLocale() == 'ar' ? $party_theme->name_ar:$party_theme->name_en}}</option>
                                         @endforeach
@@ -79,7 +75,6 @@
                                 <div class="size">
                                     <h5>{{App::getLocale() == 'ar' ? " الحجم" : "size "}}</h5>
                                     <select form="addToCart" name="size_id"  class="custom-select form-control" id="inputGroupSelect03">
-                                        <option selected>Mini...</option>
                                         @foreach($product->size as $size)
                                         <option value="{{ $size->id }}">{{App::getLocale() == 'ar' ? $size->name_ar:$size->name_en}}</option>
                                         @endforeach
@@ -97,9 +92,25 @@
 
                                 <div class="add">
                                 <form id="addToCart" action="/cart/add/{{$product->id}}" method="get">
-                                    <button  type="submit" class="btn add-cart"><img src="{{asset('img/cart.svg')}}" alt=""> {{App::getLocale() == 'ar' ? "اضافة الي السلة":"Add To Cart" }}</button>
+                                    <button style="
+    color: white;
+" type="submit" class="btn add-cart"><img src="{{asset('img/cart.svg')}}" alt=""> {{App::getLocale() == 'ar' ? "اضافة الي السلة":"Add To Cart" }}</button>
                                     </form>
-                                    <a href="/wishlist/add/{{$product->id}}" class="wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
+                                    @auth('users')
+               @if(!$product->wishList->isEmpty())
+               <a href="/wishlist/delete/{{$product->id}}" class="wishlist"><i class="fas fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
+               @else 
+               <a href="/wishlist/add/{{$product->id}}" class="wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
+
+               @endif
+
+               @endauth
+
+               @guest('users')
+               <a href="/wishlist/add/{{$product->id}}" class="wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "  اضافة الي المفضلة ":"Add To Wishlist" }}</a>
+
+               @endguest
+
                                 </div><hr>
 
                                 <div class="brief-desc">
@@ -220,7 +231,9 @@
                                 </div>
                             
                                 @endforeach
+                                <div class="col-md-12">
                                 {{ $rateProduct->links('vendor.pagination.default') }}
+</div>
                             </div>
 
                         </div>
@@ -249,16 +262,3 @@
 
 @endsection
 
-@section('javascript')
-@if( Session::has('AuthLogin'))
-   <script type="text/javascript">
-      $(document).ready(function() {
-         
-        $('#AuthLoginModel').modal();
-      });
-   </script>
-@endif
-
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v7.0" nonce="n5b6h5re"></script>
-
-@endsection

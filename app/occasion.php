@@ -15,4 +15,12 @@ class occasion extends Model
 {
     return $this->belongsToMany('App\product');
 }
+
+
+public function products()
+{
+    return $this->belongsToMany('App\product','occasion_product','occasion_id','product_id')->withPivot('occasion_id');
+
+}
+
 }
