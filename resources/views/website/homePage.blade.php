@@ -1,9 +1,6 @@
 @extends('layoutWebsite.app')
 @section('content')
 
-
-
-
                 <!-- Slider Section -->
                 <div class="slider top-slider">
                     <div class="container" style="height: inherit;">
@@ -24,11 +21,11 @@
                             @foreach($ads as $ad)
                             @if($loop->first)
                                 <div class="carousel-item active">
-                                    <img src="{{$ad->image}}"  width="850px" height="650px" alt="...">
+                                    <img src="{{$ad->image}}"  alt="...">
                                 </div>
                             @else
                                 <div class="carousel-item ">
-                                    <img src="{{$ad->image}}" width="850px" height="650px" alt="...">
+                                    <img src="{{$ad->image}}"  alt="...">
                                 </div>
                             @endif
                             @endforeach
@@ -40,7 +37,7 @@
             </header>
 <!-- services Section -->
 <div class="services">
-                <div class="container" style="width: 62%;">
+                <div class="container">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="service">
@@ -145,7 +142,7 @@
 
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
-                <div class="container" style="width: 65%;">
+                <div class="container" >
                     <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الحفل) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
                     <div class="top-selling">   
                     @foreach($topSellingProductParty as $product)
@@ -158,7 +155,7 @@
 
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
-                <div class="container" style="width: 65%;">
+                <div class="container" >
                 <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الكيك) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
 
                     <div class="top-selling">   

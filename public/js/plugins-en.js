@@ -101,16 +101,15 @@ $(document).ready(function(){
   })
 
   $('.image-gallery').slick({
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 300,
-    arrows: false,
+    arrows: true,
     rtl: false,
     nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
     prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
     autoplay: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+
     responsive: [
       {
         breakpoint: 1024,

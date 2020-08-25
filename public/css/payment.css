@@ -12,12 +12,22 @@
     border: 1px solid #97e3f0;
     border-radius: 5px;
 }
+.payment-method .content-bar .head-bar .form-check{
+    padding-left: 0;
+}
+.payment-method .content-bar .head-bar .form-check .form-check-input{
+    margin: 1.3rem .5rem 0;
+}
+.payment-method .content-bar .head-bar .form-check .form-check-label{
+    width: 100%;
+    padding-left: .5rem;
+    border-bottom: 1px solid #97e3f0;
+}
 .payment-method .content-bar .head-bar h3{
     cursor: pointer;
     padding: 1.09375rem 1.25rem;
     padding-right: 4rem;
     color: #f86eac;
-    border-bottom: 1px solid #97e3f0;
     margin-bottom: 0;
     font-size: 20px;
     position: relative;

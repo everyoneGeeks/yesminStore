@@ -51,6 +51,9 @@
 .profile-info form{
     margin-top: 3rem;
 }
+.profile-info form .date>div{
+    overflow: hidden;
+}
 .profile-info form label{
     color: #61bfd0;
     padding-top: .0625rem;
@@ -84,7 +87,7 @@
     cursor: not-allowed;
 }
 .profile-info form .btn{
-    background-color: #f495be;
+    background-color: #f86eac;
     color: #fff;
     float: right;
     border-radius: 1rem;

@@ -5,11 +5,12 @@
     width: 60%;
 }
 .party-supplies .one-category img{
-    width: 170px;
-    /* height: 250px; */
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     border: 1px solid #eee;
     margin-top: 2rem;
+    margin-left: 45px;
 }
 .party-supplies .one-category h4{
     text-align: center;
@@ -18,9 +19,4 @@
     font-size: 22px;
     margin: 1rem;
     text-transform: capitalize;
-}
-
-header.home{
-    height: 58vh;
-    overflow: hidden;
 }

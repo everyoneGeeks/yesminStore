@@ -1,3 +1,1 @@
-
-
-    @yield('content')
+@yield('content')

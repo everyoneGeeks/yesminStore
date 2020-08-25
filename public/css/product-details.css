@@ -1,9 +1,9 @@
 .product-details {
     margin-top: 5rem;
 }
-.product-details .container{
+/* .product-details .container{
     width: 60%;
-}
+} */
 /* Start Details styles*/
 .product-details .details-tabs .details hr{
     border-color: #82D0DC;
@@ -32,6 +32,10 @@
     font-size: 24px;
     font-weight: bold;
     text-transform: capitalize;
+}
+.product-details .price{
+    display: flex;
+    align-items: center;
 }
 .product-details .price .aft-dis{
     margin-right: 5px;
@@ -167,8 +171,7 @@
 .product-details .brief-desc .share img{
     width: 25px;
     height: 25px;
-    background-color: #f86eac;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 /* End Description Tab styles*/
 /* Start Reviews Tab styles*/

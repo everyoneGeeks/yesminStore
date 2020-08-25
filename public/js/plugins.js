@@ -67,7 +67,6 @@ $(document).ready(function(){
     infinite: true,
     speed: 300,
     arrows: true,
-    rtl: true,
     nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
     prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
     autoplay: true,
@@ -116,7 +115,7 @@ $(document).ready(function(){
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
         }
       },

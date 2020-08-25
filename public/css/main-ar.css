@@ -49,16 +49,6 @@ header .input-group .input-group-text {
     margin-right: -2px;
 }
 
-/* Services */
-.services .row>div:first-child{
-    padding-right: 15px;
-    padding-left: 4px;
-}
-.services .row>div:last-child{
-    padding-left: 15px;
-    padding-right: 4px;
-}
-
 /* product cards */
 .top-selling .slick-prev {
     left: 0;
@@ -265,11 +255,6 @@ h3.add-header{
 .payment-method .content-bar .head-bar h3 .fa-angle-down{
     left: 20px;
     right: auto;
-}
-
-/* Addresses */
-.addresses > h4 span{
-    float: left;
 }
 
 /* Footer */

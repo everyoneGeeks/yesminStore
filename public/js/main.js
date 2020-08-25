@@ -10,9 +10,6 @@ $(document).ready(function(){
     $('#payment3').on("click", function(){
         $('#bar-content3').slideToggle(300);
     });
-    $('.addresses').on("click", function(){
-        $(this).next('.bar-content').slideToggle(300);
-    });
 
 
     $('.popup-address').on('click', function(){
@@ -21,9 +18,9 @@ $(document).ready(function(){
 
     $('.finished').children('.step-logo').children('.fa-check-circle').css('display','inline-block');
     
-    // $(window).resize(function(){
-    //     $('.top-slider').height($(window).height()-$('.menus').height());    
-    // })
-    // $('.top-slider').height($(window).height()-$('.menus').height());
+    $(window).resize(function(){
+        $('.top-slider').height($(window).height()-$('.menus').height());    
+    })
+    $('.top-slider').height($(window).height()-$('.menus').height());
     
 });

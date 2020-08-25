@@ -24,6 +24,9 @@
     position: absolute;
     right: 0;
 }
+.categories .content-bar .bar-content ul{
+    padding: 0;
+}
 .categories .content-bar .bar-content ul li{
     padding-left: .75rem;
     margin-bottom: .375rem;
