@@ -61,7 +61,9 @@
         @else 
         <script src="{{asset('js/plugins-en.js')}}"></script>
         @endif
+        @yield('javascript')  
         <script src="{{ asset('js/main.js') }}"></script>
+        
 
 
         
@@ -76,9 +78,8 @@
    </script>
 @endif
 
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v7.0" nonce="n5b6h5re"></script>
 
-        @yield('javascript')  
+      
     </body>
 
 </html>

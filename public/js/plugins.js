@@ -104,13 +104,13 @@ $(document).ready(function(){
     dots: false,
     infinite: true,
     speed: 300,
-    arrows: false,
+    arrows: true,
     rtl: true,
     nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
     prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
     autoplay: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,

@@ -382,7 +382,10 @@ Route::get('/shipping/cost/{id}','website\CartController@shippingCost')->name('s
 
 Route::get('/add/coupon/','website\CartController@addCoupon')->name('addCoupon');
 
-Route::get('/product/rate','website\CartController@productRate')->name('productRate');
+Route::get('/product/update/rate/{id}','website\OrderController@productRateUdpate')->name('productRateUdpate');
+Route::get('/product/rate/{id}','website\OrderController@productRate')->name('productRate');
+
+Route::get('/product/complaint/{order}/{product}','website\OrderController@productComplaint')->name('productComplaint');
 
 
 });

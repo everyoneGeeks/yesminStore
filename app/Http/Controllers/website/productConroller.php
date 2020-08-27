@@ -43,7 +43,11 @@ public function products($id){
     $occasions=occasion::withCount('products')->get();
     $party=Party_Theme::withCount('products')->get();
     $characters=characters::withCount('products')->get();
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
     $products=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
     }])
@@ -63,7 +67,11 @@ public function products($id){
  */
 public function productInfo($id){
     $subCategories=subCategory::get();
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
 
     $product=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
@@ -87,7 +95,11 @@ public function Allproducts(){
     $occasions=occasion::withCount('products')->get();
     $party=Party_Theme::withCount('products')->get();
     $characters=characters::withCount('products')->get();
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
 
     $products=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
@@ -111,7 +123,11 @@ public function products_occasion($id){
     $occasions=occasion::withCount('products')->get();
     $party=Party_Theme::withCount('products')->get();
     $characters=characters::withCount('products')->get();
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
 
     $products=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
@@ -138,7 +154,11 @@ public function products_party_theme($id){
     $occasions=occasion::withCount('products')->get();
     $party=Party_Theme::withCount('products')->get();
     $characters=characters::withCount('products')->get();;
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
 
     $products=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
@@ -164,7 +184,11 @@ public function products_characters($id){
     $occasions=occasion::withCount('products')->get();
     $party=Party_Theme::withCount('products')->get();
     $characters=characters::withCount('products')->get();
-    $user_id=\Auth::guard('users')->user()->id;
+    if(\Auth::guard('users')->user()){
+        $user_id=\Auth::guard('users')->user()->id;
+    }else{
+        $user_id=0;
+    }
     
     $products=product::with(['wishList'=>function($q) use($user_id){
         $q->where('user_id',$user_id)->get();
@@ -186,8 +210,11 @@ public function products_characters($id){
  */
 public function search_product(Request $request){
     if(\App::getLocale() == 'ar'){
+        if(\Auth::guard('users')->user()){
         $user_id=\Auth::guard('users')->user()->id;
-
+    }else{
+        $user_id=0;
+    }
         $products=product::with(['wishList'=>function($q) use($user_id){
             $q->where('user_id',$user_id)->get();
         }])->where('name_ar',$request->name)->paginate(12);

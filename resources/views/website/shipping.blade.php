@@ -18,7 +18,7 @@
                     @component('components.orderProgress',['statu'=>1]) @endcomponent
                     
 
-   
+                    <div class="checkout-details">
 @if($Alladdress)
 @component('components.checkoutUserAddress',['cart'=>$cart,'Alladdress'=>$Alladdress,'Countries'=>$Countries,'cities'=>$cities]) @endcomponent
 @component('components.checkoutNewAddress',['Countries'=>$Countries,'cities'=>$cities]) @endcomponent
@@ -31,18 +31,29 @@
 
 </form>
                                 <div class="col-md-6">
-                                    <a href="/cart" class="btn btn-block back"><i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'right': 'left'}}"></i>  {{App::getLocale() == 'ar' ? " العودة الي سلة التسوق  ": "back to cart"}} </a>
+                                    <a href="/cart" class="btn btn-block back" style="
+    background-color: #70d0e0;
+    color: #fff;
+    border-radius: 2rem;
+    margin-top: 20px;
+" ><i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'right': 'left'}}" ></i>  {{App::getLocale() == 'ar' ? " العودة الي سلة التسوق  ": "back to cart"}} </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <button href="#" type="submit" form="Address" type="submit" class="btn btn-block go-proceed"> {{App::getLocale() == 'ar' ? "  الذهاب الي الدفع  ": "proceed to payment "}} <i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'left': 'right'}}"></i></button>
+                                    <button href="#" type="submit" style="
+    background-color: #70d0e0;
+    color: #fff;
+    border-radius: 2rem;
+    margin-top: 20px;
+"  form="Address" type="submit" class="btn btn-block go-proceed"> {{App::getLocale() == 'ar' ? "  الذهاب الي الدفع  ": "proceed to payment "}} <i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'left': 'right'}}"></i></button>
                                 </div>
                             </div>
-</div>
+</div>  </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
                     @component('components.orderSummary',['subtotal'=>$subtotal,'shipping'=>$shipping,'day'=>$day,'taxes'=>$taxes,'discount'=>$discount,'total'=>$allprice]) @endcomponent
 
                     </div>
+                  
                 </div>
             </div>
         </div>

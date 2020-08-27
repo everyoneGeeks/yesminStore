@@ -10,18 +10,18 @@
                 <div class="details-tabs">
                     <div class="details">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <img class="main-img" src="{{asset($product->main_image)}}" alt="product-image">
                                 <div class="image-gallery">
                                     @foreach($product->images as $image)
-                                    <img src="{{asset($image->image)}}" alt="#">
+                                    <img src="{{asset($image->image)}}" alt="#" >
                                     @endforeach
                                 </div>
                                 
-                                <iframe width="250" height="200" src="{{$product->url}}">
+                                <iframe width="420" height="300" src="{{$product->url}}">
                                 </iframe>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <h4 class="pro-name">{{App::getLocale() == 'ar' ?  $product->name_ar: $product->name_en}}</h4>
                                 <div class="price">
                                     @if($product->discount !== 0 )
@@ -36,20 +36,27 @@
                                 @if(!$product->character->isEmpty())
                                 <div class="character">
                                     <h5>{{App::getLocale() == 'ar' ? "الرسومات" : "character"}}</h5>
-                                    <select form="addToCart" name="character_id" class="custom-select form-control" id="inputGroupSelect03 ">
+                                    <div class="center-on-page">
+                                    <div class="select">
+                                    <select form="addToCart" name="character_id"  id="slct">
                                         @foreach($product->character as $character)
                                       
                                         <option value="{{ $character->id }}">{{App::getLocale() == 'ar'? $character->name_ar:$character->name_en}}</option>
                                         @endforeach
                                 
                                     </select>
+                                    </div>
+                                    </div>
+
                                 </div>
                                 @endif
 
                                 @if(!$product->occasion->isEmpty())
-                                <div class="character">
+                                <div class="size">
                                     <h5>{{App::getLocale() == 'ar' ? "المناسبة / الحدث" : "Event / Occasion"}}</h5>
-                                    <select form="addToCart" name="occasion_id"  class="custom-select form-control" id="inputGroupSelect03">
+                                    <div class="center-on-page">
+                                    <div class="select">
+                                    <select form="addToCart" name="occasion_id"   id="inputGroupSelect03">
                                         @foreach($product->occasion as $occasion)
                                       
                                         <option value="{{ $occasion->id }}">{{App::getLocale() == 'ar'? $occasion->name_ar:$occasion->name_en}}</option>
@@ -57,12 +64,16 @@
                                 
                                     </select>
                                 </div>
+                                </div>
+                                </div>
                                 @endif
 
 
                                 @if(!$product->party_theme->isEmpty())
-                                <div class="character">
+                                <div class="size">
                                     <h5>{{App::getLocale() == 'ar' ? "نوع الحفلة " : "party theme"}}</h5>
+                                    <div class="center-on-page">
+                                    <div class="select">
                                     <select form="addToCart" name="party_theme_id" class="custom-select form-control" id="inputGroupSelect03">
                                         @foreach($product->party_theme as $party_theme)
                                         <option value="{{ $party_theme->id }}">{{App::getLocale() == 'ar' ? $party_theme->name_ar:$party_theme->name_en}}</option>
@@ -70,15 +81,23 @@
                                 
                                     </select>
                                 </div>
+                                </div>
+                                </div>
                                 @endif
                                 @if(!$product->size->isEmpty())
                                 <div class="size">
                                     <h5>{{App::getLocale() == 'ar' ? " الحجم" : "size "}}</h5>
-                                    <select form="addToCart" name="size_id"  class="custom-select form-control" id="inputGroupSelect03">
+                                    <div class="center-on-page">
+                                    <div class="select">
+                                    <select form="addToCart" name="size_id"   id="inputGroupSelect03">
                                         @foreach($product->size as $size)
                                         <option value="{{ $size->id }}">{{App::getLocale() == 'ar' ? $size->name_ar:$size->name_en}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+
+                                </div>
+
                                 </div>
                                 @endif
                                 <div class="quantity">
@@ -120,9 +139,9 @@
                                     <p class="share">{{App::getLocale() == 'ar' ?  "  مشاركة ": "Share "}}:
                                     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse"
    class="fb-xfbml-parse-ignore">
-  <img src="{{asset('img/Facebook.svg')}}" alt="">
+  <img src="{{asset('img/pFacebook svg.svg')}}" alt="">
   </a>
-                                     <a href="#"><img src="{{asset('img/Pinterest.svg')}}" alt=""></a>
+                                     <a href="#"><img src="{{asset('img/pPinterest.svg')}}" alt=""></a>
                                      
                                      </p>
 

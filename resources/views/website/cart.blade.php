@@ -32,7 +32,7 @@
                                     @if($cart->discount > 0)
                                     <span class="aft-dis">EGP {{$cart->price - $cart->price*$cart->discount/100 }}</span>
                                     <span class="bef-dis">EGP {{$cart->price}}</span>
-                                    <span class="discount">{{$cart->discount}}% </span>
+                                    <span class="discount">{{$cart->discount}}% off </span>
                                     @else 
                            
                                     <span class="aft-dis">EGP {{$cart->price}}</span>
@@ -79,8 +79,9 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">{{App::getLocale() == 'ar'?  "تحديث السله " : "update cart"}}</h4>
+
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">{{App::getLocale() == 'ar'?  "تحديث السله " : "update cart"}}</h4>
                                     </div>
                                     <div class="modal-body">
                                     
@@ -89,6 +90,7 @@
                                     @if($cart->character)
                                 <div class="character">
                                     <h5 style="display: inline;">{{App::getLocale() == 'ar' ? "الرسومات" : "character"}}</h5>
+                                    <div class="center-on-page" style="display: inline-block;margin-left: 100px;">
                                     <select form="update-cart-{{ $cart->id }}" name="character_id" class="custom-select form-control" id="inputGroupSelect03 ">
                                         <option selected value=" ">Mini...</option>
                                         
@@ -99,11 +101,15 @@
                                 
                                     </select>
                                 </div>
+                                </div>
+                                
+
                                 @endif
 
                                 @if($cart->occasion)
-                                <div class="character">
+                                <div class="size">
                                     <h5 style="display: inline;">{{App::getLocale() == 'ar' ? "المناسبة / الحدث" : "Event / Occasion"}}</h5>
+                                    <div class="center-on-page" style="display: inline-block;margin-left: 35px;margin-top: 20px;">
                                     <select form="aupdate-cart-{{ $cart->id }}" name="occasion_id"  class="custom-select form-control" id="inputGroupSelect03" >
                                         <option selected value="">Mini...</option>
                                         @foreach($cart->product->occasion as $occasion)
@@ -113,12 +119,15 @@
                                 
                                     </select>
                                 </div>
+                                </div>
+
                                 @endif
 
 
                                 @if($cart->party_theme)
-                                <div class="character">
+                                <div class="size">
                                     <h5 style="display: inline;">{{App::getLocale() == 'ar' ? "نوع الحفلة " : "party theme"}}</h5>
+                                    <div class="center-on-page" style="display: inline-block;margin-left: 100px;">
                                     <select form="update-cart-{{ $cart->id }}" name="party_theme_id" class="custom-select form-control" id="inputGroupSelect03">
                                         <option selected value="">Mini...</option>
                                         @foreach($cart->product->party_theme as $party_theme)
@@ -127,10 +136,13 @@
                                 
                                     </select>
                                 </div>
+                                </div>
+
                                 @endif
                                 @if($cart->size)
                                 <div class="size">
                                     <h5 style="display: inline;">{{App::getLocale() == 'ar' ? " الحجم" : "size "}}</h5>
+                                    <div class="center-on-page" style="display: inline-block;margin-left: 148px;margin-top: 20px;">
                                     <select form="update-cart-{{ $cart->id }}" name="size_id"  class="custom-select form-control" id="inputGroupSelect03">
                                         <option selected value="">Mini...</option>
                                         @foreach($cart->product->size as $size)
@@ -138,42 +150,64 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                </div>
+
                                 @endif
-                                <div class="quantity">
+                                <div class="quantity" style="margin-top: 20px;">
                                     <span class="qun"><label for="quantity">{{App::getLocale() == 'ar' ? "":"QTY"}}</label>
                                     <input type="number" form="update-cart-{{ $cart->id }}"  name="amount" id="quantity" min="0" max="{{$cart->product->amount}}">
                                     </span>
-                                    <span class="availability"> {{App::getLocale() == 'ar' ? "في المخزن":"In stock"}} {{$cart->product->amount}}</span>
+                                    <span class="availability" style="
+    background-color: #51bb74;
+    color: #fff;
+    padding: 0 .7rem;
+    border-radius: .3125rem;
+    font-size: 18px;
+    font-weight: 500;
+"> {{App::getLocale() == 'ar' ? "في المخزن":"In stock"}} {{$cart->product->amount}}</span>
                                 </div>                                
 
                              
                                     </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">{{App::getLocale() == 'ar' ? "اغلاق":"Close"}}</button>
-                                        <button type="submit" form="update-cart-{{ $cart->id }}" class="btn btn-primary"> {{App::getLocale() == 'ar' ? "حفظ":"Save changes"}}</button>
+                                        <button type="button" style="
+    background-color: #70d0e0;
+    color: #fff;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    margin-right: 100px;
+" class="btn btn-default" data-dismiss="modal">{{App::getLocale() == 'ar' ? "اغلاق":"Close"}}</button>
+                                        <button type="submit" style="
+    background-color: #70d0e0;
+    color: #fff;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    margin-right: 70px;
+" form="update-cart-{{ $cart->id }}" class="btn btn-primary"> {{App::getLocale() == 'ar' ? "حفظ":"Save changes"}}</button>
                                     </div>
                                     </div>
                                 </div>
                                 </div>
                                 <!-- end update Cart -->
 
+
       
                                     <div class="personalize   {{ $cart->personalize == '1' ? 'checked' :'unchecked' }} " id='personalize-{{$cart->id}}'>
                                         <span>{{App::getLocale() == 'ar' ? "إضفاء الطابع الشخصي على طلبك":"Personalize your order"}}</span>
+
                                         <input type="text" form="addpersonalize" class="form-control age" name="id[]" value="{{$cart->id}}"  hidden>
-                                        <div class="form-check">
-                                            <input  type="checkbox"
-                                              data-id="personalize-{{$cart->id}}"
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="check_id-{{$cart->id}}"                                                   value="{{$cart->id}}"
+                                                  onchange="updateCart(this)"  
+                                                  data-id="personalize-{{$cart->id}}"
                                                form="addpersonalize"
-                                                name="personalize[]"
-                                                 class="form-check-input" 
-                                                  id='check_id'
-                                                  value="{{$cart->id}}"
-                                                  onchange="updateCart(this)"
-                                                    {{ $cart->personalize == "1" ? "checked" :"" }}>
-                                            <label class="form-check-label" for="exampleCheck1">{{App::getLocale() == 'ar' ? "":"ON"}}</label>
+                                                name="personalize[]" {{ $cart->personalize == "1" ? "checked" :"" }} >
+                                                    <label class="custom-control-label" for="check_id-{{$cart->id}}">{{App::getLocale() == 'ar' ? "":"ON"}}</label>
                                         </div>
+                                                 
+
+                                 
 
                                         <span class="discount">{{ \App\websiteSetting::find(1)->personalize }} EGP</span>
                                         <div class="form-group">
@@ -186,9 +220,6 @@
                                             <label for="lname">{{App::getLocale() == 'ar' ? "عمر الطفل ":"Child Age"}}</label>
                                             <input type="text" form="addpersonalize" class="form-control age" id="child_age" name="child_age[]" value="{{$cart->child_age}}">
                                         </div>
-
-
-
                                  
                                     </div>
 
@@ -213,7 +244,12 @@
                         <div class="col-md-6">
                         <form id="checkout" action="/checkout"  method='get'>
                     
-                        <button type="submit" form="checkout"  class="btn btn-block go-proceed">{{App::getLocale() == 'ar' ? "انتقل  الي الشحن " :  "proceed to shipping"}}    <i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'left': 'right'}}"></i></button>
+                        <button type="submit" form="checkout" style="
+    background-color: #70d0e0;
+    color: #fff;
+    border-radius: 2rem;
+    margin-top: 20px;
+"  class="btn btn-block go-proceed">{{App::getLocale() == 'ar' ? "انتقل  الي الشحن " :  "proceed to shipping"}}    <i class="fa fa-angle-{{App::getLocale() == 'ar' ? 'left': 'right'}}"></i></button>
 </form>   
 </div>             </div>
 </div>

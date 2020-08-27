@@ -10,7 +10,7 @@
                 <div class="row">
                 @component('components.userInfoDashboardList',['user'=>$user]) @endcomponent
                 <div class="col-md-8">
-<h3><img src="{{asset('img/Location.svg')}}" alt="">{{App::getLocale() == 'ar' ? "عناوين الشحن":"Shipping Addresses"}}</h3>
+<h3 class="add-header"><img src="{{asset('img/Location.svg')}}" alt="">{{App::getLocale() == 'ar' ? "عناوين الشحن":"Shipping Addresses"}}</h3>
 
 @if($user->address)
 @component('components.userAddress',['user'=>$user,'Countries'=>$Countries,'cities'=>$cities]) @endcomponent

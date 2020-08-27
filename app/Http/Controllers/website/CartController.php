@@ -51,23 +51,19 @@ public function cart(){
     $user=Users::where('id',\Auth::guard('users')->user()->id)->first();
     // redirect to page if status changes [0 to 3]
 if(!$carts->isEmpty()){
-    if($carts[0]->status == 0 ){
-        cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']);
-
-        return view('website.cart',compact('carts','user'))->with($this->OrderSummary());
-    }elseif($carts[0]->status == 1){
-        return redirect('/checkout');
-
-    }elseif($carts[0]->status == 2){
+    if($carts[0]->status == 2 ){
         return redirect('/payment');
-    }else{
-        return redirect('/order/cart');
-    }
+
+    
 }else{
     cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']);
     return view('website.cart',compact('carts','user'))->with($this->OrderSummary());
 
 }
+
+}
+cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'0']);
+return view('website.cart',compact('carts','user'))->with($this->OrderSummary());
 }
 
 /**  
@@ -97,10 +93,14 @@ public function OrderSummary(){
         $totla=$price->price * $price->amount;
 
         $subtotal+=$totla- ($totla*$price->discount)/100;
+     
 
         if($price->personalize == '1'){
-
-            $subtotal+=$subtotal+$price->personalize_price;
+            
+            $subtotal=$subtotal+$price->personalize_price;
+            
+           
+           
         }
         if($price->address_id !== null){
             $shipping=$price->address_id;
@@ -494,20 +494,23 @@ public function AddOrderCart(Request $request){
   $product->child_age=$productInfo->child_age;
   $product->save();
   
- $price=+$product->price-($product->price * $product->amount)*($product->discount/100)+$product->personalize;
+ $beforediscount=$product->price * $product->amount;
+ $afterdiscount =$beforediscount-($beforediscount*$product->discount/100);
+ $price+=$afterdiscount+$product->personalize;
+
  $discount=$product->discount;
   }
 
 
   if($orderPrduct->discount){
-    $total=$price*$orderPrduct->discount/100;
+    $total=$price-($price*$orderPrduct->discount/100);
   }else{
     $total=$price;
 
   }
 
   $priceOrder=$total+$shipping->cost+$taxes;
-  
+
  $orderPrduct=Orders::where('id',$orderPrduct->id)->update(['price'=>$priceOrder]);
 
  $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->where('status','2')->delete();

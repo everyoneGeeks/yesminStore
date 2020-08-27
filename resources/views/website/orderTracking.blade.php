@@ -19,7 +19,7 @@
       
                             </h3>
                         </div>
-                      
+                        <div class="orders">
 
                         @component('components.orderTrackingProgress',['statu'=>0]) @endcomponent
 
@@ -93,7 +93,7 @@
                                     <h5>{{App::getLocale() == 'ar' ? "طرق الدفع": "Payment method"}}:</h5>
                                     <p>{{App::getLocale() == 'ar' ? " باي بال": "PayPal"}}: *************</p>
                                     <h5>{{App::getLocale() == 'ar' ? "  اجمالي الطلب ": "Total amount"}}:</h5>
-                                    <p>EGP {{$orders->price - ($orders->price*$orders->discount/100) +\App\websiteSetting::find(1)->Taxes + $orders->shipping->cost}}</p>
+                                    <p>EGP {{$orders->price}}</p>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                 <p>{{App::getLocale() == 'ar' ? " الشحن  ": "shipping"}} : <span>EGP {{$orders->shipping->cost}}</span></p>
                                 <p>{{App::getLocale() == 'ar' ? " الضرائب": "taxes"}}: <span>EGP {{ \App\websiteSetting::find(1)->Taxes}}</span></p>
                                 <p>{{App::getLocale() == 'ar' ? " الخصم": "discount"}}: <span>EGP {{$orders->discount}}</span></p><hr>
-                                <p class="total">{{App::getLocale() == 'ar' ? " السعر الكلي ": "total"}}<span>EGP {{$orders->price - ($orders->price*$orders->discount/100) +\App\websiteSetting::find(1)->Taxes + $orders->shipping->cost}}</span></p>
+                                <p class="total">{{App::getLocale() == 'ar' ? " السعر الكلي ": "total"}}<span>EGP {{$orders->price }}</span></p>
                             </div>
                         </div>
                     </div>

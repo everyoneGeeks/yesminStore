@@ -168,7 +168,7 @@
     margin-top: 1rem;
     font-size: 22px;
 }
-.product-details .brief-desc .share img{
+.product-details .brief-desc .share  a img{
     width: 25px;
     height: 25px;
     margin-right: 5px;

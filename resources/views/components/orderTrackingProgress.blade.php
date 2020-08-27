@@ -1,5 +1,5 @@
 
-<div class="orders">
+
                             <div class="order-steps">
                                 <a href="shopping-cart.html" class="step-item {{$statu == 0 ?  'active': ''}}  ">
                                     <div class="step-progress">

@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Complains extends Model
 {
-    protected $table="contacts";
+    protected $table="complaint";
     public $timestamps = false;
 
-    public function user(){
-        return $this->belongsTo('App\Users','users_id');
-    }
+
 
    
 }
