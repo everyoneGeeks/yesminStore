@@ -27,14 +27,14 @@
         <tbody>  
 @foreach($users as $user)
         <tr>
-<th> <a href="/user/info/{{$user->id}}">{{$user->name}}</th>
+<th> <a href="/admin/user/info/{{$user->id}}">{{$user->name}}</th>
 <th> {{$user->email}}</th>
 <th><img src="{{asset($user->image)}}" width=50px > </th>
 <th> {{$user->phone}}</th>
 @if($user->is_active == 1)
-<th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
+<th><a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
 @else
-<th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
+<th><a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
 @endif
           
         </tr>

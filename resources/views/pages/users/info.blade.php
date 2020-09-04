@@ -28,9 +28,9 @@
                   </li>
                 </ul>
                     @if($user->is_active == 1)
-    <a  href="/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a>
+    <a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a>
     @else
-    <a  href="/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a>
+    <a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a>
     @endif
               </div>
               <!-- /.card-body -->

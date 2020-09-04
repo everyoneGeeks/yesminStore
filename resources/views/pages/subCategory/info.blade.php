@@ -26,7 +26,7 @@
                   </li>
 
                   <li class="list-group-item">
-                    <span><a href="/category/info/{{$subCategory->category->id}}">{{$subCategory->category->name_ar}}</a></span> <b class="float-right">  القسم   </b>
+                    <span><a href="/admin/category/info/{{$subCategory->category->id}}">{{$subCategory->category->name_ar}}</a></span> <b class="float-right">  القسم   </b>
                   </li>
 
                   <li class="list-group-item">

@@ -25,10 +25,10 @@
         <tbody>  
 @foreach($characters as $character)
         <tr>
-<th> <a href="/characters/info/{{$character->id}}">{{$character->name_ar}}</a></th>
-<th><a href="/characters/info/{{$character->id}}"> {{$character->name_en}}</a></th>
-<th><a href="/characters/edit/{{$character->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/characters/delete/{{$character->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th> <a href="/admin/characters/info/{{$character->id}}">{{$character->name_ar}}</a></th>
+<th><a href="/admin/characters/info/{{$character->id}}"> {{$character->name_en}}</a></th>
+<th><a href="/admin/characters/edit/{{$character->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/characters/delete/{{$character->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
 
 
         </tr>
@@ -49,7 +49,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/characters/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  شخصية   </a>
+<a  href="/admin/characters/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  شخصية   </a>
 </div>
 @endslot
 

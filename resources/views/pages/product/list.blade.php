@@ -14,11 +14,10 @@
 
 @else 
 
-<table id="example2" class="table table-bordered table-hover table-responsive">
+<table id="example2" class="table table-bordered table-hover ">
         <thead>
         <tr>
             <th>الاسم بالعربي </th>
-            <th>الاسم بالانجنبي</th>
             <th>القسم  </th>
             <th>القسم  الفرعي </th>
             <th>  السعر  </th>
@@ -34,16 +33,15 @@
 @foreach($products as $product)
 
         <tr>
-<th> <a href="/product/info/{{$product->id}}">{{$product->name_ar}}</a></th>
-<th><a href="/producty/info/{{$product->id}}"> {{$product->name_en}}</a></th>
-<th><a href="/category/info/{{$product->category->id}}"> {{$product->category->name_ar}}</a></th>
-<th><a href="/subcategory/info/{{$product->subcategory->id}}"> {{$product->subcategory->name_ar}}</a></th>
+<th> <a href="/admin/product/info/{{$product->id}}">{{$product->name_ar}}</a></th>
+<th><a href="/admin/category/info/{{$product->category->id}}"> {{$product->category->name_ar}}</a></th>
+<th><a href="/admin/subcategory/info/{{$product->subcategory->id}}"> {{$product->subcategory->name_ar}}</a></th>
 <th>{{ $product->price }} </th>
 <th>{{ $product->amount  }} </th>
 <th>{{ $product->discount }} </th>
 <th><img src="{{asset($product->main_image)}}" width=50px > </th>
-<th><a href="/product/edit/{{$product->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/product/delete/{{$product->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th><a href="/admin/product/edit/{{$product->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/product/delete/{{$product->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
 
         </tr>
 
@@ -64,7 +62,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/product/add" class="btn btn-block btn-success btn-lg">
+<a  href="/admin/product/add" class="btn btn-block btn-success btn-lg">
  <i class="fa fa-plus" aria-hidden="true"></i> اضافة  منتج  </a>
 </div>
 @endslot

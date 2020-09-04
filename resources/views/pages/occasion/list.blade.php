@@ -25,10 +25,10 @@
         <tbody>  
 @foreach($occasions as $occasion)
         <tr>
-<th> <a href="/occasion/info/{{$occasion->id}}">{{$occasion->name_ar}}</a></th>
-<th><a href="/occasion/info/{{$occasion->id}}"> {{$occasion->name_en}}</a></th>
-<th><a href="/occasion/edit/{{$occasion->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/occasion/delete/{{$occasion->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th> <a href="/admin/occasion/info/{{$occasion->id}}">{{$occasion->name_ar}}</a></th>
+<th><a href="/admin/occasion/info/{{$occasion->id}}"> {{$occasion->name_en}}</a></th>
+<th><a href="/admin/occasion/edit/{{$occasion->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/occasion/delete/{{$occasion->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
 
 
         </tr>
@@ -49,7 +49,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/occasion/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  مناسبة   </a>
+<a  href="/admin/occasion/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  مناسبة   </a>
 </div>
 @endslot
 

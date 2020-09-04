@@ -49,8 +49,8 @@
 @endif
 
 </th>
-<th><a href="/ad/edit/{{$ad->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/ad/edit/{{$ad->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th><a href="/admin/ad/edit/{{$ad->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/ad/edit/{{$ad->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
         </tr>
 
         @endforeach  
@@ -64,7 +64,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/ad/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  اعلان  </a>
+<a  href="/admin/ad/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  اعلان  </a>
 </div>
 @endslot
 

@@ -63,7 +63,7 @@
         @endif
         @yield('javascript')  
         <script src="{{ asset('js/main.js') }}"></script>
-        
+        <script src="//code.tidio.co/rw3ukwxdtobrfotxlqun6b6sfb8krcet.js" async></script>
 
 
         

@@ -38,7 +38,6 @@ class dashBoardController extends Controller
         $products=product::get();
         $ads=Ads::get();
         $orders=Orders::get();
-
         $userChart = Charts::database($users, 'line', 'highcharts')
 			      ->title("التسجيل الشهر للمستخدميين")
 			      ->elementLabel("اجمالي المستخدميين ")
@@ -47,14 +46,14 @@ class dashBoardController extends Controller
                   ->groupByMonth(date('Y'), true);
 
           $ordersChart = Charts::database($orders, 'line', 'highcharts')
-			      ->title("التسجيل الشهر للمندوبين   ")
-			      ->elementLabel("اجمالي المندوبين ")
+			      ->title("التسجيل الشهر للطلبات   ")
+			      ->elementLabel("اجمالي الطلبات ")
 			      ->dimensions(1000, 500)
 			      ->responsive(true)
 			      ->groupByMonth(date('Y'), true);
 
 		$lastUser=Users::orderBy('created_at', 'desc')->take(10)->get();
-		$lastOrder=orders::orderBy('created_at', 'desc')->take(10)->get();
+		$lastOrder=orders::with('user')->orderBy('created_at', 'desc')->take(10)->get();
 
         return view('welcome',compact('ordersChart','userChart','users','products','ads','orders','lastUser','lastOrder'));
     }

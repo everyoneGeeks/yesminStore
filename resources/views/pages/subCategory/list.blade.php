@@ -30,12 +30,12 @@
 @foreach($subCategories as $subCategor)
 
         <tr>
-<th> <a href="/subcategory/info/{{$subCategor->id}}">{{$subCategor->name_ar}}</a></th>
-<th><a href="/subcategory/info/{{$subCategor->id}}"> {{$subCategor->name_en}}</a></th>
-<th><a href="/category/info/{{$subCategor->category->id}}"> {{$subCategor->category->name_ar}}</a></th>
+<th> <a href="/admin/subcategory/info/{{$subCategor->id}}">{{$subCategor->name_ar}}</a></th>
+<th><a href="/admin/subcategory/info/{{$subCategor->id}}"> {{$subCategor->name_en}}</a></th>
+<th><a href="/admin/category/info/{{$subCategor->category->id}}"> {{$subCategor->category->name_ar}}</a></th>
 <th><img src="{{asset($subCategor->image)}}" width=50px > </th>
-<th><a href="/subcategory/edit/{{$subCategor->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/subcategory/delete/{{$subCategor->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th><a href="/admin/subcategory/edit/{{$subCategor->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/subcategory/delete/{{$subCategor->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
 
         </tr>
 
@@ -56,7 +56,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/subcategory/add" class="btn btn-block btn-success btn-lg">
+<a  href="/admin/subcategory/add" class="btn btn-block btn-success btn-lg">
  <i class="fa fa-plus" aria-hidden="true"></i> اضافة قسم فرعي  </a>
 </div>
 @endslot

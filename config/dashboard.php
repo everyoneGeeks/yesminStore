@@ -8,7 +8,7 @@ return [
     | dashboard name that appper to all section in dashboard 
     |
     */
-    'nameApp'=>' الشروق',
+    'nameApp'=>' towipi',
     /*
     |--------------------------------------------------------------------------
     | Dashboard name
@@ -16,7 +16,7 @@ return [
     | dashboard name that appper to all section in dashboard 
     |
     */    
-    "title"=>'لوحة تحكم   الشروق',
+    "title"=>'لوحة تحكم   towipi',
 
     /*
     |--------------------------------------------------------------------------
@@ -25,5 +25,5 @@ return [
     | dashboard name that appper to all section in dashboard 
     |
     */    
-    "logo"=> 'dist/img/AdminLTELogo.png',
+    "logo"=> 'img/Towipi-logo.svg',
 ];

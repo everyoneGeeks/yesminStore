@@ -5,6 +5,7 @@
 <!-- font -->
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css"><link rel="stylesheet" href="{{asset('dist/dist/jquery.fileuploader.min.css')}}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
@@ -36,14 +37,14 @@
 
                   <div class="form-group">
                     <label for="InputNameEn"> وصف  المنتج عربي</label>
-                    <textarea  class="form-control"  value="{{$product->description_ar}}"  name="description_ar">  وصف المنتج </textarea>
+                    <textarea  class="form-control"    name="description_ar">  {{$product->description_ar}}  </textarea>
                   </div>
 
 
 
                   <div class="form-group">
                     <label for="InputNameEn"> وصف  المنتج اجنبي</label>
-                    <textarea  class="form-control"  value="{{$product->description_en}}"  name="description_en">  وصف المنتج </textarea>
+                    <textarea  class="form-control"    name="description_en">  {{$product->description_en}}  </textarea>
                   </div>
 
 
@@ -81,6 +82,95 @@
                     @endforeach
                   </select>
                   </div>
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   المناسبة </label>
+                    <select name="occasions[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($occasions as $occasion)
+  
+                    @if(in_array($occasion->id,Arr::pluck($product->occasion, 'id')))
+                    <option value="{{$occasion->id}}" selected>{{$occasion->name_ar}}</option>
+                    @else  
+                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+
+                    @endif
+              
+                    @endforeach
+                    </select>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   الحجم  </label>
+                    
+                    <select name="size[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($size as $siz)
+                   
+                    @if(in_array($siz->id,Arr::pluck($product->size, 'id')))
+                    <option value="{{$siz->id}}" selected>{{$siz->name_ar}}</option>
+                    @else  
+                    <option value="{{$siz->id}}">{{$siz->name_ar}}</option>
+
+                    @endif
+                  
+                    @endforeach
+                    </select>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   الشخصيات  </label>
+                    
+                    <select name="characters[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($characters as $character)
+                   
+                    @if(in_array($character->id,Arr::pluck($product->character, 'id')))
+                    <option value="{{$character->id}}" selected>{{$character->name_ar}}</option>
+                    @else  
+                    <option value="{{$character->id}}">{{$character->name_ar}}</option>
+
+                    @endif
+                    @endforeach
+              
+                    </select>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   نوع الحفل   </label>
+                    
+                    <select name="Party_Theme[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($Party_Theme as $Party)
+               
+                    @if(in_array($Party->id,Arr::pluck($product->party_theme, 'id')))
+                    <option value="{{$Party->id}}" selected>{{$Party->name_ar}}</option>
+                    @else  
+                    <option value="{{$Party->id}}">{{$Party->name_ar}}</option>
+
+                    @endif
+               
+                    @endforeach
+                    </select>
+                  </div>
+
+
+                 
+                  @if($product->url !== null)
+                  <li >
+                       <span>             <iframe width="420" height="300" src="{{$product->url}}">
+                                </iframe></span> <b class="float-right">  فيديو     </b>
+                  </li>
+                  @endif
+                  <div class="form-group">
+                    <label for="InputNameEn">   فيديو المنتج  </label>
+                    <input type="url"  class="form-control" id="InputNameEn"  name="url">
+                  </div>
+
 
                   <div class="form-group">
 
@@ -199,6 +289,7 @@
  @section('javascript')
 <!-- DataTables -->
 <script src="{{asset('dist/js/bootstrap-imageupload.js')}}"></script>
+
 <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script><script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- page script -->
 <script>
@@ -211,7 +302,7 @@ var upload = new FileUploadWithPreview('myUniqueUploadId',{
                 text: {
                     chooseFile: 'اضافة صور   ',
                     browse: '  اضافة صور ',
-                    selectedCount: 'صور المنتج',
+                    selectedCount: 'Custom Files Selected Copy',
                 },
 })
 
@@ -219,6 +310,14 @@ $('.imageupload').imageupload({
     allowedFormats: [ 'jpg', 'jpeg', 'png', 'gif'  ],
     maxFileSizeKb: 5000
 });
+
+$(".js-example-responsive").select2({
+    width: 'resolve' // need to override the changed default
+});
+
+
+
+
 </script>
 
 

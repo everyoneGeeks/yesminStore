@@ -141,8 +141,11 @@
    class="fb-xfbml-parse-ignore">
   <img src="{{asset('img/pFacebook svg.svg')}}" alt="">
   </a>
-                                     <a href="#"><img src="{{asset('img/pPinterest.svg')}}" alt=""></a>
-                                     
+
+  <a href="https://www.pinterest.com/pin/create/button/" data-pin-custom="true" data-pin-do="buttonBookmark">
+  <img src="{{asset('img/pPinterest.svg')}}" alt="">
+</a>
+                                 
                                      </p>
 
   
@@ -281,3 +284,10 @@
 
 @endsection
 
+@section("javascript")
+<script
+    type="text/javascript"
+    async defer
+    src="//assets.pinterest.com/js/pinit.js"
+></script>
+@endsection

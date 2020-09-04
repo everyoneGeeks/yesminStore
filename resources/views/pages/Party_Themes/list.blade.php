@@ -25,10 +25,10 @@
         <tbody>  
 @foreach($PartyThemes as $PartyTheme)
         <tr>
-<th> <a href="/partyTheme/info/{{$PartyTheme->id}}">{{$PartyTheme->name_ar}}</a></th>
-<th><a href="/partyTheme/info/{{$PartyTheme->id}}"> {{$PartyTheme->name_en}}</a></th>
-<th><a href="/partyTheme/edit/{{$PartyTheme->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/partyTheme/delete/{{$PartyTheme->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
+<th> <a href="/admin/partyTheme/info/{{$PartyTheme->id}}">{{$PartyTheme->name_ar}}</a></th>
+<th><a href="/admin/partyTheme/info/{{$PartyTheme->id}}"> {{$PartyTheme->name_en}}</a></th>
+<th><a href="/admin/partyTheme/edit/{{$PartyTheme->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th><a href="/admin/partyTheme/delete/{{$PartyTheme->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
 
 
         </tr>
@@ -49,7 +49,7 @@
 @slot('footer')
 <div class="col-lg-4">
 
-<a  href="/partyTheme/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة نوع حفل   </a>
+<a  href="/admin/partyTheme/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة نوع حفل   </a>
 </div>
 @endslot
 

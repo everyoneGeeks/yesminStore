@@ -18,7 +18,7 @@
 
             <!-- dashboard Route-->                 
             <li class="nav-item ">
-              <a href="/home" class="nav-link {{ Request::is(Route::currentRouteName() == 'home') ? 'active' : '' }}">
+              <a href="/admin/home" class="nav-link {{ Request::is(Route::currentRouteName() == 'home') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-dashboard"></i>
                 <p>
                  الاحصائيات
@@ -32,7 +32,7 @@
 
              <!-- categories Route-->  
              <li class="nav-item ">
-              <a href="/categories" class="nav-link {{ Request::is(Route::currentRouteName() == 'categories') ? 'active' : '' }}">
+              <a href="/admin/categories" class="nav-link {{ Request::is(Route::currentRouteName() == 'categories') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
                  الاقسام
@@ -42,7 +42,7 @@
 
                          <!-- categories Route-->  
              <li class="nav-item ">
-              <a href="/subcategoies" class="nav-link {{ Request::is(Route::currentRouteName() == 'subcategoies') ? 'active' : '' }}">
+              <a href="/admin/subcategoies" class="nav-link {{ Request::is(Route::currentRouteName() == 'subcategoies') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
                  الاقسام الفرعية
@@ -54,7 +54,7 @@
 
              <!-- partyThemes Route-->  
              <li class="nav-item ">
-              <a href="/partyThemes" class="nav-link {{ Request::is(Route::currentRouteName() == 'partyThemes') ? 'active' : '' }}">
+              <a href="/admin/partyThemes" class="nav-link {{ Request::is(Route::currentRouteName() == 'partyThemes') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
                  نوع الحفل   
@@ -64,7 +64,7 @@
 
              <!-- characters Route-->  
              <li class="nav-item ">
-              <a href="/characters" class="nav-link {{ Request::is(Route::currentRouteName() == 'characters') ? 'active' : '' }}">
+              <a href="/admin/characters" class="nav-link {{ Request::is(Route::currentRouteName() == 'characters') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
                  نوع شخصيات كرتونية    
@@ -74,7 +74,7 @@
 
              <!-- occasion Route-->  
              <li class="nav-item ">
-              <a href="/occasion" class="nav-link {{ Request::is(Route::currentRouteName() == 'occasion') ? 'active' : '' }}">
+              <a href="/admin/occasion" class="nav-link {{ Request::is(Route::currentRouteName() == 'occasion') ? 'active' : '' }}">
                 <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
                 <p>
               المناسبات 
@@ -86,7 +86,7 @@
            <!-- product  Route-->  
           <li class="nav-item ">
           
-          <a href="/products" class="nav-link {{ Request::is(Route::currentRouteName() == 'products') ? 'active' : '' }}">
+          <a href="/admin/products" class="nav-link {{ Request::is(Route::currentRouteName() == 'products') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
           المنتجات
@@ -99,7 +99,7 @@
             <!-- Order Route-->  
             <li class="nav-item ">
           
-          <a href="/orders" class="nav-link {{ Request::is(Route::currentRouteName() == 'orders') ? 'active' : '' }}">
+          <a href="/admin/orders" class="nav-link {{ Request::is(Route::currentRouteName() == 'orders') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
             ادارة الطلبات
@@ -110,7 +110,7 @@
 
              <!-- users Route-->  
              <li class="nav-item ">
-              <a href="/users" class="nav-link {{ Request::is(Route::currentRouteName() == 'users') ? 'active' : '' }}">
+              <a href="/admin/users" class="nav-link {{ Request::is(Route::currentRouteName() == 'users') ? 'active' : '' }}">
                 <i class="nav-icon  fa fa-users" aria-hidden="true"></i>
                 <p>
                  المستخدميين
@@ -121,7 +121,7 @@
           <!-- ads  Route-->  
           <li class="nav-item ">
           
-          <a href="/ads" class="nav-link {{ Request::is(Route::currentRouteName() == 'ads') ? 'active' : '' }}">
+          <a href="/admin/ads" class="nav-link {{ Request::is(Route::currentRouteName() == 'ads') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
 ادارة الاعلانات
@@ -132,7 +132,7 @@
           <!-- codes  Route-->  
           <li class="nav-item ">
           
-          <a href="/codes" class="nav-link {{ Request::is(Route::currentRouteName() == 'codes') ? 'active' : '' }}">
+          <a href="/admin/codes" class="nav-link {{ Request::is(Route::currentRouteName() == 'codes') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
  اكواد الخصم
@@ -150,7 +150,7 @@
                   <!-- complains  Route-->  
                   <li class="nav-item ">
           
-          <a href="/complains " class="nav-link {{ Request::is(Route::currentRouteName() == 'complains') ? 'active' : '' }}">
+          <a href="/admin/complains " class="nav-link {{ Request::is(Route::currentRouteName() == 'complains') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
               الشكاوي
@@ -163,7 +163,7 @@
           <!-- appSetting  Route-->  
           <li class="nav-item ">
           
-          <a href="/appSetting " class="nav-link {{ Request::is(Route::currentRouteName() == 'appSetting') ? 'active' : '' }}">
+          <a href="/admin/appSetting " class="nav-link {{ Request::is(Route::currentRouteName() == 'appSetting') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
           اعدادات النطبيق
@@ -174,7 +174,7 @@
                   <!-- admin Route-->  
           <li class="nav-item ">
           
-          <a href="/admins" class="nav-link {{ Request::is(Route::currentRouteName() == 'admins') ? 'active' : '' }}">
+          <a href="/admin/admins" class="nav-link {{ Request::is(Route::currentRouteName() == 'admins') ? 'active' : '' }}">
             <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
             <p>
             ادارة المسئولين

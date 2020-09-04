@@ -16,7 +16,7 @@ class role
      */
     public function handle($request, Closure $next,...$param)
     {
-        $user=\Auth::user()->permissions;
+        $user=\Auth::guard('web')->user()->permissions;
 
         $permissions=json_decode($user);
 
@@ -24,7 +24,7 @@ class role
 
         $role=$param[1];
         
-        if(\Auth::user()->is_super_admins == 0){
+        if(\Auth::guard('web')->user()->is_super_admins == 0){
             if($permissions->$sectionName->$role == 1){
                 return $next($request);
             }else{

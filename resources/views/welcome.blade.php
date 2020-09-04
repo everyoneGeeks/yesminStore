@@ -17,10 +17,10 @@
           <!-- /.col -->
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
+              <span class="info-box-icon bg-success"><i class="fa  fa-list"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">المندوبين</span>
+                <span class="info-box-text">المنتجات </span>
                 <span class="info-box-number"> {{$products->count()}}</span>
               </div>
               <!-- /.info-box-content -->
@@ -56,19 +56,21 @@
           <!-- /.col -->
         </div>
 
-@component('components.panel',['subTitle'=>'اخر المندوبين '])
+@component('components.panel',['subTitle'=>'اخر الطلبات '])
 
 <table id="example2" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>الاسم  </th>
+            <th>ارقم الطلب   </th>
+            <th> اسم العميل </th>
             <th>التاريخ</th>
         </tr>
         </thead>
         <tbody>
 @foreach($lastOrder as $order)
         <tr>
-<th> <a href="/order/info/{{$order->id}}">{{$order->id}}</th>
+<th> <a href="/admin/order/info/{{$order->id}}">{{$order->order_id}}</th>
+<th> <a href="/admin/user/info/{{$order->user_id}}">{{$order->user->first_name}}</th>
 
 <th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
 
@@ -108,12 +110,12 @@
         <tbody>
 @foreach($lastUser as $user)
         <tr>
-<th> <a href="/user/info/{{$user->id}}">{{$user->name}}</th>
+<th> <a href="/admin/user/info/{{$user->id}}">{{$user->first_name  }} {{$user->last_name  }}</th>
 <th>{{Carbon\Carbon::parse($user->created_at)->format('Y-m-d')}}</th>
 @if($user->is_active == 1)
-<th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
+<th><a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-success btn-sm"> مفعل</a></th>
 @else
-<th><a  href="/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
+<th><a  href="/admin/user/status/{{$user->id}}" class="btn btn-block btn-danger btn-flat"> غير مفعل </a></th>
 @endif
 
 

@@ -5,7 +5,6 @@
 <!-- font -->
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css"><link rel="stylesheet" href="{{asset('dist/dist/jquery.fileuploader.min.css')}}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<link href="{{asset('plugins/bootstrap3-wysihtml5/dist/bootstrap3-wysihtml5.min.css')}}" rel="stylesheet" />
 
 @endsection
 @section('content')
@@ -48,35 +47,45 @@
 
                   <div class="form-group">
                     <label for="InputNameEn">   المناسبة </label>
-                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
+                    <select name="occasions[]" class="form-control js-example-responsive" multiple="multiple" >
                     @foreach($occasions as $occasion)
                     <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
                     @endforeach
                     </select>
                   </div>
-
 
                   <div class="form-group">
-                    <label for="InputNameEn">   المناسبة </label>
-                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
-                    @foreach($occasions as $occasion)
-                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+                    <label for="InputNameEn">   الشخصيات </label>
+                    <select name="characters[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($characters as $character)
+                    <option value="{{$character->id}}">{{$character->name_ar}}</option>
                     @endforeach
                     </select>
-                  </div>
-
-
+                  </div>                  
 
                   <div class="form-group">
-                    <label for="InputNameEn">   المناسبة </label>
-                    <select class="js-example-responsive" multiple="multiple" style="width: 75%">
-                    @foreach($occasions as $occasion)
-                    <option value="{{$occasion->id}}">{{$occasion->name_ar}}</option>
+                    <label for="InputNameEn">   نوع الحفل  </label>
+                    <select name="Party_Theme[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($Party_Theme as $partytheme)
+                    <option value="{{$partytheme->id}}">{{$partytheme->name_ar}}</option>
                     @endforeach
                     </select>
+                  </div>     
+
+                  <div class="form-group">
+                    <label for="InputNameEn">   الحجم   </label>
+                    <select name="size[]" class="form-control js-example-responsive" multiple="multiple" >
+                    @foreach($size as $sizeproduct)
+                    <option value="{{$sizeproduct->id}}">{{$sizeproduct->name_ar}}</option>
+                    @endforeach
+                    </select>
+                  </div>                       
+
+               
+                  <div class="form-group">
+                    <label for="InputNameEn">   فيديو المنتج  </label>
+                    <input type="url"  class="form-control" id="InputNameEn"  name="url">
                   </div>
-
-
                   <div class="form-group">
                     <label for="InputNameEn"> سعر  المنتج </label>
                     <input type="number" min=1 class="form-control" id="InputNameEn"  name="price">
@@ -182,12 +191,6 @@
 <!-- DataTables -->
 <script src="{{asset('dist/js/bootstrap-imageupload.js')}}"></script>
 
-<!-- wysihtml core javascript with default toolbar functions --> 
-<script src="{{ asset('plugins/wysihtml/dist/wysihtml.toolbar.js')  }}"></script>
-
-<!-- rules defining tags, attributes and classes that are allowed -->
-
-<script src="{{ asset('plugins/wysihtml/dist/wysihtml.table_editing.js')  }}"></script>
 <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script><script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <!-- page script -->
 <script>
@@ -214,12 +217,6 @@ $(".js-example-responsive").select2({
 });
 
 
-$(function() {
-       var editor = new wysihtml.Editor("editor", { // id of textarea element
-              toolbar:      "wysihtml-toolbar", // id of toolbar element
-              parserRules:  wysihtml5ParserRules // defined in parser rules set 
-            });
-     });
 
 
 </script>

@@ -25,9 +25,9 @@
         <tbody>  
 @foreach($categories as $category)
         <tr>
-<th> <a href="/category/info/{{$category->id}}">{{$category->name_ar}}</a></th>
-<th><a href="/category/info/{{$category->id}}"> {{$category->name_en}}</a></th>
-<th><a href="/category/edit/{{$category->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
+<th> <a href="/admin/category/info/{{$category->id}}">{{$category->name_ar}}</a></th>
+<th><a href="/admin/category/info/{{$category->id}}"> {{$category->name_en}}</a></th>
+<th><a href="/admin/category/edit/{{$category->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
         </tr>
 
         @endforeach  
@@ -43,12 +43,6 @@
 
 @endif
 
-@slot('footer')
-<div class="col-lg-4">
-
-<a  href="/category/add" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة متجر  </a>
-</div>
-@endslot
 
 @endcomponent
  @endsection     
