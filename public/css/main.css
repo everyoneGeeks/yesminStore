@@ -221,7 +221,7 @@ header .logo .category:hover{
     color: #eee;
 }
 header .logo .category span{
-    font-size: 21px;
+    font-size: 25px;
 }
 header .logo .category img,
 header .bottom-nav .category img{
@@ -246,14 +246,14 @@ header .bottom-nav .navbar-nav li:hover a{
 header .bottom-nav .navbar-nav .category{
     margin: 10;
     margin-top: -1.3rem;
-    width: 125px;
+    width: 130px;
 }
 header .bottom-nav .category img{
     width: inherit;
-    height: 50px;
+    height: 55px;
 }
 header .bottom-nav .category span{
-    font-size: 15px;
+    font-size: 20px;
 }
 header .input-group{
     width: 250px;
@@ -324,21 +324,12 @@ header .input-group .form-control{
 .services{
     margin: 2rem 0;
 }
-.services .row>div{
-    padding-left: 4px;
-    padding-right: 4px;
-}
-.services .row>div:first-child{
-    padding-left: 15px;
-}
-.services .row>div:last-child{
-    padding-right: 15px;
-}
+
 .services .service{
     padding: 1rem .5rem 0;
     border: 1px solid #82D0DC;
     text-align: center;
-    color: #f86eac;
+    color: #f494be;
     height: 100%;
 }
 .services .service img{
@@ -352,6 +343,8 @@ header .input-group .form-control{
 .services .service h5{
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 29px;
+    margin-bottom: 19px;
 }
 .services .service p{
     font-size: 15px;
@@ -394,8 +387,8 @@ header .input-group .form-control{
   border-radius: 5px;
 }
 .product-cards .card .pro-img img{
-  width: 100%;
-  height: 220px;
+  width:225px;
+  height: 200px;
   box-shadow: inset 0 0.3rem 1.525rem -0.375rem rgba(0,0,0,0.1);
 }
 .product-cards .card .pro-img .status{
@@ -496,6 +489,10 @@ header .input-group .form-control{
   border-radius: .5rem;
   transition: all .3s ease-in-out;
   margin: 0 .5rem;
+}
+.product-cards .card .cart-view .q-view span{
+    display: inline-block;
+    margin-top: 3px;
 }
 .product-cards .card .cart-view .q-view:hover{
   background-color: #82D0DC;

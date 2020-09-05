@@ -2,13 +2,13 @@
 
 <div class="card">
      <div class="pro-img">
-          <a href="/product/info/{{$product->id}}"><img src="{{$product->main_image}}" alt="product"></a>
+          <a href="/product/info/{{$product->id}}"><img src="{{$product->main_image}}"  alt="product"></a>
           @if(Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::parse($product->created_at)) 
 && Carbon\Carbon::now()->lessThanOrEqualTo(Carbon\Carbon::parse($product->created_at)->addDays(3)))
           <span class="status badge badge-primary">{{App::getLocale() == 'ar' ? "جديد":"New"}}</span>
           @endif
           @if($product->discount !== 0)
-          <span class="status badge badge-warning">{{$product->discount}}%</span>
+          <span class="status badge badge-warning">{{$product->discount}}% -</span>
           @endif
      </div>
      <div class="pro-desc">
@@ -31,7 +31,7 @@
                <button form="AddTocart-{{$product->id}}"  type="submit" class="btn add-cart">{{App::getLocale() == 'ar' ? "شراء":"Buy"}}</button>
                <form id='AddTocart-{{$product->id}}' action="/product/add/cart/{{$product->id}}" method="get">
 </form>
-               <a  href="/product/info/{{$product->id}}" class="btn q-view">{{App::getLocale() == 'ar' ? "مشاهدة":"View"}}</a>
+               <a  href="/product/info/{{$product->id}}" class="btn q-view"><span style="width:100%;text-align:center">{{App::getLocale() == 'ar' ? "مشاهدة":"View"}}</span></a>
              
                @auth('users')
                @if(!$product->wishList->isEmpty())

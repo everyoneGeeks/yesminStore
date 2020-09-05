@@ -73,7 +73,7 @@
 .profile-info form .date input{
     width: 100px;
     margin-right: .5rem;
-    float: left;
+
 }
 .profile-info form input.form-control::placeholder{
     color: #f495be;

@@ -3,8 +3,15 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
+        
+  <title> 
+  Towipi
+        </title> 
+          
+        <!-- add icon link -->
+        <link rel = "icon" href ="{{asset('img/Towipi-logo.svg')}}"   
+        type = "image/x-icon">  
+         <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="apple-touch-icon" href="icon.png">
@@ -113,24 +120,38 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <a href="/category/1" class="btn category cake-btn"><span>   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                                <a href="/category/2" class="btn category cake-btn"><span>{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+
                                 </div>
                                 <div class="col-md-2">
                                     <a href="/" class="logo-img"><img src="{{asset('img/Towipi-logo.svg')}}" alt="Logo"></a>
                                 </div>
                                 <div class="col-md-5">
-                                    <a href="/category/2" class="btn category party-btn"><span>{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                                <a href="/category/1" class="btn category party-btn " style="
+    margin-right: 15px;
+"><span>   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <nav class="navbar navbar-expand-lg bottom-nav">
-                        <div class="container">
+                        <div class="container" style="
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-left: 105px;
+">
                             <ul class="navbar-nav">
-                            <li class="nav-item"><a href="/contact/us" class="nav-link category" ><span>{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
-
+                            <li class="nav-item"><a href="/" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "الرئيسية" : "Home"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
                             <li class="nav-item"><a href="/about/us" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
-                                <li class="nav-item"><a href="/" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "الرائسية" : "Home"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+
+                            <li class="nav-item"><a style="
+    width: 140px;
+"href="/contact/us" class="nav-link category" ><span style="
+    margin-right: 7px;
+">{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+
                             </ul>
                         </div>
                     </nav>

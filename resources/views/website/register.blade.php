@@ -3,8 +3,10 @@
 <link rel="stylesheet" href="{{asset('css/login.css')}}">
 @endsection
 @section('content')
-@component('components.Websiteerror',['errors'=>$errors ?? NULL]) @endcomponent
+@component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 <div class="login-form register">
+@component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
+
             <form action="/signup/submit" method="post">
             @csrf
                 <div class="row">
@@ -51,17 +53,28 @@
                 <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" name="terms" value=true>
                 <label class="form-check-label" for="exampleCheck1" style="{{ App::getLocale() == 'ar' ?  'margin-right: 20px;' : '' }}" >{{App::getLocale() == 'ar' ? '  اوافق علي  ' : 'I accept the '}}
-                 <a   data-toggle="modal" data-target="#myModal"  style="color: #61bfd0;">{{App::getLocale() == 'ar' ? '  الشروط و الاحكام ' : 'Terms & Policy'}}</a>
+                 <a   data-toggle="modal" data-target="#myModal"  style="color: #61bfd0;">{{App::getLocale() == 'ar' ? '  سياسة الخصوصية ' : 'Privacy policy
+'}}</a>
+<p style="
+    color: #ff0000c9;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: medium;
+">{{App::getLocale() == 'ar' ? '   يجب الموافقة علي سياسة الخصوصية  ' : 'Privacy policy
+'}}</p>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">{{App::getLocale() == 'ar' ? '  سياسة الخصوصية ' : 'Privacy policy
+'}}</h4>
         <button type="button" style="
     margin-left: 0px;
 " class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{App::getLocale() == 'ar' ? '  الشروط و الاحكام ' : 'Terms & Policy'}}</h4>
+
       </div>
       <div class="modal-body">
        {{ App::getLocale() == 'ar' ?  \App\websiteSetting::find(1)->terms_policy_ar  : \App\websiteSetting::find(1)->terms_policy }}

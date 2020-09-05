@@ -42,22 +42,28 @@
                         <div class="col-md-3">
                             <div class="service">
                                 <img src="{{asset('img/customer-services.svg')}}" alt="">
-                                <h5>{{App::getLocale() == 'ar' ?   "خدمة العملاء": "customer service"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "سوف تحصل على الدعم والمساعدة للحصول على طلبك": "You will get support and help to get your order"}}</p>
+                                <h5>{{App::getLocale() == 'ar' ?   "خدمة عملاء
+": "customer service"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "يسعدنا تقديم المساعدة والدعم
+  لك حتى تحصل على طلبك": "You will get support and help to get your order"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="service">
                                 <img src="{{asset('img/VIDEO-TUTORIAL.svg')}}" alt="">
-                                <h5>{{App::getLocale() == 'ar' ?   "فيديو تعليمي": "video tutorial"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نشرح لك كيفية استخدام منتجاتنا": "We explain to you how to use our products"}}</p>
+                                <h5>{{App::getLocale() == 'ar' ?   "  فديوهات شرح
+": "video tutorial"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نقدم لك فديوهات شرح طريقة إستخدام منتجاتنا
+": "We explain to you how to use our products"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="service">
                                 <img src="{{asset('img/DELIVER-ON-TIME.svg')}}" alt="" class="deliver">
-                                <h5>{{App::getLocale() == 'ar' ?   "التسليم في الوقت المحدد": "deliver on time"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نحن نقدم طلبك في الوقت المحدد": "We deliver your order on time"}}</p>
+                                <h5>{{App::getLocale() == 'ar' ?   "الشحن فى الموعد
+": "deliver on time"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نقوم بتوصيل طلبك فى الموعد المحدد 
+": "We deliver your order on time"}}</p>
 
                         
                             </div>
@@ -65,8 +71,9 @@
                         <div class="col-md-3">
                             <div class="service">
                                 <img src="{{asset('img/MANY-PAYMENT-OPTIONS.svg')}}" alt="">
-                                <h5 class="payment">{{App::getLocale() == 'ar' ?   "العديد من خيارات الدفع": "many payment options"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نقدم العديد من طرق الدفع المحلية والدولية": "We offer many local and international payment methods"}}</p>
+                                <h5 >{{App::getLocale() == 'ar' ?   "طرق دفع متعددة": "many payment options"}}</h5>
+                                <p>{{App::getLocale() == 'ar' ? "نوفر لك العديد من وسائل
+ الدفع المحلية و العالمية": "We offer many local and international payment methods"}}</p>
                             </div>
                         </div>
                     </div>
@@ -143,7 +150,7 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" >
-                    <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الحفل) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
+                    <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً (زينة الحفلات  ) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
                     <div class="top-selling">   
                     @foreach($topSellingProductParty as $product)
                     @component('components.product',['product'=>$product]) @endcomponent
@@ -156,7 +163,7 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" >
-                <h4>{{App::getLocale() == 'ar' ? "أكثر السلع مبيعًا (ادوات الكيك) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
+                <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً (أدوات الكيك ) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
 
                     <div class="top-selling">   
                     @foreach($topSellingProductCake as $product)

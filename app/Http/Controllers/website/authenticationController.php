@@ -178,7 +178,7 @@ public function getPassword($token) {
  {
 
      $request->validate([
-         'email' => 'required|email|exists:users',
+         'email' => 'required|email|exists:password_resets,email',
          'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
          'password_confirmation' => 'min:8',
 

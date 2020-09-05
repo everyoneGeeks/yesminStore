@@ -29,7 +29,7 @@
                                         <input type="text" class="form-control" id="lname" name="last_name" value="{{$user->last_name}}">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="email">{{App::getLocale() == 'ar' ? "الايميل":"Email"}}</label>
+                                        <label for="email">{{App::getLocale() == 'ar' ? "البريد الإلكترونى":"Email"}}</label>
                                         <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" >
                                     </div>
                                     <div class="form-group col-md-6">
@@ -37,20 +37,26 @@
                                         <input type="tel" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
                                     </div>
                                     <div class="form-group col-12 date">
-                                        <label for="birth">{{App::getLocale() == 'ar' ? " عيد الميلاد":"Birthdate"}}</label>
+                                        <label for="birth">{{App::getLocale() == 'ar' ? " تاريخ الميلاد":"Birthdate"}}</label>
                                         <div>
+                                            @if($user->Birthdate !==null)
                                         <input type="number" class="form-control" id="birth" placeholder="Day" name="day"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->year}}">
                                         <input type="number" class="form-control" id="birth" placeholder="Month" name="month"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->month}}">
                                         <input type="number" class="form-control" id="birth" placeholder="Year" naem="year" value="{{ \Carbon\Carbon::parse($user->Birthdate)->day}}">
+                                            @else
+                                            <input type="number" class="form-control" id="birth" placeholder="Day" name="day"  >
+                                        <input type="number" class="form-control" id="birth" placeholder="Month" name="month"  >
+                                        <input type="number" class="form-control" id="birth" placeholder="Year" naem="year">                                        
+                                            @endif
                                         </div>
                                         
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="npassword"> {{App::getLocale() == 'ar' ? "  باسورد جديد":"New Password"}}</label>
+                                        <label for="npassword"> {{App::getLocale() == 'ar' ? "   كلمة المرور الجديدة ":"New Password"}}</label>
                                         <input type="password" class="form-control" id="npassword" name="password">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="cpassword">{{App::getLocale() == 'ar' ? "  تاكيد الباسورد":"Confirm Password"}}</label>
+                                        <label for="cpassword">{{App::getLocale() == 'ar' ? "   كلمة المرور الجديدة ":"Confirm Password"}}</label>
                                         <input type="password" class="form-control" id="cpassword" name="password_confirmation">
                                     </div>
                                 </div>

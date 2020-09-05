@@ -12,10 +12,10 @@
                         <div class="cart-summary shop-sidebar">
                             <div class="categories">
                                 <div class="content-bar">
-                                    <div class="head-bar">
+                                    <div  id="collapseOne" class="collapse show head-bar"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                                         <h3>{{App::getLocale() == 'ar' ? "الاقسام" : "Category"}}<i class="fa fa-angle-down"></i></h3>
                                     </div>
-                                    <div class="bar-content">
+                                    <div class="bar-content collapse show" id="collapseExample">
                                         <ul class="list-unstyled">
                                             <li class=""><a href="/products">{{App::getLocale() == 'ar' ? "عرض الكل " : "View all"}}</a><span>{{$AllProducts->count()}}</span></li>
                                             @foreach($subCategories as $subCategory)
@@ -28,10 +28,10 @@
                             </div><hr>
                             <div class="categories">
                                 <div class="content-bar">
-                                    <div class="head-bar">
+                                    <div id="collapseOne1" class="collapse show head-bar"  data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="true" aria-controls="collapseExample" >
                                         <h3>{{App::getLocale() == 'ar' ? "الاحداث / المناسبات" : "Event / Occasion"}}<i class="fa fa-angle-down"></i></h3>
                                     </div>
-                                    <div class="bar-content">
+                                    <div class="bar-content collapse show" id="collapseTwo">
                                         <ul class="list-unstyled">
                                    
 
@@ -43,12 +43,13 @@
                                     </div>
                                 </div>
                             </div><hr>
+
                             <div class="categories">
                                 <div class="content-bar">
-                                    <div class="head-bar">
+                                <div id="collapseOne2" class="collapse show head-bar"  data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="true" aria-controls="collapseThree" >
                                         <h3>{{App::getLocale() == 'ar' ? "الرسومات" : "Character"}}<i class="fa fa-angle-down"></i></h3>
                                     </div>
-                                    <div class="bar-content">
+                                    <div class="bar-content collapse show" id="collapseThree">
                                         <ul class="list-unstyled">
                                         @foreach($characters as $character)
                                             <li><a href="/products/characters/{{$character->id}}">  {{ App::getLocale() == 'ar' ? $character->name_ar : $character->name_en }}</a><span>{{$character->products_count}}</span></li>
@@ -57,13 +58,15 @@
                                         </ul>
                                     </div>
                                 </div>
+                                
                             </div><hr>
+
                             <div class="categories">
                                 <div class="content-bar">
-                                    <div class="head-bar">
+                                <div id="collapseOne3" class="collapse show head-bar"  data-toggle="collapse" href="#collapseFoure" role="button" aria-expanded="true" aria-controls="collapseExample" >
                                         <h3>{{App::getLocale() == 'ar' ? "نوع الحفل " : "Party Theme"}}<i class="fa fa-angle-down"></i></h3>
                                     </div>
-                                    <div class="bar-content">
+                                    <div class="bar-content collapse show" id="collapseFoure">
                                         <ul class="list-unstyled">
                                             
                                         @foreach($party as $Party_Theme)
@@ -78,7 +81,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="product-cards">
-                            <div class="row">
+                            <div class="row" style="width: 100%;display: flex;justify-content: center;">
                              
                             @if($products->isEmpty())
                             @component('components.emptyWebsite',['sectionِAr'=>'منتجات','sectionِEn'=>'products']) @endcomponent

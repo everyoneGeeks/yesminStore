@@ -1,11 +1,7 @@
 
     <div class="content-bar">
         <div class="head-bar">
-        <a  role="button" data-toggle="collapse" href="#Address-add"
-             aria-expanded="false" aria-controls="Address-add">
-        <h5>{{App::getLocale() == 'ar' ?  "اضافة عنوان جديد  " : "add new address"}}<i class="fa fa-angle-down"></i>
-        </h5>
-        </a>
+
         </div>
         <div class="collapse" id="Address-add">
         <div class="well">

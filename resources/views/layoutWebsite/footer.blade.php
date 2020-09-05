@@ -7,10 +7,10 @@
                             <img class="logo-footer" src="{{asset('img/Towipi-logo.svg')}}" alt="logo">
                             <h3>{{App::getLocale() == 'ar' ? "تواصل معنا | تابعنا " :"FOLLOW US | CONTACT US"}}</h3>
                             <ul class="navbar-nav social">
-                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->instagram}}" class="nav-link "><img src="{{asset('img/instagram.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->facebook}}" class="nav-link "><img src="{{asset('img/Facebook.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->youTube}}" class="nav-link "><img src="{{asset('img/Youtube.svg')}}" alt=""></a></li>
-                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->pinterest}}" class="nav-link "><img src="{{asset('img/Pinterest.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->instagram}}" class="nav-link "><img src="{{asset('img/instagram-footer.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->facebook}}" class="nav-link "><img src="{{asset('img/facebook-footer.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->youTube}}" class="nav-link "><img src="{{asset('img/youtube-footer.svg')}}" alt=""></a></li>
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->pinterest}}" class="nav-link "><img src="{{asset('img/pinterest-footer.svg')}}" alt=""></a></li>
                                     </ul>
                         </div>
                         <div class="col-md-6">
@@ -31,8 +31,10 @@
                                     <img src="{{asset('img/paypal.svg')}}" alt="">
                                 </div>
                                 <div>
-                                    <img src="{{asset('img/cash.svg')}}" alt="">
-                                    <img src="{{asset('img/vodafone.svg')}}" alt="">
+                                    <img src="{{asset('img/cash.svg')}}" alt="" style="
+    position: relative;
+    right: 57px;
+">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +45,7 @@
 
             <div class="bottom-footer">
                 <div class="container">
-                    <p class="copy">{{App::getLocale() == 'ar' ? "towipi.com جميع الحقوق 2020 &copy; حقوق النشر ":"Copyright &copy; 2020 towipi.com All Rights Reserved." }}</p>
+                    <p class="copy">Copyright © 2020 towipi.com All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

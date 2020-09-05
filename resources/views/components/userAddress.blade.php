@@ -1,6 +1,6 @@
 
 <div class="addresses">
-    <h4>{{App::getLocale() == 'ar' ? "العناوين" :"Addresses"}} <span>{{App::getLocale() == 'ar' ? "الافعال":"Actions"}}</span></h4>
+    <h4>{{App::getLocale() == 'ar' ? "عناوين الشحن" :"Addresses"}} <span></span></h4>
     @foreach($user->address as $address)
     <div class="content-bar">
         <div class="head-bar">
