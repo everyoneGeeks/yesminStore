@@ -63,7 +63,7 @@ public function registerSbmit(Request $request)
    $user->last_name=$request->last_name;
    $user->email=$request->email;
    $user->phone=$request->phone;
-   $user->password=\Hash::make($request->passord);
+   $user->password=\Hash::make($request->password);
    $user->is_accept=1;
    $user->image="img/user-image.svg";
    $user->is_active=1;

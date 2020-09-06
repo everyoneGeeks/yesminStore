@@ -21,7 +21,7 @@ class Orders extends Model
 
 
         public function orderProduct(){
-        return $this->belongsTomany('App\product','order_products','order_id','product_id');
+        return $this->belongsTomany('App\product','order_products','order_id','product_id')->withPivot('is_returning','is_complains');
     }
 
 

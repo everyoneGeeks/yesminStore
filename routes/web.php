@@ -387,5 +387,6 @@ Route::get('/product/rate/{id}','website\OrderController@productRate')->name('pr
 
 Route::get('/product/complaint/{order}/{product}','website\OrderController@productComplaint')->name('productComplaint');
 
+Route::get('/product/returning/{order}/{product}','website\OrderController@productReturning')->name('productReturning');
 
 });

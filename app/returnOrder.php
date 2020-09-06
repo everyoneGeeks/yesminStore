@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class party_theme_product extends Model
+class returnOrder extends Model
 {
-    protected $table="party_theme_product";
+    protected $table="return_orders";
     public $timestamps = false;
-
 }
