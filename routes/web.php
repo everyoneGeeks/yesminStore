@@ -432,8 +432,11 @@ Route::get('/product/rate/{id}','website\OrderController@productRate')->name('pr
 Route::get('/product/complaint/{order}/{product}','website\OrderController@productComplaint')->name('productComplaint');
 
 Route::get('/product/returning/{order}/{product}','website\OrderController@productReturning')->name('productReturning');
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
 
 
 

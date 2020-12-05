@@ -105,9 +105,13 @@
                         <textarea form="Address" class="form-control" id="note" rows="8" name="shipping_note" ></textarea>
                     </div>
                     <div class="col-12">
+<<<<<<< HEAD
                        <button  form="Address"  type="submit"  class="btn cancel">{{App::getLocale() == 'ar' ? "اضافة ":"save"}}</button>
 
                         <button  form="Address"  type="reset" value="Reset" class="btn cancel">{{App::getLocale() == 'ar' ? "إلغاء":"Cancel"}}</button>
+=======
+                        <button  type="reset"  value="Reset" class="btn cancel">{{App::getLocale() == 'ar' ? "إلغاء":"Cancel"}}</button>
+>>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
                     </div>
                 </div>
         

@@ -8,6 +8,7 @@ class returnOrder extends Model
 {
     protected $table="return_orders";
     public $timestamps = false;
+<<<<<<< HEAD
     
     
     public function product(){
@@ -25,4 +26,6 @@ public function order(){
     return $this->belongsTo('App\Orders','order_id');
 }
 
+=======
+>>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
 }

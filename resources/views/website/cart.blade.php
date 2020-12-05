@@ -8,7 +8,11 @@
 <div class="cart-details">
             <div class="container">
             @if($carts->isEmpty())
+<<<<<<< HEAD
                             @component('components.emptyWebsite',['sectionِAr'=>'  عربة التسوق ','sectionِEn'=>'cart','emptyCart'=>'cart']) @endcomponent
+=======
+                            @component('components.emptyWebsite',['sectionِAr'=>'  عربة التسوق ','sectionِEn'=>'cart']) @endcomponent
+>>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
                             @else 
 
                 <div class="row">
@@ -222,12 +226,20 @@
                                         </div>
 
                                     <div class="form-group">
+<<<<<<< HEAD
                                             <label for="lname">{{App::getLocale() == 'ar' ? " ملاحظات للبائع  ":" 
 Notes to the seller"}}</label>
                                             <textarea style="
     width: 180px;
     height: 134px;
 " type="text" form="addpersonalize" class="form-control age" id="note" name="personalize_note[]" >{{$cart->personalize_note}}</textarea>
+=======
+                                            <label for="lname">{{App::getLocale() == 'ar' ? " ملاحظات للبائع  ":"Child Age"}}</label>
+                                            <textarea style="
+    width: 180px;
+    height: 134px;
+" type="text" form="addpersonalize" class="form-control age" id="child_note" name="note" >{{$cart->note}}</textarea>
+>>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
                                         </div>
                                  
                                     </div>
