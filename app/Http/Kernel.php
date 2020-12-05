@@ -36,6 +36,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
            \App\Http\Middleware\SetLocale::class,
+
+
         ],
 
         'api' => [
@@ -64,6 +66,7 @@ class Kernel extends HttpKernel
         'role'=>       \App\Http\Middleware\role::class,
         'superAdmin'=>       \App\Http\Middleware\superAdmin::class,
         'User'=>       \App\Http\Middleware\User::class,
+        'close' => \App\Http\Middleware\close::class,
         "UserRedirectIfAuthenticated"=>\App\Http\Middleware\UserRedirectIfAuthenticated::class,
         
     ];

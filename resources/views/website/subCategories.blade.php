@@ -13,7 +13,21 @@
                             <div class="one-category">
                                 <a href="/products/{{$subCategory->id}}">
                                     <img src="{{asset($subCategory->image)}}" alt="">
-                                    <h4>{{App::getLocale() == 'ar' ? $subCategory->name_ar : $subCategory->name_en}}</h4>
+                                    @if(App::getLocale() == 'ar')
+                                    <h4 style="
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+">
+@else
+                                    <h4 style="
+    padding-top: 20px;
+    position: relative;
+    left: 53px;
+">
+
+@endif
+                                        {{App::getLocale() == 'ar' ? $subCategory->name_ar : $subCategory->name_en}}</h4>
                                 </a>
                             </div>
                         </div>

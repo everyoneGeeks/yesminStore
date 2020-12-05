@@ -21,12 +21,19 @@ class Orders extends Model
 
 
         public function orderProduct(){
-        return $this->belongsTomany('App\product','order_products','order_id','product_id');
+        return $this->belongsTomany('App\product','order_products','order_id','product_id')->withPivot('is_returning','is_complains','amount','price','discount');
+    }
+
+    public function products(){
+        return $this->hasMany('App\orderPrduct','order_id');
     }
 
 
+    public function address()
+    {
+        return $this->belongsTo('App\Address','address_id');
 
-
+    }
 
     
     public function shipping()

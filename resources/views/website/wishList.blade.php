@@ -34,7 +34,7 @@
                                         @if($wishList->discount > 0)
                                     <span class="aft-dis">EGP {{$wishList->price - $wishList->price*$wishList->discount/100 }}</span>
                                     <span class="bef-dis">EGP {{$wishList->price}}</span>
-                                    <span class="discount">{{$wishList->discount}}% </span>
+                                    <span class="discount">-{{$wishList->discount}}% </span>
                                     @else 
                            
                                     <span class="aft-dis">EGP {{$wishList->price}}</span>

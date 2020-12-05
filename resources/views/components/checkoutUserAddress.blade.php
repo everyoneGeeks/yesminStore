@@ -37,7 +37,7 @@
 
                     <div class="form-group col-md-6">
                     <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
-                    <select class="form-control countryAddress" id="country-{{$address->id}}" data-address="{{$address->id}}" name="country" data-countryaddress="{{$address->id}}">
+                    <select style="/* padding-right: 0px; *//* padding-bottom: 0px; */padding-top: 00px;" class="form-control countryAddress" id="country-{{$address->id}}" data-address="{{$address->id}}" name="country" data-countryaddress="{{$address->id}}">
                         
                     @foreach($Countries as $country)
                     @if($country->id == $address->country->id)
@@ -54,7 +54,7 @@
 
                   <div class="form-group col-md-6">
                     <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
-                    <select class="form-control cityAddress" id="city-{{$address->id}}" name="city" >
+                    <select  style="/* padding-right: 0px; *//* padding-bottom: 0px; */padding-top: 00px;" class="form-control cityAddress" id="city-{{$address->id}}" name="city" >
                    
                     @foreach($cities as $city) 
                     @if($city->id ==$address->city->id )

@@ -1,4 +1,5 @@
 @extends('layoutDashboard.app',['title'=>' الاعدادات'])
+
 @section('content')
 @component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 @component('components.panel',['subTitle'=>' ادارة الاعدادات'])
@@ -11,42 +12,95 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="InputNameAr">  عن التطبيق بالعربي</label>
-                    <input type="text" class="form-control" id="InputNameAr" value="{{$appSetting->about_us_ar}}" name="about_us_ar">
+            
+                    <textarea type="text" id="editor1" class="form-control ckeditor"   name="aboutus_ar">
+                    {{$appSetting->aboutus_ar}}
+                    </textarea>
                   </div>
                   <div class="form-group">
                     <label for="InputNameEn">  عن التطبيق بالانجليزي</label>
-                    <input type="text" class="form-control" id="InputNameEn" value=" {{$appSetting->about_us_en}}" name="about_us_en">
+                    <textarea type="text" id="editor2" class="form-control ckeditor"  name="aboutus">
+                    {{$appSetting->aboutus}}
+                    </textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="InputNameAr">  سياسة التطبيق بالعربي</label>
-                    <input type="text" class="form-control" id="InputNameAr" value="{{$appSetting->policy_term_ar}}" name="policy_term_ar">
+                    <textarea type="text"  id="editor3" class="form-control ckeditor "  name="terms_policy_ar">
+                    {{$appSetting->terms_policy_ar}}
+                    </textarea>
                   </div>
                   <div class="form-group">
                     <label for="InputNameEn">  سياسة التطبيق بالانجليزي </label>
-                    <input type="text" class="form-control" id="InputNameEn" value=" {{$appSetting->policy_term_en}}" name="policy_term_en">
+                    <textarea type="text"  id="editor4" class="form-control ckeditor "  name="terms_policy">
+                    {{$appSetting->terms_policy}}
+
+                    </textarea>
+
                   </div>
 
 
 
                   <div class="form-group">
-                    <label for="InputNameAr"> نقطة لطلب جديد</label>
-                    <input type="text" class="form-control" id="InputNameAr" value="{{$appSetting->point_for_new_order}}" name="point_for_new_order">
+                    <label for="InputNameAr">  سياسة  الاسترجاع بالعربي </label>
+                    <textarea type="text"  id="editor5" class="form-control ckeditor "  name="delivery_returns_ar">
+                    {{$appSetting->delivery_returns_ar}}
+                    </textarea>
                   </div>
                   <div class="form-group">
-                    <label for="InputNameEn">نقطة للتصنيف</label>
-                    <input type="text" class="form-control" id="InputNameEn" value=" {{$appSetting->point_for_rating}}" name="point_for_rating">
+                    <label for="InputNameEn">  سياسة الاسترجاع بالانجليزي </label>
+                    <textarea type="text"  id="editor6" class="form-control ckeditor "  name="delivery_returns">
+                    {{$appSetting->delivery_returns}}
+
+                    </textarea>
+
                   </div>
 
 
+
+
+
+
                   <div class="form-group">
-                    <label for="InputNameAr">  الحد الأدنى لقبول النظام</label>
-                    <input type="text" class="form-control" id="InputNameAr" value="{{$appSetting->minimum_to_accept_order}}" name="minimum_to_accept_order">
+                    <label for="InputNameAr">    معلومات عن التوصيل بالانجليزي </label>
+                    <textarea type="text"  id="editor7" class="form-control ckeditor "  name="delivery_info">
+                    {{$appSetting->delivery_info}}
+                    </textarea>
                   </div>
                   <div class="form-group">
-                    <label for="InputNameEn">  رسوم</label>
-                    <input type="text" class="form-control" id="InputNameEn" value=" {{$appSetting->fees}}" name="fees">
+                    <label for="InputNameEn">   معلومات عن التوصيل بالعربي   </label>
+                    <textarea type="text"  id="editor8" class="form-control ckeditor "  name="delivery_info_ar">
+                    {{$appSetting->delivery_info_ar}}
+
+                    </textarea>
+
                   </div>
+
+
+
+
+
+
+
+
+
+                  <div class="form-group">
+                    <label for="InputNameAr">  تواصل معنا  بالعربي</label>
+                    <textarea type="text"  id="editor9" class="form-control ckeditor"  name="contactus_ar">
+                    {{$appSetting->contactus_ar}}
+                    </textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="InputNameEn">  تواصل معنا بالانجليزي  </label>
+                    <textarea type="text"  id="editor10" class="form-control ckeditor"  name="contactus">
+                    {{$appSetting->contactus}}
+
+                    </textarea>
+
+                  </div>
+
+
+
 
                 </div>
                 <!-- /.card-body -->
@@ -67,100 +121,183 @@
 
 
 
+ @endsection
 
-@component('components.panel',['subTitle'=>' ادارة  الهاتف'])
+ @section('javascript')
+ <script src="{{asset('/plugins/ckeditor/ckeditor.js')}}"></script>
 
-<table id="example2" class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th> الهاتف</th>
-            <th>الحالة</th>
-            <th>الافعال</th>
-            <th>حذف</th>
-        </tr>
-        </thead>
-        <tbody>  
-@foreach($appPhones as $appPhone)
-        <tr>
-
-<th> {{$appPhone->phone}}</th>
-
-
-<th>{{Carbon\Carbon::parse($appPhone->created_at)->diffForHumans()}}</th>
-<th><a href="/phone/edit/{{$appPhone->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/phone/delete/{{$appPhone->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
-        </tr>
-
-        @endforeach  
-
-        </tbody>
-        <!--<tfoot>-->
-        <!--<tr>-->
-        <!--    <th> الهاتف</th>-->
-        <!--    <th>الحالة</th>-->
-        <!--    <th>الافعال</th>-->
-        <!--    <th>حذف</th>-->
-        <!--</tr>-->
-        <!--</tfoot>-->
-        </table>
+ <script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor1'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
 
 
 
-@slot('footer')
-<div class="col-lg-4">
-
-<a  href="/phone/add/" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  هاتف  </a>
-</div>
-@endslot
-
-@endcomponent
-
-
-
-@component('components.panel',['subTitle'=>' ادارة  الايميل '])
-
-<table id="example2" class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th> الايميل </th>
-            <th>الحالة</th>
-            <th>الافعال</th>
-            <th>حذف</th>
-        </tr>
-        </thead>
-        <tbody>  
-@foreach($appEmails as $appEmail)
-        <tr>
-
-<th> {{$appEmail->email}}</th>
-
-
-<th>{{Carbon\Carbon::parse($appEmail->created_at)->format('Y-m-d H:m a')}}</th>
-<th><a href="/email/edit/{{$appEmail->id}}" class="btn btn-block btn-info btn-flat"> تعديل </a></th>
-<th><a href="/email/delete/{{$appEmail->id}}" class="btn btn-block btn-danger btn-flat"> حذف </a></th>
-        </tr>
-
-        @endforeach  
-
-        </tbody>
-        <!--<tfoot>-->
-        <!--<tr>-->
-        <!--    <th> الايميل </th>-->
-        <!--    <th>الحالة</th>-->
-        <!--    <th>الافعال</th>-->
-        <!--    <th>حذف</th>-->
-        <!--</tr>-->
-        <!--</tfoot>-->
-        </table>
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor2'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
 
 
 
-@slot('footer')
-<div class="col-lg-4">
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor3'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
 
-<a  href="/email/add/" class="btn btn-block btn-success btn-lg"> <i class="fa fa-plus" aria-hidden="true"></i> اضافة  ايميل   </a>
-</div>
-@endslot
 
-@endcomponent
+
+
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor4'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
+
+
+
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor5'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
+
+
+
+
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor6'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+
+
+
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor7'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+
+
+
+
+      $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor8'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
+      
+      
+            $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor9'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
+      
+      
+      
+      
+      
+      
+      
+            $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    ClassicEditor
+      .create(document.querySelector('#editor10'))
+      .then(function (editor) {
+        // The editor instance
+      })
+      .catch(function (error) {
+        console.error(error)
+      });
+       
+      }) ;
+      
+
+    </script>
  @endsection

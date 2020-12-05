@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class appSetting extends Model
 {
-    protected $table="app_setting";
+    protected $table="website_settings";
     public $timestamps = false;
 }

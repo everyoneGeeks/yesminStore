@@ -133,7 +133,27 @@ Route::group(['middleware' => 'superAdmin'], function()
 */
 Route::get('/orders','ordersController@list')->name('orders');
 Route::get('/order/info/{id}','ordersController@info')->name('order.info')->where('id', '[0-9]+');
-Route::get('/order/status/{id}','usersControllers@status')->name('user.status')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/order/accept/{id}','ordersController@accept')->name('order.accept')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/order/done/{id}','ordersController@cancel')->name('order.done')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/order/cancel/{id}','ordersController@cancel')->name('order.cancel')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/order/delivered/{id}','ordersController@delivered')->name('order.delivered')->where('id', '[0-9]+')->middleware('role:users,edit');
+
+Route::get('/orders/done','ordersController@done')->name('orders.done')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/orders/cancel','ordersController@cancelOrders')->name('orders.cancel')->where('id', '[0-9]+')->middleware('role:users,edit');
+Route::get('/orders/accept','ordersController@acceptOrders')->name('orders.accept')->where('id', '[0-9]+')->middleware('role:users,edit');
+
+Route::get('/orders/ComplainOrders','ordersController@ComplainOrders')->name('orders.ComplainOrders')->where('id', '[0-9]+')->middleware('role:users,edit');
+
+Route::get('/orders/returnOrder','ordersController@returnOrder')->name('orders.returnOrder')->where('id', '[0-9]+')->middleware('role:users,edit');
+
+/*
+|--------------------------------------------------------------------------
+| returnOrder Section
+|--------------------------------------------------------------------------
+| this will handle all returnOrder part
+*/
+Route::get("/returnOrder/status/{id}",'ordersController@returnOrderStatus')->name('returnOrderStatus');
+Route::get("/returnOrder/info/{id}",'ordersController@returnOrderinfo')->name('returnOrderInfo');
 #----------------------------------------------------------------------------------
 
 
@@ -170,7 +190,16 @@ Route::get('/product/delete/{id}','productsController@deleteProduct')->name('pro
 Route::get('/appSetting','appSettingController@formEdit')->name('appSetting');//->middleware('role:appSetting,edit');
 Route::post('/appSetting/edit','appSettingController@submitEdit')->name('appSetting.edit');//->middleware('role:appSetting,edit');
 
- Route::get('/phone/edit/{id}','appSettingController@formEditPhone')->name('phone.edit');//->middleware('role:appSetting,edit');
+Route::get('/appSetting/links','appSettingController@formEditLinks')->name('appSetting.links');//->middleware('role:appSetting,edit');
+Route::post('/appSetting/links','appSettingController@submitEditLinks')->name('appSetting.links.edit');//->middleware('role:appSetting,edit');
+
+Route::get('/appSetting/close','appSettingController@formEditClose')->name('appSetting.close');//->middleware('role:appSetting,edit');
+Route::post('/appSetting/close','appSettingController@submitEditClose')->name('appSetting.close.edit');//->middleware('role:appSetting,edit');
+
+
+
+
+Route::get('/phone/edit/{id}','appSettingController@formEditPhone')->name('phone.edit');//->middleware('role:appSetting,edit');
 Route::post('/phone/edit/{id}','appSettingController@submitEditPhone')->name('phone.edit.submit')->middleware('role:appSetting,edit');
 Route::get('/phone/delete/{id}','appSettingController@deletePhone')->name('phone.delete');//->middleware('role:appSetting,edit');
 
@@ -230,7 +259,17 @@ Route::get('/costomer/add','costomerPhotoController@formAdd')->name('costomer.ad
 Route::post('/costomer/add','costomerPhotoController@submitAdd')->name('costomer.add.submit')->middleware('role:ad,add');
 
 
-
+/*
+|--------------------------------------------------------------------------
+| shipping section
+|--------------------------------------------------------------------------
+| this will handle all shipping part
+*/
+Route::get('/shipping','shippingController@list')->name('shipping');
+Route::get('/shipping/edit/{id}','shippingController@formEdit')->name('shipping.edit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::post('/shipping/edit/{id}','shippingController@submitEdit')->name('shipping.edit.submit')->where('id', '[0-9]+')->middleware('role:ad,edit');
+Route::get('/shipping/add','shippingController@formAdd')->name('shipping.add')->middleware('role:ad,add');
+Route::post('/shipping/add','shippingController@submitAdd')->name('shipping.add.submit')->middleware('role:ad,add');
 
 /*
 |--------------------------------------------------------------------------
@@ -245,6 +284,8 @@ Route::post('/costomersRate/edit/{id}','costomerRateController@submitEdit')->nam
 Route::get('/costomersRate/add','costomerRateController@formAdd')->name('costomersRate.add')->middleware('role:ad,add');
 Route::post('/costomersRate/add','costomerRateController@submitAdd')->name('costomersRate.add.submit')->middleware('role:ad,add');
 
+Route::get("/complain/status/{id}",'website\OrderController@ComplaintStatus')->name('complainStatus');
+Route::get("/complain/info/{id}",'website\OrderController@ComplaintInfo')->name('complainInfo');
 
 
 #----------------------------------------------------------------------------------
@@ -286,7 +327,11 @@ Auth::routes(['register' => false, 'verify' => false]);
 | this will handle all  website
 */
 
+Route::get('close/vacaation','appSettingController@vacaation');
+Route::get('close/main','appSettingController@main');
+Route::get('/','website\homePageController@index')->name('homePage');
 
+Route::group(['middleware' => ['close']], function() {
 Route::get('/404','website\homePageController@not_found')->name('error');
 
 //change lang
@@ -302,7 +347,6 @@ Route::get('/lang/{locale}', function ($locale) {
     }
 });
 //Home page 
-Route::get('/','website\homePageController@index')->name('homePage');
 
 Route::get('/category/{id}','website\categoriesController@subCategories')->name('subcategorys');
 Route::get('/products/{id}','website\productConroller@products')->name('product.subcategories');
@@ -387,5 +431,11 @@ Route::get('/product/rate/{id}','website\OrderController@productRate')->name('pr
 
 Route::get('/product/complaint/{order}/{product}','website\OrderController@productComplaint')->name('productComplaint');
 
+Route::get('/product/returning/{order}/{product}','website\OrderController@productReturning')->name('productReturning');
 
+
+
+
+
+});
 });

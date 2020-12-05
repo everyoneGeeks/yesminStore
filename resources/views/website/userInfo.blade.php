@@ -40,13 +40,13 @@
                                         <label for="birth">{{App::getLocale() == 'ar' ? " تاريخ الميلاد":"Birthdate"}}</label>
                                         <div>
                                             @if($user->Birthdate !==null)
-                                        <input type="number" class="form-control" id="birth" placeholder="Day" name="day"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->year}}">
-                                        <input type="number" class="form-control" id="birth" placeholder="Month" name="month"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->month}}">
-                                        <input type="number" class="form-control" id="birth" placeholder="Year" naem="year" value="{{ \Carbon\Carbon::parse($user->Birthdate)->day}}">
+                                        <input type="number" class="form-control" id="birth" min="0" max="31" placeholder="Day" name="day"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->year}}">
+                                        <input type="number" class="form-control" id="birth" min="0" max="12" placeholder="Month" name="month"  value="{{ \Carbon\Carbon::parse($user->Birthdate)->month}}">
+                                        <input type="number" class="form-control" id="birth" min="1800" max="2020" placeholder="Year" naem="year" value="{{ \Carbon\Carbon::parse($user->Birthdate)->day}}">
                                             @else
-                                            <input type="number" class="form-control" id="birth" placeholder="Day" name="day"  >
-                                        <input type="number" class="form-control" id="birth" placeholder="Month" name="month"  >
-                                        <input type="number" class="form-control" id="birth" placeholder="Year" naem="year">                                        
+                                            <input type="number" class="form-control" id="birth" min="0" max="31" placeholder="Day" name="day"  >
+                                        <input type="number" class="form-control" id="birth" min="0" max="12" placeholder="Month" name="month"  >
+                                        <input type="number" class="form-control" id="birth" min="1800" max="2020" placeholder="Year" naem="year">                                        
                                             @endif
                                         </div>
                                         

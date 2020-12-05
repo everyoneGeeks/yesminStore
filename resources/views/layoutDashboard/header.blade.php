@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{asset('dist/css/bootstrap-rtl.min.css')}}">
   <!-- template rtl version -->
   <link rel="stylesheet" href="{{asset('dist/css/custom-style.css')}}">
+  <!-- template rtl version -->
+  <link rel="stylesheet" href="{{asset('css/admin-panel.css')}}">
     @yield('style')  
     <style>
     body{

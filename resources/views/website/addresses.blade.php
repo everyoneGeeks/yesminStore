@@ -11,13 +11,15 @@
                 @component('components.userInfoDashboardList',['user'=>$user]) @endcomponent
                 <div class="col-md-8">
 <h3 class="add-header"><img src="{{asset('img/Location.svg')}}" alt="">{{App::getLocale() == 'ar' ? "عناوين الشحن":"Shipping Addresses"}}
-<span style="
-    display: inline-block;
-    float: left;
+<span class="address_span" style="
+  
 ">
-<button  class ="btn btn-defualt " role="button" data-toggle="collapse" href="#Address-add"
+<button  style="
+    background-color: pink;
+    color: #fff;
+" class ="btn btn-defualt " role="button" data-toggle="collapse" href="#Address-add"
              aria-expanded="false" aria-controls="Address-add">
-        <h5>{{App::getLocale() == 'ar' ?  "اضافة عنوان   " : "add  address"}}<i class="fa fa-angle-down"></i>
+        <h5 class="m-0">{{App::getLocale() == 'ar' ?  "اضافة عنوان   " : "add  address"}}<i class="fa fa-angle-down"></i>
         </h5>
 </buton>   
 </span>

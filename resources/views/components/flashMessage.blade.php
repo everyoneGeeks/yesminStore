@@ -22,22 +22,18 @@ toastr.success("{{Session::get('success')['en']}}");
 @if(Session::get('error'))
 
 @if(App::getLocale()=='ar')
+<div class="alert alert-danger" role="alert">
+{{Session::get('error')['ar']}}
+</div>
 
-@section('javascript')
-<script>
 
-toastr.error("{{Session::get('error')['ar']}}");
-
-</script>
-@endsection
 
 @else 
+<div class="alert alert-danger" role="alert">
+ {{Session::get('error')['en']}}
+</div>
 
-@section('javascript')
-<script>
-toastr.error("{{Session::get('error')['en']}}");
-</script>
-@endsection
+
 
 @endif
 

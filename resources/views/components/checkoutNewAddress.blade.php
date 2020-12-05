@@ -34,7 +34,7 @@
 
                     <div class="form-group col-md-6">
                     <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
-                    <select  form="Address" class="form-control countryAddress" data-address="0" id="country" name="country">
+                    <select  style="/* padding-right: 0px; *//* padding-bottom: 0px; */padding-top: 00px;" form="Address" class="form-control countryAddress" data-address="0" id="country" name="country">
                         
                     @foreach($Countries as $country)
 
@@ -52,7 +52,7 @@
 
                   <div class="form-group col-md-6">
                     <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
-                    <select  form="Address" class="form-control cityAddress" id="city-0" name="city">
+                    <select  style="/* padding-right: 0px; *//* padding-bottom: 0px; */padding-top: 00px;" form="Address" class="form-control cityAddress" id="city-0" name="city">
                    
                     @foreach($cities as $city) 
 
@@ -105,7 +105,9 @@
                         <textarea form="Address" class="form-control" id="note" rows="8" name="shipping_note" ></textarea>
                     </div>
                     <div class="col-12">
-                        <button  type="reset" class="btn cancel">{{App::getLocale() == 'ar' ? "إلغاء":"Cancel"}}</button>
+                       <button  form="Address"  type="submit"  class="btn cancel">{{App::getLocale() == 'ar' ? "اضافة ":"save"}}</button>
+
+                        <button  form="Address"  type="reset" value="Reset" class="btn cancel">{{App::getLocale() == 'ar' ? "إلغاء":"Cancel"}}</button>
                     </div>
                 </div>
         

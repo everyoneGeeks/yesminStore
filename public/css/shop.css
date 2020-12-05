@@ -13,7 +13,7 @@
 }
 .categories .content-bar .head-bar h3{
     color: #f495be;
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
     transition: all .3s ease-in-out;
 }
@@ -37,11 +37,14 @@
 }
 .categories .content-bar .bar-content ul li a{
     color: #82D0DC;
-    transition: all .3s ease-in-out;
+     transition: all .3s ease-in-out;
+     font-size: 15px;
 }
 .categories .content-bar .bar-content ul li a:hover{
     color: #f495be;
     text-decoration: none;
+      font-weight:bold;
+      font-size: 17px;
 }
 .price-range{
     margin-top: 1.5rem;

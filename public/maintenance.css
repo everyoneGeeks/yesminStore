@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background-color: rgb(254 149 196 / 36%);
+}
+.maintenance {
+  margin: auto;
+  width: 600px;
+  max-width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.maintenance img {
+  width: 100%;
+  max-width: 100%;
+}
+.maintenance p {
+  text-align: center;
+  font-size: 30px;
+  font-family: Tahoma, Arial;
+  color: #fe95c4;
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 1.6;
+}

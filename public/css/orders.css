@@ -84,7 +84,7 @@
 .orders .order-products .product .details .review .fa-star{
     color: #fb8abc;
 }
-.orders .order-products .product .details .review p{
+.orders .order-products .product .details .review textarea{
     border: 2px solid #97e3f0;
     border-radius: .5rem;
     padding: .5rem;

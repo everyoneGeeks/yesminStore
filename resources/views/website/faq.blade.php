@@ -8,7 +8,7 @@
                     <div class="faq-content">
                         @foreach($faqs as $faq)
                         <h3>{{$faq->questions}}</h3>
-                        <p>{{$faq->answer}}</p>
+                        <p>{!!$faq->answer!!}</p>
                         @endforeach
 
                     </div>

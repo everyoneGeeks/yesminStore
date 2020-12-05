@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use App\websiteSetting;
 use Closure;
 
-class User
+class close
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,13 @@ class User
      */
     public function handle($request, Closure $next)
     {
-        if(\Auth::guard('users')->check()){
-        return $next($request);
-        }else{
-            return redirect()->back()->with('AuthLogin','error');
-        }
+       if(\App\websiteSetting::find(1)->Close =='no'){
+           return redirect()->to(route('homePage'));
+       }else{
+               return $next($request);
+       }
+        
+
+        
     }
 }

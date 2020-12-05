@@ -3,7 +3,6 @@
                             <div class="total-summary">
                                 <p>{{App::getLocale() == 'ar' ? "سعر الطلب  ": "subtotal"}}: <span>EGP{{$subtotal}}</span></p>
                                 <p>{{App::getLocale() == 'ar' ? " الشحن  ": "shipping"}}: <span id='Shipping'>EGP {{$shipping}}</span></p>
-                                <p>{{App::getLocale() == 'ar' ? " الضرائب": "taxes"}}: <span>EGP {{$taxes}}</span></p>
                                 <p>{{App::getLocale() == 'ar' ? " الخصم": "discount"}}: <span>EGP {{$discount}}</span></p><hr>
                                 <p class="total">{{App::getLocale() == 'ar' ? " السعر الكلي ": "total"}}<span id='TotalPrice' data-total="{{$total}}">EGP {{$total}}</span></p>
                                 <!-- <a href="checkout.html" class="btn btn-block btn-summary">Proceed to checkout</a> -->
@@ -18,7 +17,6 @@
                            <form action="/add/coupon/" method="get">
                                     <input type="text" id="coupon" name="coupon">
                                     <button type="submit"  class="btn btn-block btn-summary">{{App::getLocale() == 'ar' ? " اضافة كود الخصم  ": "Apply Coupon"}}</button>
-                                    <p>{{App::getLocale() == 'ar' ? "يمكنك اضافة كود خصم واحد فقط":"You can apply only one coupon" }}</p>
                                 </div>
                             </div>
                         @endif

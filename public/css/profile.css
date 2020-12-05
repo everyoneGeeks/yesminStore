@@ -96,3 +96,9 @@
 .profile-info form .btn:hover{
     background-color: #f7599b;
 }
+
+.profile-info form .date input {
+    width: 20.333%;
+    margin-right: 0.5rem;
+    display: inline-block;
+}

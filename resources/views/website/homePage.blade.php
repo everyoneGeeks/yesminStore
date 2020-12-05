@@ -2,7 +2,7 @@
 @section('content')
 
                 <!-- Slider Section -->
-                <div class="slider top-slider">
+                <div class="slider top-slider" style="height:auto;">
                     <div class="container" style="height: inherit;">
                         <div id="Adscarousel" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -36,43 +36,45 @@
                 </div>
             </header>
 <!-- services Section -->
-<div class="services">
+<div class="services" style="
+    margin-bottom: 10px;
+">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="service">
-                                <img src="{{asset('img/customer-services.svg')}}" alt="">
-                                <h5>{{App::getLocale() == 'ar' ?   "خدمة عملاء
+                            <div class="service" style="height:92%">
+                                <img style="margin-bottom: 15px;margin-top: 15px" src="{{asset('img/customer-services.svg')}}" alt="">
+                                <h5 style="{{\App::getLocale() == 'ar' ? " " : 'font-weight: bold;font-size: 24px;margin-bottom: 19px;text-transform: capitalize;font-family: inherit;' }}">{{App::getLocale() == 'ar' ?   "خدمة عملاء
 ": "customer service"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "يسعدنا تقديم المساعدة والدعم
+                                <p style="font-size: 18px;font-weight: bold;color: #fb8abc;padding-top: 0px;padding-bottom: 28px;">{{App::getLocale() == 'ar' ? "يسعدنا تقديم المساعدة والدعم
   لك حتى تحصل على طلبك": "You will get support and help to get your order"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="service">
-                                <img src="{{asset('img/VIDEO-TUTORIAL.svg')}}" alt="">
-                                <h5>{{App::getLocale() == 'ar' ?   "  فديوهات شرح
+                            <div class="service" style="height:92%">
+                                <img  style="margin-bottom: 15px;margin-top: 15px" src="{{asset('img/VIDEO-TUTORIAL.svg')}}" alt="">
+                                <h5 style="{{\App::getLocale() == 'ar' ? " " : 'font-weight: bold;font-size: 24px;margin-bottom: 19px;text-transform: capitalize;font-family: inherit;' }}"> {{App::getLocale() == 'ar' ?   "  فديوهات شرح
 ": "video tutorial"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نقدم لك فديوهات شرح طريقة إستخدام منتجاتنا
+                                <p style="font-size: 18px;font-weight: bold;color: #fb8abc;padding-top: 0px;padding-bottom: 28px;">{{App::getLocale() == 'ar' ? "نقدم لك فديوهات شرح طريقة إستخدام منتجاتنا
 ": "We explain to you how to use our products"}}</p>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="service">
-                                <img src="{{asset('img/DELIVER-ON-TIME.svg')}}" alt="" class="deliver">
-                                <h5>{{App::getLocale() == 'ar' ?   "الشحن فى الموعد
+                            <div class="service" style="height:92%">
+                                <img  style="margin-bottom: 15px;margin-top: 15px" src="{{asset('img/DELIVER-ON-TIME.svg')}}" alt="" class="deliver">
+                                <h5 style="{{\App::getLocale() == 'ar' ? " " : 'font-weight: bold;font-size: 24px;margin-bottom: 19px;text-transform: capitalize;font-family: inherit;' }}">{{App::getLocale() == 'ar' ?   "الشحن فى الموعد
 ": "deliver on time"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نقوم بتوصيل طلبك فى الموعد المحدد 
+                                <p style="font-size: 18px;font-weight: bold;color: #fb8abc;padding-top: 0px;padding-bottom: 28px;">{{App::getLocale() == 'ar' ? "نقوم بتوصيل طلبك فى الموعد المحدد 
 ": "We deliver your order on time"}}</p>
 
                         
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="service">
-                                <img src="{{asset('img/MANY-PAYMENT-OPTIONS.svg')}}" alt="">
-                                <h5 >{{App::getLocale() == 'ar' ?   "طرق دفع متعددة": "many payment options"}}</h5>
-                                <p>{{App::getLocale() == 'ar' ? "نوفر لك العديد من وسائل
+                            <div class="service" style="height:92%">
+                                <img style="margin-bottom: 15px;margin-top: 15px" src="{{asset('img/MANY-PAYMENT-OPTIONS.svg')}}" alt="">
+                                <h5 style="{{\App::getLocale() == 'ar' ? " " : 'font-weight: bold;font-size: 24px;margin-bottom: 19px;text-transform: capitalize;font-family: inherit;' }}" >{{App::getLocale() == 'ar' ?   "طرق دفع متعددة": "many payment options"}}</h5>
+                                <p style="font-size: 18px;font-weight: bold;color: #fb8abc;padding-top: 0px;padding-bottom: 28px;">{{App::getLocale() == 'ar' ? "نوفر لك العديد من وسائل
  الدفع المحلية و العالمية": "We offer many local and international payment methods"}}</p>
                             </div>
                         </div>
@@ -150,7 +152,7 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" >
-                    <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً (زينة الحفلات  ) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
+                    <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً   ( زينة الحفلات  ) ": "TOP SELLING ITEMS ( PARTY SUPPLIES )" }}</h4>
                     <div class="top-selling">   
                     @foreach($topSellingProductParty as $product)
                     @component('components.product',['product'=>$product]) @endcomponent
@@ -163,7 +165,7 @@
             <!-- Party Supplies (Top selling items )-->
             <div class="product-cards">
                 <div class="container" >
-                <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً (أدوات الكيك ) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
+                <h4>{{App::getLocale() == 'ar' ? "الأكثر مبيعاً ( أدوات الكيك ) ": "TOP SELLING ITEMS ( CAKE TOOLS )" }}</h4>
 
                     <div class="top-selling">   
                     @foreach($topSellingProductCake as $product)

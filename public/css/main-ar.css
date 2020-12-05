@@ -1,4 +1,8 @@
 /* Header ar-styles */
+body {
+
+font-family: 'Almarai', sans-serif;
+}
 .navbar.top-nav .nav-link {
     margin-left: 20px;
     margin-right: 0;
@@ -8,7 +12,7 @@
     right: 0;
 }
 .navbar.top-nav .navbar-nav.right .dropdown-menu .dropdown-item .svg-inline--fa{
-    margin-left: 15px;
+    margin-left: 10px;
     margin-right: 0;
 }
 .navbar.top-nav .navbar-nav.right .dropdown.lang ul{
@@ -31,10 +35,18 @@ header .logo .category.cake-btn {
     margin-left: 10px;
     margin-right: 0;
 }
+footer .main-footer h3 {
+    text-align: center;
+    font-size: 25.24px;
+    margin-bottom: 2px;
+}
 header .logo .category.cake-btn img{
     left: 0;
 }
-
+header .logo .category span {
+    font-size: 25px;
+    margin: 0 !important;
+}
 header .input-group .form-control {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
@@ -47,6 +59,15 @@ header .input-group .input-group-text {
     border-top-left-radius: 1.5rem !important;
     border-bottom-left-radius: 1.5rem !important;
     margin-right: -2px;
+}
+
+.services .row>div:first-child {
+    padding-right: 15px;
+    padding-left: 4px;
+}
+.services .row>div:last-child {
+    padding-left: 15px;
+    padding-right: 4px;
 }
 
 /* product cards */
@@ -266,5 +287,56 @@ footer .main-footer .links{
     align-items: flex-start;
 }
 footer .main-footer .payment-options img{
+        width: 130px;
+    height: 55px;
     margin: 0 0 .5rem 1rem;
+}
+
+footer .main-footer h3{
+    font-family: Almarai, sans-serif !important;
+}
+footer .main-footer .links .nav-link {
+    color: #fff;
+    font-weight: bold;
+    font-size: 25px;
+    letter-spacing: 1px;
+    padding: 0;
+    transition: all .2s ease-in-out;
+        font-family: Almarai, sans-serif !important;
+
+}
+.row-rever{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.home-cat{
+        margin: 0 25px !important;
+
+}
+a.nav-link.category.touch {
+        margin: 0 12px;
+}
+footer .navbar-nav links a{
+        font-family: Almarai, sans-serif !important;
+
+}
+
+footer .main-footer .navbar-nav.social .nav-item {
+    margin: 0 8px;
+}
+
+header .navbar.bottom-nav .navbar-nav li {
+    margin: 0 11px !important;
+}
+.address_span{
+    float:left;
+    display:inline-block;
+}
+
+.order_img {
+  width: 18px;
+    margin-left: 15px !important;
+    height: 18px;
+    margin-right: 0;
 }

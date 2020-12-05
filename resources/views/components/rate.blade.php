@@ -16,7 +16,7 @@
 @if($rate == 0)
 @for($i= 1; $i <= 5 ; $i++)
 
-    <i class="far fa-star"></i>
+    <i style="color:#adb5bd;" class="far fa-star"></i>
 @endfor
 @endif
 

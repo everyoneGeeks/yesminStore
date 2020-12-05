@@ -13,6 +13,8 @@
     font-size: 20px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
+        text-transform: capitalize;
+
 }
 .login-form .form-control{
     font-size: 18px;
@@ -26,10 +28,11 @@
 .login-form .form-check-label{
     color: #f86eac;
 }
-.login-form .forget{
+.login-form .forget {
     float: right;
     transition: all .2s ease-in-out;
     color: #f86eac;
+    float: left;
 }
 .login-form .forget:hover{
     color: #f495be;

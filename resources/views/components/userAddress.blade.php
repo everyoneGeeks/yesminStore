@@ -58,7 +58,7 @@
 
 
                     <div class="form-group col-md-6">
-                    <label for="country">  {{App::getLocale() == 'ar' ? "الدولة ":"Country"}} </label>
+                    <label for="country">  {{App::getLocale() == 'ar' ? "البلد ":"Country"}} </label>
                     <select class="form-control countryAddress " form="addAddress-{{$address->id}}" data-address="{{$address->id}}" id="country" name="country">
                     
                     @foreach($Countries as $country)
@@ -75,7 +75,7 @@
                  
 
                   <div class="form-group col-md-6">
-                    <label for="city"> {{App::getLocale() == 'ar' ? "المدينة ":"City"}} </label>
+                    <label for="city"> {{App::getLocale() == 'ar' ? "المحافظة ":"City"}} </label>
                     <select class="form-control cityAddress" form="addAddress-{{$address->id}}" id="city-{{$address->id}}"  name="city">
                     @foreach($cities as $city) 
                     @if($city->id ==$address->city->id )
@@ -90,11 +90,11 @@
                   </div>
 
                     <div class="form-group col-md-6">
-                        <label for="street">{{App::getLocale() == 'ar' ? "اسم الشارع":"Street Name/No"}}</label>
+                        <label for="street">{{App::getLocale() == 'ar' ? " عنوان الشارع":"Street Name/No"}}</label>
                         <input type="text" form="addAddress-{{$address->id}}" class="form-control" id="street" name="street_name" value="{{$address->street_name}}">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="building">{{App::getLocale() == 'ar' ? "اسم المبني":"Building Name/No"}}</label>
+                        <label for="building">{{App::getLocale() == 'ar' ? " رقم/اسم العمارة ":"Building Name/No"}}</label>
                         <input type="text" form="addAddress-{{$address->id}}" class="form-control" id="building" name="building_name" value="{{$address->building_name}}">
                     </div>
                     <div class="form-group col-md-6">
@@ -106,11 +106,13 @@
                         <input type="number" form="addAddress-{{$address->id}}" class="form-control" id="apartment" name="apartment" value="{{$address->apartment}}">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="landmark">{{App::getLocale() == 'ar' ? " أقرب معلم":"Nearest Landmark"}}</label>
+                        <label for="landmark">{{App::getLocale() == 'ar' ? "  أقرب علامة مميزة 
+":"Nearest Landmark"}}</label>
                         <input type="text" form="addAddress-{{$address->id}}" class="form-control" id="landmark" name="nearest" value="{{$address->nearest}}">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="location">{{App::getLocale() == 'ar' ? " اسم الموقع ":"Location Name "}}</label>
+                        <label for="location">{{App::getLocale() == 'ar' ? "  نوع الموقع 
+ ":"Location Name "}}</label>
                         <input type="text" form="addAddress-{{$address->id}}" class="form-control" id="location" name="location" value="{{$address->location}}">
                     </div>
                     <div class="form-group col-md-6">
@@ -118,15 +120,17 @@
                         <input type="tel" form="addAddress-{{$address->id}}" class="form-control" id="phone" name="phone_number" value="{{$address->phone_number}}">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="add-phone">{{App::getLocale() == 'ar' ? "رقم الهاتف اضافي (اختياري) ":"Additional Phone Number (Optional)"}}</label>
+                        <label for="add-phone">{{App::getLocale() == 'ar' ? "  رقم الهاتف المحمول
+ ":"Additional Phone Number (Optional)"}}</label>
                         <input type="tel" form="addAddress-{{$address->id}}" class="form-control" id="add-phone" name="additional_phone_number" value="{{$address->additional_phone_number}}">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="landline">{{App::getLocale() == 'ar' ? " رقم ارضي ":"LandLine"}}</label>
+                        <label for="landline">{{App::getLocale() == 'ar' ? "  رقم هاتف أخر ( إختيارى )
+ ":"LandLine"}}</label>
                         <input type="text" form="addAddress-{{$address->id}}" class="form-control" id="landline" name="landLine" value="{{$address->landLine}}">
                     </div>
                     <div class="form-group col-12">
-                        <label for="note">{{App::getLocale() == 'ar' ? "ملاحظة الشحن":"Shipping Note"}}</label>
+                        <label for="note">{{App::getLocale() == 'ar' ? "ملاحظة اللشحن":"Shipping Note"}}</label>
                         <textarea form="addAddress-{{$address->id}}" class="form-control" id="note" rows="8" name="shipping_note" value="">{{$address->shipping_note}}</textarea>
                     </div>
                     <div class="col-12">

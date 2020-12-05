@@ -1,5 +1,8 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
+
+
+    
   var method;
   var noop = function () {};
   var methods = [
@@ -30,8 +33,8 @@ $(document).ready(function(){
     speed: 400,
     rtl: false,
     arrows: true,
-    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
-    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
+    nextArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
+    prevArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
     autoplay: true,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -67,8 +70,8 @@ $(document).ready(function(){
     infinite: true,
     speed: 300,
     arrows: true,
-    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
-    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
+    nextArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
+    prevArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
     autoplay: true,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -100,22 +103,66 @@ $(document).ready(function(){
     ]
   })
 
-  $('.image-gallery').slick({
-    dots: false,
+
+  $(".Main_images").slick({
+    autoplay: true,
+    speed: 1000,
+    arrows: false,
+    asNavFor: ".image-gallery",
     infinite: true,
     speed: 300,
     arrows: false,
     rtl: false,
-    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
-    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
+    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
+    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
     autoplay: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ]
+  });
+
+  $('.image-gallery').slick({
+    dots: false,
+    asNavFor: ".Main_images",
+    infinite: true,
+    speed: 300,
+    arrows: true,
+    rtl: false,
+    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-left"></i> </button>',
+    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-right"></i> </button>',
+    autoplay: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
           slidesToScroll: 1,
         }
       },
@@ -138,4 +185,6 @@ $(document).ready(function(){
       // instead of a settings object
     ]
   })
+
+
 });

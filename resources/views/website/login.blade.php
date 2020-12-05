@@ -4,18 +4,25 @@
 @endsection
 @section('content')
 <div class="login-form">
-@component('components.error',['errors'=>$errors ?? NULL]) @endcomponent
 
             <form action="/signin/submit" method="post">
             @csrf
 
-                <div class="form-group">
+                <div class="form-group " >
                     <label for="email">{{App::getLocale() == 'ar' ? "البريد الإلكترونى  ": "Email"}}</label>
-                    <input type="email" class="form-control" id="email" name="email"  placeholder="{{App::getLocale() == 'ar' ? ' البريد الإلكترونى ': ' Your Email'}}">
+                    <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email"  placeholder="{{App::getLocale() == 'ar' ? ' البريد الإلكترونى ': ' Your Email'}}">
+                                    @if ($errors->has('email'))
+                <span style="color:red;">{{ $errors->first('email') }}</span>
+                @endif
+
                 </div>
-                <div class="form-group">
+                <div class="form-group ">
                     <label for="password">{{App::getLocale() == 'ar' ? "كلمة المرور": "Password"}}</label>
-                    <input type="password" class="form-control" id="password"  name="password" placeholder="{{App::getLocale() == 'ar' ? 'كلمة المرور': 'Password'}}">
+                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"  name="password" placeholder="{{App::getLocale() == 'ar' ? 'كلمة المرور': 'Password'}}">
+                                    @if ($errors->has('password'))
+                <span style="color:red;">{{ $errors->first('password') }}</span>
+                @endif
+
                 </div>
                 <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">

@@ -9,15 +9,15 @@
         </title> 
           
         <!-- add icon link -->
-        <link rel = "icon" href ="{{asset('img/Towipi-logo.svg')}}"   
-        type = "image/x-icon">  
+  
+        <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
+
          <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('css/normalize.css')}}">
 
   <meta name="theme-color" content="#fafafa">
 
@@ -25,7 +25,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+  @if(\App::getLocale() == 'en')
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@500&display=swap" rel="stylesheet">
+  @endif
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
   @if(\App::getLocale() == 'ar')
   <link rel="stylesheet" href="{{asset('css/main-ar.css')}}">
@@ -69,11 +73,11 @@
                                                 <span>{{App::getLocale() == 'ar' ? "الحساب": "Account"}}</span>
                                                 <div class="dropdown-divider"></div>
                          
-                                                <a class="dropdown-item" href="/profile"><i class="fas fa-cog"></i>{{App::getLocale() == 'ar' ? "الاعدادات": "settings"}}</a>
-                                                <a class="dropdown-item" href="/orders"><i class="fas fa-shopping-basket"></i>{{App::getLocale() == 'ar' ? "الطلبات": "Orders"}}</a>
-                                                <a class="dropdown-item" href="/wishlist"><i class="far fa-heart"></i>{{App::getLocale() == 'ar' ? "المفضله": "Favorites"}}</a>
+                                                <a class="dropdown-item" href="/profile"><img class="order_img" src="{{ asset('img/setting.svg') }}" alt="">{{App::getLocale() == 'ar' ? "الاعدادات": "settings"}}</a>
+                                               <a class="dropdown-item" href="/orders"><img class="order_img" src="{{ asset('img/Cart.svg') }}" alt="">{{App::getLocale() == 'ar' ? "الطلبات": "My cart"}}</a>
+                                                <a class="dropdown-item" href="/wishlist"><i class="far fa-heart order_img"></i>{{App::getLocale() == 'ar' ? "المفضله": "Whishlist"}}</a>
                                                 <div class="dropdown-divider"></div> 
-                                                <a class="dropdown-item btn" href="/user/logout"><i class="fas fa-sign-out-alt"></i>{{App::getLocale() == 'ar' ? "تسجيل الخروج": "Log Out"}}</a>
+                                                <a class="dropdown-item btn" href="/user/logout"><i class="fas fa-sign-out-alt order_img"></i>{{App::getLocale() == 'ar' ? "تسجيل الخروج": "Log Out"}}</a>
                                 
                                              
                                             </div>
@@ -102,10 +106,34 @@
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="navbar-nav social">
+                                        @if(\App\websiteSetting::find(1)->instagram !==null ) 
                                         <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->instagram}}" class="nav-link insta"><img src="{{asset('img/instagram.svg')}}" alt=""></a></li>
+                                        @endif
+                                         @if(\App\websiteSetting::find(1)->facebook !==null ) 
                                         <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->facebook}}" class="nav-link fac"><img src="{{asset('img/Facebook.svg')}}" alt=""></a></li>
+                                        @endif
+                                         @if(\App\websiteSetting::find(1)->youTube !==null ) 
                                         <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->youTube}}" class="nav-link you"><img src="{{asset('img/Youtube.svg')}}" alt=""></a></li>
+                                        @endif
+                                         @if(\App\websiteSetting::find(1)->pinterest !==null ) 
                                         <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->pinterest}}" class="nav-link pin"><img src="{{asset('img/Pinterest.svg')}}" alt=""></a></li>
+                                        @endif
+                                         @if(\App\websiteSetting::find(1)->tiktok !==null ) 
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->tiktok}}" class="nav-link you"><img src="{{asset('img/3046122.svg')}}" alt=""></a></li>
+                                        @endif
+                                         @if(\App\websiteSetting::find(1)->snapchat !==null ) 
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->snapchat}}" class="nav-link pin"><img src="{{asset('img/ed752330de094018193026d06f9cabab.png
+')}}" alt=""></a></li>
+                                        @endif
+                                        
+                                                                                 @if(\App\websiteSetting::find(1)->twitter !==null ) 
+                                        <li class="nav-item"><a href="{{\App\websiteSetting::find(1)->twitter}}" class="nav-link pin"><img src="{{asset('img/download.png
+')}}" alt=""></a></li>
+                                        @endif
+                                        
+                                        
+                                        
+                                        
                                     </ul>
                                 </div>
 
@@ -116,46 +144,95 @@
 
                     <div class="umbrella"><img src="{{asset('img/shop umbrella.svg')}}" alt=""></div>
                     <!-- Bottom Navbar -->
-                    <div class="logo">
+                    <div class="logo" style="
+    position: relative;
+    bottom: -10px;
+">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-5">
-                                <a href="/category/2" class="btn category cake-btn"><span>{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                            <div class="row no-gutters row-rever">
+                                                                <div class="col-md-5">
+                                <a href="/category/1" class="btn category party-btn ml-0 mr-0" style="width: 226px;height: 65px;">
+                                     @if(\App::getLocale() =='ar')
+                                    <span style="text-align: center;width: auto;display: flex;justify-content: center;margin-left: 25px;">   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                                    @else
+                                     <span style="text-align: center;width: auto;display: flex;justify-content: center;text-transform: capitalize;font-size: 24px;">   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
 
+                                    @endif
                                 </div>
+
+                                
                                 <div class="col-md-2">
-                                    <a href="/" class="logo-img"><img src="{{asset('img/Towipi-logo.svg')}}" alt="Logo"></a>
+                                    <a href="/" class="logo-img"><img src="{{asset('img/Towipi-logo.svg')}}" alt="Logo" ></a>
                                 </div>
-                                <div class="col-md-5">
-                                <a href="/category/1" class="btn category party-btn " style="
-    margin-right: 15px;
-"><span>   {{App::getLocale() == 'ar' ? App\category::find('1')->name_ar : App\category::find('1')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                                
+                                
+                                                                <div class="col-md-5">
+                                <a href="/category/2" class="btn category cake-btn ml-0 mr-0" style=" width: 226px;height: 65px;">
+                                    @if(\App::getLocale() =='ar')
+                                    <span style="text-align: center;width: auto;display: flex;justify-content: center;margin-right: 50px;">{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
+                                    @else
+                                    <span style="text-align: center;width: auto;display: flex;justify-content: center;text-transform: capitalize;font-size: 24px;">{{App::getLocale() == 'ar' ? App\category::find('2')->name_ar : App\category::find('2')->name_en }}</span><img src="{{asset('img/buttom-Pink.svg')}}" alt=""></a>
 
+                                    @endif
                                 </div>
+
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>
-                    <nav class="navbar navbar-expand-lg bottom-nav">
+                    <nav class="navbar navbar-expand-lg bottom-nav pb-1" style="
+    padding-top: 0px;
+    position: relative;
+    top: -18px;
+">
                         <div class="container" style="
     display: flex;
     justify-content: center;
-    margin-top: 16px;
-    margin-left: 105px;
 ">
                             <ul class="navbar-nav">
-                            <li class="nav-item"><a href="/" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "الرئيسية" : "Home"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
-                            <li class="nav-item"><a href="/about/us" class="nav-link category"><span>{{App::getLocale() == 'ar' ? "من نحن " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
 
-                            <li class="nav-item"><a style="
-    width: 140px;
-"href="/contact/us" class="nav-link category" ><span style="
+                          
+                                                      <li class="nav-item home-li"><a href="/" class="nav-link category home-cat" style="
+    margin-top: 0px;
+    width: 160px;
+    height: 48px;
+    text-transform: capitalize;
+    font-size: 20px;
+       margin: 0 31px;
+
+"><span>{{App::getLocale() == 'ar' ? "الرئيسية" : "Home"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+
+                            <li class="nav-item" style=""><a href="/about/us" class="nav-link category" style="
+    margin-top: 0px;
+    width: 160px;
+    height: 48px;
+    text-transform: capitalize;
+    font-size: 20px;
+"><span>{{App::getLocale() == 'ar' ? " عن متجرنا  " : "about us"}}</span><img src="{{ asset('img/buttom-baby-blue.svg') }}" alt=""></a></li>
+
+
+                            <li class="nav-item"><a
+href="/contact/us" class="nav-link category touch" 
+style="
+    margin-top: 0px;
+    width: 160px;
+    height: 48px;
+    text-transform: capitalize;
+    font-size: 20px;
+"
+><span style="
     margin-right: 7px;
+    font-size:18px
 ">{{App::getLocale() == 'ar' ? " تواصل معنا  " : " contact us"}}</span><img src="{{asset('img/buttom-baby-blue.svg')}}" alt=""></a></li>
+
 
                             </ul>
                         </div>
                     </nav>
-                    <form action="/product/search" method="get" id="searchForm">
+                    <form action="/product/search" method="get" id="searchForm" style="margin-bottom: 0px;position: relative;top: -11px;">
                     <div class="input-group">
           
                         <input type="text" name="name"  form="searchForm" class="form-control" placeholder="{{App::getLocale() == 'ar' ? 'ابحث عن منتجات....':'Search for products...' }}" aria-label="Username" aria-describedby="basic-addon1">

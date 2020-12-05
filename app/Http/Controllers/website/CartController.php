@@ -124,10 +124,10 @@ public function OrderSummary(){
         $beforDiscount=$subtotal;
         $allprice=$beforDiscount -($beforDiscount * $price->order_discount/100 );
         $discount=($beforDiscount * $price->order_discount/100 );
-        $allprice+=$taxes+$costofShipping;
+        $allprice+=$costofShipping;
 
         }else{
-        $allprice=$subtotal+$taxes+$costofShipping;
+        $allprice=$subtotal+$costofShipping;
         $discount=0;
         }
 
@@ -168,6 +168,7 @@ public function addPersonalize(Request $request){
 
     $request->child_name[$key]	  == null ? : $cart->child_name	=$request->child_name[$key];
     $request->child_age[$key]  == null ? :$cart->child_age=$request->child_age[$key];
+    $request->personalize_note[$key] == null? :$cart->personalize_note=$request->personalize_note[$key];
     $cart->save();
     }
     if($request->personalize){
@@ -364,9 +365,9 @@ public function addCoupon(Request $request){
 * @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
 */
 public function addAddressCart(Request $request){
-    
+
     $rules=[
-        'address_name'=>'required|unique:addresses,address_name|max:255',
+        'address_name'=>'required|max:255',
         'first_name'=>'required|max:255',
         'last_name'=>'required|max:255',
         'country'=>'required|exists:country,id|max:255',
@@ -382,10 +383,10 @@ public function addAddressCart(Request $request){
            $validator = \Validator::make($request->all(),$rules);
 
         if ($validator->fails()) {
-            return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+
+   $error = $validator->errors()->first();
+
+ return back()->with('error',['ar'=>$error,'en'=>$error]);        }
       
     $Address=new Address();
     $Address->user_id=\Auth::guard('users')->user()->id;
@@ -421,7 +422,10 @@ public function AddressCart(Request $request){
    if($request->address){
     cart::where('user_id',\Auth::guard('users')->user()->id)->update(['address_id'=>$request->address]);   
    }else{
-        $this->addAddressCart($request);
+       
+    return    $this->addAddressCart($request);
+           
+       
    }
     return redirect('/payment');
 }
@@ -435,12 +439,11 @@ public function AddressCart(Request $request){
 */
 public function paymentCart(){
     cart::where('user_id',\Auth::guard('users')->user()->id)->update(['status'=>'2']);
-    $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->with('address')->first();
+    $cart=cart::where('user_id',\Auth::guard('users')->user()->id)->with('address')->with('product')->get();
     $user=Users::where('id',\Auth::guard('users')->user()->id)->with('address')->first();
     $Countries=country::all();
 
     $cities=city::with('country')->get();
-
     return view('website.payment',\compact('cart','user','Countries','cities'))->with($this->OrderSummary());
 }
 

@@ -262,7 +262,7 @@ $request->validate($rules,$message);
         $product->name_en=$request->name_en;
         $product->description_ar=$request->description_ar;
         $product->description_en=$request->description_en;
-        $product->url=$request->url;
+        $request->url !== null  ? : $product->url=$request->url;
 
         $product->category_id=$category;  
         $product->sub_category_id=$request->subcategory;

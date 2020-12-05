@@ -1,5 +1,8 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
+
+
+    
   var method;
   var noop = function () {};
   var methods = [
@@ -110,8 +113,8 @@ $(document).ready(function(){
     speed: 300,
     arrows: false,
     rtl: true,
-    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-arrow-right"></i> </button>',
-    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
+    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
+    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -150,10 +153,10 @@ $(document).ready(function(){
     speed: 300,
     arrows: true,
     rtl: true,
-    nextArrow: '<button type="button" class="slick-next" > <i style="color:#000" class="fas fa-arrow-right"></i> </button>',
-    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-arrow-left"></i> </button>',
+    nextArrow: '<button type="button" class="slick-next"> <i class="fas fa-angle-right"></i> </button>',
+    prevArrow: '<button type="button" class="slick-prev"> <i class="fas fa-angle-left"></i> </button>',
     autoplay: true,
-    slidesToShow: 2,
+    slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {

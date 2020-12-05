@@ -1,8 +1,8 @@
 
 
-<div class="card">
+<div class="card" style="display: inline-block;">
      <div class="pro-img">
-          <a href="/product/info/{{$product->id}}"><img src="{{$product->main_image}}"  alt="product"></a>
+          <a href="/product/info/{{$product->id}}"><img src="{{$product->main_image}}" style="height:148px;  width:245px"  alt="product"></a>
           @if(Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::parse($product->created_at)) 
 && Carbon\Carbon::now()->lessThanOrEqualTo(Carbon\Carbon::parse($product->created_at)->addDays(3)))
           <span class="status badge badge-primary">{{App::getLocale() == 'ar' ? "جديد":"New"}}</span>

@@ -2,25 +2,25 @@
 <nav aria-label="Page navigation example" class="">
                             <ul class="pagination">
         {{-- Previous Page Link --}}
-        @if ($paginator->onFirstPage())
+            @if ($paginator->hasMorePages())
 
-        <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item">
+                                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">
                                         <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
-                                        <span class="sr-only">Previous</span>
+                                        <span class="sr-only">Next</span>
                                     </a>
                                 </li>
+
         @else
 
-
-        <li class="page-item ">
-                                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+        <li class="page-item disabled">
+                                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">
                                         <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
-                                        <span class="sr-only">Previous</span>
+                                        <span class="sr-only">Next</span>
                                     </a>
                                 </li>
-        @endif
 
+        @endif
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
@@ -43,25 +43,27 @@
         @endforeach
 
         {{-- Next Page Link --}}
-        @if ($paginator->hasMorePages())
-
-        <li class="page-item">
-                                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">
-                                        <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-
-        @else
+        
+         @if ($paginator->onFirstPage())
 
         <li class="page-item disabled">
-                                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">
+                                    <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
-                                        <span class="sr-only">Next</span>
+                                        <span class="sr-only">Previous</span>
                                     </a>
                                 </li>
+        @else
 
+
+        <li class="page-item ">
+                                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+                                        <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
         @endif
+
+   
     </ul>
 @endif
 </nav>

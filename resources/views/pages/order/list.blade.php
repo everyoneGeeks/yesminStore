@@ -30,98 +30,32 @@
             <th>السعر الكلي </th>
             <th>الخصم</th>
             <th> تاريخ الانشاء </th>
-              <th>   </th>
+              <th> عرض  </th>
+              <th> موافقة   </th>
+
+              <th> رفض  </th>
+
         </tr>
         </thead>
         <tbody>
 
 @foreach($orders as $order)
 @if($order->status == 'new')
-<th>{{$order->id}}</th>
-<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
+<th>{{$order->order_id}}</th>
+<th><a href="/admin/user/info/{{$order->user->id}}">{{$order->user->first_name}}</a></th>
 <th>{{$order->price}}</th>
 <th>{{$order->discount}}</th>
 <th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
-<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
-@endif
-        </tr>
-@endforeach
-        </tbody>
-        </table>
+<th>
+<a href="/admin/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+<th>
+<a href="/admin/order/accept/{{$order->id}}" class="btn btn-block btn-success btn-flat">موافقة </a>
 
-@endif
+</th>
+<th>
+<a href="/admin/order/cancel/{{$order->id}}" class="btn btn-block btn-danger btn-flat">رفض </a>
 
-@endcomponent
-
-
-
-@component('components.panel',['subTitle'=>' الطلبات قيد التوصيل  '])
-@if($orders->isEmpty())
-
-@component('components.empty',['section'=>'الطلبات ']) @endcomponent
-
-@else
-
-<table id="example2" class="table table-bordered table-hover example2">
-        <thead>
-        <tr>
-            <th> رقم الطلب </th>
-            <th> اسم المستخدم  </th>
-            <th>مكان التوصيل </th>
-            <th> تاريخ الانشاء </th>
-              <th>   </th>
-        </tr>
-        </thead>
-        <tbody>
-
-@foreach($orders as $order)
-@if($order->status == 'inprogress')
-<th>{{$order->id}}</th>
-<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
-<th>{{$order->price}}</th>
-<th>{{$order->discount}}</th>
-<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
-<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
-@endif
-        </tr>
-@endforeach
-        </tbody>
-        </table>
-
-@endif
-
-@endcomponent
-
-
-
-@component('components.panel',['subTitle'=>'  الطلبات تم التوصيل  '])
-@if($orders->isEmpty())
-
-@component('components.empty',['section'=>'الطلبات ']) @endcomponent
-
-@else
-
-<table id="example2" class="table table-bordered table-hover example2">
-        <thead>
-        <tr>
-            <th> رقم الطلب </th>
-            <th> اسم المستخدم  </th>
-            <th>السعر الكلي </th>
-            <th>الخصم</th>
-            <th> تاريخ الانشاء </th>
-              <th>   </th>
-        </tr>
-        </thead>
-        <tbody>
-
-@foreach($orders as $order)
-@if($order->status == 'delivered')
-<th>{{$order->id}}</th>
-<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
-<th>{{$order->price}}</th>
-<th>{{$order->discount}}</th>
-<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
-<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
+</th>
 @endif
         </tr>
 @endforeach
@@ -135,45 +69,6 @@
 
 
 
-
-
-@component('components.panel',['subTitle'=>'   الطلبات المرفوضة  '])
-@if($orders->isEmpty())
-
-@component('components.empty',['section'=>'الطلبات ']) @endcomponent
-
-@else
-
-<table id="example2" class="table table-bordered table-hover example2">
-        <thead>
-        <tr>
-            <th> رقم الطلب </th>
-            <th> اسم المستخدم  </th>
-            <th>السعر الكلي </th>
-            <th>الخصم</th>
-            <th> تاريخ الانشاء </th>
-              <th>   </th>
-        </tr>
-        </thead>
-        <tbody>
-
-@foreach($orders as $order)
-@if($order->status == 'cancel')
-<th>{{$order->id}}</th>
-<th><a href="/user/info/{{$order->user->id}}">{{$order->user->name}}</a></th>
-<th>{{$order->price}}</th>
-<th>{{$order->discount}}</th>
-<th>{{Carbon\Carbon::parse($order->created_at)->format('Y-m-d')}}</th>
-<th><a href="/order/info/{{$order->id}}" class="btn btn-block btn-primary btn-flat">عرض</a></th>
-@endif
-        </tr>
-@endforeach
-        </tbody>
-        </table>
-
-@endif
-
-@endcomponent
  @endsection
 
  @section('javascript')

@@ -19,30 +19,44 @@
                     
                     <div class="checkout-details">
                             <h6>choose payment method</h6>
+                            
+
+
                             <div class="payment-method">
-                                <div class="content-bar">
-                                    <div class="head-bar">
-                                        <h3>Pay With PayPal <i class="fa fa-angle-down"></i></h3>
-                                    </div>
-                                    <div class="bar-content">
-                                        PayPal - the safer, easier way to pay.
-                                    </div>
-                                </div>
-                                <div class="content-bar">
-                                    <div class="head-bar">
-                                        <h3>Pay With 2Checkout<i class="fa fa-angle-down"></i></h3>
-                                    </div>
-                                    <div class="bar-content">
-                                        Pay With 2Checkout
-                                    </div>
-                                </div>
-                                <div class="content-bar">
-                                    <div class="head-bar">
-                                        <h3>Cash On Delivery<i class="fa fa-angle-down"></i></h3>
-                                    </div>
-                                    <div class="bar-content">
-                                        Cash On Delivery
-                                    </div>
+                                <div class= 'col-lg-6'>
+                                <input type="radio" name="payment" id="fawery" style="
+    position: relative;
+">
+                                <img id="faweryImag" src="{{asset('img/fawry.svg')}}"/ style="
+    width: 150px;
+    height: 150px;
+">
+                               <input hidden='true'  id="faweryInput" type="image" onclick="FawryPay.checkout(chargeRequest,'/add/order', '/error')"; src="https://www.atfawry.com/assets/img/FawryPayLogo.jpg"/>
+                            </div>
+                              <br>
+                              
+<!--                              <div class="col-lg-6">-->
+<!--                                <input type="radio" name="payment" id="paypal" style="-->
+<!--    position: relative;-->
+<!--">-->
+<!--                             <img id="paypalImage" src="{{asset('img/paypal.svg')}}" -->
+<!--                              style="-->
+<!--    width: 150px;-->
+<!--    height: 150px;-->
+<!--"/> -->
+
+<!--                                <div hidden id="paypal-button-container"></div> -->
+                              
+<!--                           </div>   -->
+                           
+                                <!--<br>-->
+                                <div class="col-lg-6">
+                                <input type="radio" name="payment" id="cash">
+                                <img id="cash" src="{{asset('img/cash.svg')}}" 
+                              style="
+    width: 150px;
+    height: 150px;
+"/>
                                 </div>
                             </div>
 
@@ -73,19 +87,103 @@
 <script>
 
     
-function updateCart(val){
-    var id= $(val).attr("data-id");
-    if ($('#check_id').is(":checked"))
-{
-    console.log($('#'+id));
-$('#'+id).removeClass("unchecked").addClass("checked");
-}else{
-    $('#'+id).removeClass("checked").addClass("unchecked");
-}
-}
 
+$( "#fawery" ).on( "click", function() {
+    
+   $('#faweryImag').attr('hidden','true');
+   $('#faweryInput').removeAttr('hidden');
+   $('#paypalImage').removeAttr('hidden');
+   $('#paypal-button-container').attr('hidden');
+});
+
+
+$( "#paypal" ).on( "click", function() {
+    
+  $('#faweryImag').removeAttr('hidden');
+   $('#faweryInput').attr('hidden','true');
+   
+   $('#paypalImage').attr('hidden','true');
+   $('#paypal-button-container').removeAttr('hidden');
+    
+});
+
+
+
+$( "#cash" ).on( "click", function() {
+    
+  $('#faweryImag').removeAttr('hidden');
+   $('#faweryInput').attr('hidden','true');
+   
+   $('#paypalImage').removeAttr('hidden');
+   $('#paypal-button-container').attr('hidden','true');
+    
+});
+
+
+cash
 
 
 </script>
 
+
+    
+<script src= "https://atfawry.fawrystaging.com/ECommercePlugin/scripts/V2/FawryPay.js"></script>
+
+
+	<script>
+	
+ 
+	 
+		var chargeRequest = {};
+		chargeRequest.language= 'eg-ar';
+		chargeRequest.merchantCode= '1tSa6uxz2nQDrSCUSJ7b9w==';
+		chargeRequest.merchantRefNumber= '18655';
+		chargeRequest.customer = {}
+		chargeRequest.customer.name = '{{$user->first_name}} {{$user->last_name}}';
+		chargeRequest.customer.mobile = '{{$user->phone}}';
+		chargeRequest.customer.email = '{{$user->email}}';
+		chargeRequest.customer.customerProfileId = '';
+		chargeRequest.order = {};
+		chargeRequest.order.description = '';
+		chargeRequest.order.expiry = '';
+		chargeRequest.order.orderItems = [];
+		
+			@foreach($cart as $product)
+				var item = {};
+			item.productSKU = '{{$product->id}}';
+			item.description ='{{$product->product->name_ar}}';
+			item.price ='{{$product->price-($product->price*$product->discount/100)}}';
+			item.quantity ='{{$product->amount}}';
+			item.width ='12222';
+			item.height ='12222';
+			item.length ='12222';
+			item.weight ='12222';
+		chargeRequest.order.orderItems.push(item);
+		@endforeach
+
+
+		 
+		function requestCanceldCallBack(merchantRefNum) {		 
+		alert(merchantRefNum);		 
+		}
+		
+		function fawryCallbackFunction(paid, billingAcctNum, paymentAuthId,merchantRefNum, messageSignature) {
+			// Your implementation
+		}
+	</script>
+	
+	
+	
+
+ <script   data-namespace="paypal_sdk" src="https://www.paypal.com/sdk/js?client-id=AXySesp-fiIMXF_N5o60f4ttT8yZz-szCz7Wkc1d7ihLKWHoBPfzaZj1VCCA7zBl2O1Edgcr309AOEyL&currency=USD"></script>
+
+    <script>
+
+        paypal_sdk.Buttons({
+            style: {
+             layout: 'horizontal'
+            }
+        }).render('#paypal-button-container');
+        
+    </script>
 @endsection

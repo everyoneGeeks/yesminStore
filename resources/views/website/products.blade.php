@@ -84,7 +84,7 @@
                             <div class="row" style="width: 100%;display: flex;justify-content: center;">
                              
                             @if($products->isEmpty())
-                            @component('components.emptyWebsite',['sectionِAr'=>'منتجات','sectionِEn'=>'products']) @endcomponent
+                            @component('components.emptyWebsite',['sectionِAr'=>'منتجات','sectionِEn'=>'products','emptyCart'=>null]) @endcomponent
 
                             @endif
 

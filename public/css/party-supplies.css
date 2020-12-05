@@ -5,18 +5,30 @@
     width: 60%;
 }
 .party-supplies .one-category img{
-    width: 250px;
-    height: 250px;
+    width: 195px;
+    height: 195px;
     border-radius: 50%;
     border: 1px solid #eee;
     margin-top: 2rem;
     margin-left: 45px;
+        margin: auto;
 }
-.party-supplies .one-category h4{
+.party-supplies .one-category h4 {
     text-align: center;
     color: #ff96c5;
     font-weight: bold;
     font-size: 22px;
-    margin: 1rem;
     text-transform: capitalize;
+    padding-left: 0 !important;
+        position: static !important;
+}
+
+.party-supplies .row {
+    margin:0 !important;
+}
+footer .bottom-footer .copy {
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    margin: 0;
 }

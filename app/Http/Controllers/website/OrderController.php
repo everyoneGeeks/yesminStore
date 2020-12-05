@@ -5,10 +5,13 @@ namespace App\Http\Controllers\website;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Orders;
-use App\orderProduct;
+use App\orderPrduct;
 use App\Users;
 use App\rateProduct;
+use App\returnOrder;
 use App\Complains;
+use App\products;
+use App\Carbon;
 /*
 |--------------------------------------------------------------------------
 | OrderController
@@ -43,7 +46,45 @@ public function orders(){
       return view('website.orders',\compact('orders','user'));
   }
 
+/**  
+* show all ComplaintInfo    
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function ComplaintInfo($id){
+    $Complains=Complains::where('id',$id)->with('user')->with('product')->with('order')->first();
+        
+    
 
+  
+      return view('pages.order.ComplainsInfo',\compact('Complains'));
+  }
+
+
+
+
+public function ComplaintStatus (Request $request,$id) {
+    $Complains=Complains::where('id',$id)->first();
+    
+    if($Complains->status== "open" ){
+        $Complains->status='closed';
+        
+        $Complains->save();
+        
+\Notify::success( ' تم تغير  حاله الشكوي بنجاح ',' تم تغير  حاله الشكوي بنجاح ');         
+          return back();
+
+    }else{
+      
+        $Complains->status='open';
+        
+        $Complains->save();
+\Notify::success( ' تم تغير  حاله الشكوي بنجاح ',' تم تغير  حاله الشكوي بنجاح ');         
+          return back(); 
+    }
+    
+    
+}
 /**  
 * rate product  
 * -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -55,7 +96,7 @@ public function productRate(Request $request,$id){
   $rateProduct=rateProduct::where('user_id',\Auth::guard('users')->user()->id)->where('product_id',$id)->first();
 if($rateProduct){
   //update
-  $rateProduct->rate=$request->rate;
+  $rateProduct->rate=$request->rateing;
   $rateProduct->comment=$request->comment;
   $rateProduct->save();
 
@@ -66,7 +107,7 @@ if($rateProduct){
         $rateProduct->user_id=\Auth::guard('users')->user()->id;
         $rateProduct->product_id=$id;
         $rateProduct->comment=$request->comment;
-        $rateProduct->rate=$request->rate;
+        $rateProduct->rate=$request->rateing;
         $rateProduct->save();
     
   
@@ -93,7 +134,7 @@ public function productComplaint(Request $request,$order,$product){
 $Complains=Complains::where('user_id',\Auth::guard('users')->user()->id)->where('order_id',$order)->where('product_id',$product)->first();
 
 if($Complains){
-  $Complains->title=$request->title;
+  $Complains->phone=$request->phone;
   $Complains->subject=$request->subject;
   $Complains->save();
   return back();
@@ -103,13 +144,54 @@ $Complains=new Complains();
 $Complains->user_id=\Auth::guard('users')->user()->id;
 $Complains->order_id=$order;
 $Complains->product_id=$product;
-$Complains->title=$request->title;
+$Complains->phone=$request->phone;
 $Complains->subject=$request->subject;
 $Complains->save();
+
+
+$product=orderPrduct::where('order_id',$order)->where('product_id',$product)->first();
+$product->is_complains="1";
+$product->phone=$request->phone;
+$product->subject=$request->subject;
+$product->save();
+
 
 return back();
 
 
 }
 
+
+
+public function productReturning(Request $request,$order,$product){
+
+  $Returning=returnOrder::where('user_id',\Auth::guard('users')->user()->id)->where('order_id',$order)->where('product_id',$product)->first();
+  
+  if($Returning){
+    $Returning->phone=$request->phone;
+    $Returning->subject=$request->subject;
+    $Returning->save();
+    return back();
+  }
+  
+  $Returning=new returnOrder();
+  $Returning->user_id=\Auth::guard('users')->user()->id;
+  $Returning->order_id=$order;
+  $Returning->product_id=$product;
+  $Returning->phone=$request->phone;
+  $Returning->subject=$request->subject;
+  $Returning->save();
+  
+  
+  $product=orderPrduct::where('order_id',$order)->where('product_id',$product)->first();
+  $product->is_returning="1";
+  $product->phone=$request->phone;
+  $product->subject=$request->subject;
+  $product->save();
+  
+  
+  return back();
+  
+  
+  }
 }

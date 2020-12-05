@@ -8,14 +8,14 @@
 <div class="cart-details">
             <div class="container">
             @if($carts->isEmpty())
-                            @component('components.emptyWebsite',['sectionِAr'=>'سله التسوق','sectionِEn'=>'cart']) @endcomponent
+                            @component('components.emptyWebsite',['sectionِAr'=>'  عربة التسوق ','sectionِEn'=>'cart','emptyCart'=>'cart']) @endcomponent
                             @else 
 
                 <div class="row">
               
                     <div class="col-md-7">
 
-                    <h2><img src="{{asset('img/Cart-c.svg')}}" alt="">{{App::getLocale() == 'ar' ? "سلة التسوق": "your shopping cart"}}</h2>
+                    <h2><img src="{{asset('img/Cart-c.svg')}}" alt="">{{App::getLocale() == 'ar' ? "  عربة التسوق ": "your shopping cart"}}</h2>
 
                     
                     
@@ -194,7 +194,7 @@
 
       
                                     <div class="personalize   {{ $cart->personalize == '1' ? 'checked' :'unchecked' }} " id='personalize-{{$cart->id}}'>
-                                        <span>{{App::getLocale() == 'ar' ? "إضفاء الطابع الشخصي على طلبك":"Personalize your order"}}</span>
+                                        <span>{{App::getLocale() == 'ar' ? "تخصيص الطلب":"Personalize your order"}}</span>
 
                                         <input type="text" form="addpersonalize" class="form-control age" name="id[]" value="{{$cart->id}}"  hidden>
                                         <div class="custom-control custom-switch">
@@ -220,6 +220,15 @@
                                             <label for="lname">{{App::getLocale() == 'ar' ? "عمر الطفل ":"Child Age"}}</label>
                                             <input type="text" form="addpersonalize" class="form-control age" id="child_age" name="child_age[]" value="{{$cart->child_age}}">
                                         </div>
+
+                                    <div class="form-group">
+                                            <label for="lname">{{App::getLocale() == 'ar' ? " ملاحظات للبائع  ":" 
+Notes to the seller"}}</label>
+                                            <textarea style="
+    width: 180px;
+    height: 134px;
+" type="text" form="addpersonalize" class="form-control age" id="note" name="personalize_note[]" >{{$cart->personalize_note}}</textarea>
+                                        </div>
                                  
                                     </div>
 
@@ -229,7 +238,9 @@
                             <div class="qun">
                                 <a href="/cart/delete/{{$cart->id}}" class="remove"><img src="{{asset('img/basket.svg') }}" alt=""> {{App::getLocale() == 'ar' ? " حذف ":"Remove "}}</a>
                             </div>
-                        </div><hr>
+                        </div><hr style="
+    margin-top: 0px;
+">
                         @endforeach
                         <form id="addpersonalize" action="/cart/personalize/"  method='get'>
 
