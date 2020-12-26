@@ -116,8 +116,20 @@ public function returnOrder (){
     }
     
     
+/**
+*  acceptReturn
+* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* @author ಠ_ಠ Abdelrahman Mohamed <abdomohamed00001@gmail.com>
+*/
+public function acceptReturn($id){
+    $order=returnOrder::where('id',$id)->first();
+    $order->acceptReturn=1;
+    $order->save();
+    \Notify::success('تم  الموافقة علي  ارتجاع الطلب    ', 'تم الموافقة بنجاح    ');
+
+    return redirect()->back();
+    }    
     
-     
     /**
     * accept order
     * @pararm int $id order id

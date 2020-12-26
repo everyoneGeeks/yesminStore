@@ -154,6 +154,8 @@ Route::get('/orders/returnOrder','ordersController@returnOrder')->name('orders.r
 */
 Route::get("/returnOrder/status/{id}",'ordersController@returnOrderStatus')->name('returnOrderStatus');
 Route::get("/returnOrder/info/{id}",'ordersController@returnOrderinfo')->name('returnOrderInfo');
+Route::get("/accept/return/{id}",'ordersController@acceptReturn')->name('acceptReturn');
+
 #----------------------------------------------------------------------------------
 
 
@@ -270,6 +272,11 @@ Route::get('/shipping/edit/{id}','shippingController@formEdit')->name('shipping.
 Route::post('/shipping/edit/{id}','shippingController@submitEdit')->name('shipping.edit.submit')->where('id', '[0-9]+')->middleware('role:ad,edit');
 Route::get('/shipping/add','shippingController@formAdd')->name('shipping.add')->middleware('role:ad,add');
 Route::post('/shipping/add','shippingController@submitAdd')->name('shipping.add.submit')->middleware('role:ad,add');
+Route::get("/shipping/info/{id}",'shippingController@info')->name('shipping.info');
+Route::get('/shipping/cities/{id}','shippingController@shippingCities')->name('shippingCities.admin');
+Route::get('/shipping/delete/{id}','shippingController@delete')->name('shippingCities.delete');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -432,11 +439,8 @@ Route::get('/product/rate/{id}','website\OrderController@productRate')->name('pr
 Route::get('/product/complaint/{order}/{product}','website\OrderController@productComplaint')->name('productComplaint');
 
 Route::get('/product/returning/{order}/{product}','website\OrderController@productReturning')->name('productReturning');
-<<<<<<< HEAD
 
 
-=======
->>>>>>> a272f5777e314da3da09e5a8e23c90f6d65d4551
 
 
 

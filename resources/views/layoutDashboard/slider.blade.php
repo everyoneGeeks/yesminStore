@@ -94,6 +94,18 @@
           </a>
         </li>   
 
+
+          <!-- categories Route-->  
+          <li class="nav-item ">
+    <a href="/admin/shipping" class="nav-link {{ Request::is(Route::currentRouteName() == 'shipping') ? 'active' : '' }}">
+      <i class="nav-icon  fa  fa-book" aria-hidden="true"></i>
+      <p>
+      الشحن
+      </p>
+    </a>
+  </li> 
+
+
         <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-book"></i>
